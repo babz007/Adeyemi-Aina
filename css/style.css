@@ -1,0 +1,116 @@
+/* Project Grid Layout */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Project Card Styling */
+.project-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border-color, #e5e5e5);
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.project-preview {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: #f5f5f5;
+}
+
+.project-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 1.5rem;
+}
+
+.project-info h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-color-primary, #333);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.project-description {
+    color: var(--text-color-secondary, #666);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-color-muted, #888);
+    margin-bottom: 1.5rem;
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color, #ff8906);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background: var(--primary-color-dark, #e67e00);
+    transform: translateY(-1px);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .project-card {
+        background: var(--dark-bg, #1a1a1a);
+        border-color: var(--dark-border, #333);
+    }
+
+    .project-info h3 {
+        color: var(--dark-text-primary, #fff);
+    }
+
+    .project-description {
+        color: var(--dark-text-secondary, #ccc);
+    }
+
+    .project-meta {
+        color: var(--dark-text-muted, #888);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+} 

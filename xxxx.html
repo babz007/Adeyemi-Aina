@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Projects - Adeyemi Aina</title>
+
+    <!-- Mobile Meta Tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="css/main.min.css" rel="stylesheet">
+    <link href="css/cards.min.css" rel="stylesheet">
+
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else if(localStorage.theme === 'light'){
+            document.documentElement.classList.add('light')
+        } else if(localStorage.theme === 'auto' || !('theme' in localStorage)){
+            document.documentElement.classList.add('auto')
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                document.documentElement.classList.add('dark')
+                document.documentElement.classList.remove('light')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
+        }
+        if(navigator.platform.indexOf('Mac') > -1){
+            document.documentElement.classList.add('mac')
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Projects and contributions by Adeyemi Aina - Software Engineer and Research Assistant">
+    <link rel="icon" href="images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="https://people.cs.vt.edu/ainababs0/projects">
+
+    <!-- Custom Styles -->
+    <style>
+    .menu-item.js-theme {
+        display: none;
+    }
+    .nav-wrapper .nav > li.nav-current a {
+        text-decoration: none;
+        font-weight: normal;
+    }
+    </style>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NVHMP8NK');</script>
+</head>
+<body class="home-template tag-hash-hide-videos font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">
+                                <i class="fas fa-home"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="projects.html">
+                                <i class="fas fa-project-diagram"></i> Projects
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">
+                                <i class="fas fa-user"></i> About
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <!-- Open Source Contributions Section -->
+                <section class="mb-12">
+                    <h2 class="text-3xl font-bold mb-8">Open Source Contributions</h2>
+                    <div class="projects-grid grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Open Source Project 1 -->
+                        <div class="project-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden">
+                            <div class="project-preview h-48">
+                                <img src="images/project1.jpg" class="w-full h-full object-cover" loading="lazy" alt="Project 1 Preview">
+                            </div>
+                            <div class="project-info p-6">
+                                <h3 class="text-xl font-semibold mb-2">Secure API Gateway</h3>
+                                <p class="project-description text-gray-600 dark:text-gray-400 mb-4">
+                                    Contributed to developing a secure API gateway with OAuth2 authentication and rate limiting features.
+                                </p>
+                                <div class="project-meta flex flex-wrap gap-2 mb-4">
+                                    <span class="tech-stack text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">Python</span>
+                                    <span class="tech-stack text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">FastAPI</span>
+                                </div>
+                                <div class="project-links flex gap-3">
+                                    <a href="#" class="btn btn-orange">View Project</a>
+                                    <a href="#" class="btn btn-gray-border">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Open Source Project 2 -->
+                        <div class="project-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden">
+                            <div class="project-preview h-48">
+                                <img src="images/project2.jpg" class="w-full h-full object-cover" loading="lazy" alt="Project 2 Preview">
+                            </div>
+                            <div class="project-info p-6">
+                                <h3 class="text-xl font-semibold mb-2">ML Model Pipeline</h3>
+                                <p class="project-description text-gray-600 dark:text-gray-400 mb-4">
+                                    Built an automated ML model training and deployment pipeline using cloud infrastructure.
+                                </p>
+                                <div class="project-meta flex flex-wrap gap-2 mb-4">
+                                    <span class="tech-stack text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">TensorFlow</span>
+                                    <span class="tech-stack text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">AWS</span>
+                                </div>
+                                <div class="project-links flex gap-3">
+                                    <a href="#" class="btn btn-orange">View Project</a>
+                                    <a href="#" class="btn btn-gray-border">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Personal Projects Section -->
+                <section class="mb-12">
+                    <h2 class="text-3xl font-bold mb-8">Personal Projects</h2>
+                    <div class="projects-grid grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Personal Project 1 -->
+                        <div class="project-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden">
+                            <div class="project-preview h-48">
+                                <img src="images/personal1.jpg" class="w-full h-full object-cover" loading="lazy" alt="Personal Project 1 Preview">
+                            </div>
+                            <div class="project-info p-6">
+                                <h3 class="text-xl font-semibold mb-2">Portfolio Website</h3>
+                                <p class="project-description text-gray-600 dark:text-gray-400 mb-4">
+                                    A responsive portfolio website built with modern web technologies.
+                                </p>
+                                <div class="project-meta flex flex-wrap gap-2 mb-4">
+                                    <span class="tech-stack text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">React</span>
+                                    <span class="tech-stack text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">Tailwind</span>
+                                </div>
+                                <div class="project-links flex gap-3">
+                                    <a href="#" class="btn btn-orange">Live Demo</a>
+                                    <a href="#" class="btn btn-gray-border">Source Code</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Personal Project 2 -->
+                        <div class="project-card bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden">
+                            <div class="project-preview h-48">
+                                <img src="images/personal2.jpg" class="w-full h-full object-cover" loading="lazy" alt="Personal Project 2 Preview">
+                            </div>
+                            <div class="project-info p-6">
+                                <h3 class="text-xl font-semibold mb-2">Task Manager App</h3>
+                                <p class="project-description text-gray-600 dark:text-gray-400 mb-4">
+                                    A full-stack task management application with real-time updates.
+                                </p>
+                                <div class="project-meta flex flex-wrap gap-2 mb-4">
+                                    <span class="tech-stack text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">Node.js</span>
+                                    <span class="tech-stack text-sm bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">MongoDB</span>
+                                </div>
+                                <div class="project-links flex gap-3">
+                                    <a href="#" class="btn btn-orange">Live Demo</a>
+                                    <a href="#" class="btn btn-gray-border">Source Code</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Publications Section -->
+                <section class="mb-12">
+                    <h2 class="text-3xl font-bold mb-8">Publications</h2>
+                    
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title">
+                                    <span style="white-space: pre-wrap;">Beyond Curation: A Validation and Classification Infrastructure</span>
+                                </h4>
+                            </div>
+                            <div class="kg-product-card-description">
+                                <p><span style="white-space: pre-wrap;">2024</span></p>
+                            </div>
+                            <a href="https://hdl.handle.net/10919/124292" 
+                               class="kg-product-card-button kg-product-card-btn-accent" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <span>#</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title">
+                                    <span style="white-space: pre-wrap;">Optimizing Schools: An Ethical Analysis of AI Integration in Education</span>
+                                </h4>
+                            </div>
+                            <div class="kg-product-card-description">
+                                <p><span style="white-space: pre-wrap;">2024</span></p>
+                            </div>
+                            <a href="https://hdl.handle.net/10919/124717" 
+                               class="kg-product-card-button kg-product-card-btn-accent" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <span>#</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Add the necessary JavaScript files -->
+    <script src="js/main.min.js"></script>
+    <script src="js/cards.min.js"></script>
+</body>
+</html>
