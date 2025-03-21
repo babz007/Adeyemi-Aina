@@ -1,0 +1,120 @@
+/* Education card styles */
+.education-card {
+    transition: all 0.3s ease;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(209, 213, 219, 0.1);
+}
+
+.education-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: rgba(209, 213, 219, 0.2);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+/* Circular education images */
+.education-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(246, 149, 59, 0.3);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.education-card:hover .education-image {
+    border-color: rgba(246, 149, 59, 0.8);
+    transform: scale(1.05);
+}
+
+.education-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Card content layout */
+.card-content .flex {
+    gap: 1.5rem;
+}
+
+/* Email button styling */
+.btn-gray-border + .btn-gray-border {
+    margin-left: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .education-image {
+        width: 70px;
+        height: 70px;
+        margin-right: 1rem;
+    }
+    .card-content .flex {
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .education-image {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .btn-gray-border + .btn-gray-border {
+        margin-left: 0.5rem;
+    }
+}
+
+/* Profile image styling */
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0 2.5rem;
+}
+
+.profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(246, 149, 59, 0.7);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    border-color: rgba(246, 149, 59, 1);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive profile image */
+@media (max-width: 768px) {
+    .profile-image {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-image {
+        width: 120px;
+        height: 120px;
+    }
+} 
