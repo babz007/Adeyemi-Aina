@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Articles - {{ site.title }}</title>
+
+    <!-- Mobile Meta Tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="css/main.min.css" rel="stylesheet">
+    <link href="css/page-transitions.css" rel="stylesheet">
+
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else if(localStorage.theme === 'light'){
+            document.documentElement.classList.add('light')
+        } else if(localStorage.theme === 'auto' || !('theme' in localStorage)){
+            document.documentElement.classList.add('auto')
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                document.documentElement.classList.add('dark')
+                document.documentElement.classList.remove('light')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
+        }
+        if(navigator.platform.indexOf('Mac') > -1){
+            document.documentElement.classList.add('mac')
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Explore articles about AI, software engineering, and technology insights">
+    <link rel="icon" href="images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="/articles/">
+
+    <!-- Custom Styles -->
+    <style>
+        .article-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .dark .article-card {
+            background: #1f2937;
+            border-color: #374151;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .article-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .article-card h2 {
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        
+        .dark .article-card h2 {
+            color: #f9fafb;
+        }
+        
+        .article-card .excerpt {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        
+        .dark .article-card .excerpt {
+            color: #9ca3af;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .dark .article-meta {
+            color: #9ca3af;
+        }
+        
+        .article-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .article-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .dark .article-tag {
+            background: #374151;
+            color: #d1d5db;
+        }
+        
+        .category-filter {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 2rem;
+            background: white;
+            color: #374151;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+        
+        .dark .category-btn {
+            background: #1f2937;
+            border-color: #374151;
+            color: #d1d5db;
+        }
+        
+        .category-btn:hover,
+        .category-btn.active {
+            background: #f59e0b;
+            color: white;
+            border-color: #f59e0b;
+        }
+    </style>
+</head>
+
+<body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+
+    <!-- Mobile Header -->
+    <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
+        <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+        <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
+        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-6 flex items-center justify-between relative z-20 duration-300">
+            <a href="/" class="text-gray-1 dark:text-white">
+                <!-- Logo SVG can be added here -->
+            </a>
+            <a href="#" class="trigger-sidebar text-gray-1 dark:text-white">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke-current" d="M28 9.33333H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 16H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 22.6667H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar Container -->
+    <div class="sidebar-container"></div>
+    
+    <!-- Backdrop Overlay -->
+    <div class="backdrop"></div>
+
+    <!-- Main Content Area -->
+    <div class="px-6 my-24 lg:my-20 flex-1 flex flex-col">
+        <!-- Page Header -->
+        <div class="max-w-max-w-2 mx-auto mb-14 lg:mb-20">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-1 dark:text-white">Articles</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">Insights on AI, software engineering, and technology</p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="max-w-4xl mx-auto mb-8">
+            <div class="category-filter">
+                <a href="#" class="category-btn active" data-category="all">All</a>
+                <a href="#" class="category-btn" data-category="ai">AI & ML</a>
+                <a href="#" class="category-btn" data-category="engineering">Software Engineering</a>
+                <a href="#" class="category-btn" data-category="research">Research</a>
+                <a href="#" class="category-btn" data-category="tutorials">Tutorials</a>
+            </div>
+        </div>
+
+        <!-- Articles Grid -->
+        <div class="max-w-4xl mx-auto" id="articles-container">
+            <!-- Articles will be loaded dynamically with JavaScript -->
+            <div id="articles-loading" class="text-center py-8">
+                <div class="loader-spinner" style="width: 40px; height: 40px; border: 3px solid #e2e8f0; border-top: 3px solid #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+                <p class="mt-4 text-gray-600 dark:text-gray-300">Loading articles...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="js/prism.min.js"></script>
+    <script src="js/prism-toolbar.min.js"></script>
+    <script src="js/prism-copy-to-clipboard.min.js"></script>
+    <script src="js/prism-autoloader.min.js"></script>
+    <script src="js/main.min.js"></script>
+    <script src="js/sidebar-loader.js"></script>
+    <script src="js/page-transitions.js"></script>
+
+    <!-- Articles Loading Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const articlesContainer = document.getElementById('articles-container');
+            const loadingElement = document.getElementById('articles-loading');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            
+            // Sample articles data (will be replaced with Jekyll data)
+            const articlesData = [
+                {
+                    title: "ChatGPT-5 Prompting Best Practices",
+                    excerpt: "Discover the most effective prompting techniques for ChatGPT-5 to get better results.",
+                    date: "2025-09-23",
+                    readingTime: "5 min read",
+                    tags: ["AI", "ChatGPT", "Prompts"],
+                    category: "ai",
+                    url: "#"
+                },
+                {
+                    title: "Top 5 AI Tips for iPhone Users",
+                    excerpt: "Essential AI features and apps every iPhone user should know about in 2025.",
+                    date: "2025-09-09",
+                    readingTime: "3 min read",
+                    tags: ["AI", "iPhone", "Mobile"],
+                    category: "ai",
+                    url: "#"
+                },
+                {
+                    title: "3 AI Habits That Saves Me 20+ Hours a Week",
+                    excerpt: "Practical AI workflows that automate repetitive tasks and boost productivity.",
+                    date: "2025-08-27",
+                    readingTime: "8 min read",
+                    tags: ["AI", "Productivity", "Automation"],
+                    category: "engineering",
+                    url: "#"
+                },
+                {
+                    title: "Build Your First AI Agent in n8n: A Step-by-Step Guide",
+                    excerpt: "Learn how to create intelligent automation workflows using n8n and AI integrations.",
+                    date: "2025-08-12",
+                    readingTime: "12 min read",
+                    tags: ["AI", "n8n", "Automation", "Tutorial"],
+                    category: "tutorials",
+                    url: "#"
+                },
+                {
+                    title: "The State of the Big AI Players (mid-2025)",
+                    excerpt: "Comprehensive analysis of major AI companies and their current market positions.",
+                    date: "2025-07-16",
+                    readingTime: "6 min read",
+                    tags: ["AI", "Analysis", "Industry"],
+                    category: "research",
+                    url: "#"
+                },
+                {
+                    title: "ChatGPT for Data Analysis (without technical skills)",
+                    excerpt: "How to leverage ChatGPT for data analysis without being a programmer or data scientist.",
+                    date: "2025-07-15",
+                    readingTime: "7 min read",
+                    tags: ["AI", "Data Analysis", "Beginners"],
+                    category: "tutorials",
+                    url: "#"
+                },
+                {
+                    title: "ChatGPT Features That Actually Matter",
+                    excerpt: "Cutting through the hype to identify ChatGPT features that provide real value.",
+                    date: "2025-07-01",
+                    readingTime: "4 min read",
+                    tags: ["AI", "ChatGPT", "Features"],
+                    category: "ai",
+                    url: "#"
+                },
+                {
+                    title: "How to Create Presentations with AI (the right way)",
+                    excerpt: "Best practices for using AI tools to create compelling presentations and pitches.",
+                    date: "2025-06-17",
+                    readingTime: "5 min read",
+                    tags: ["AI", "Presentations", "Design"],
+                    category: "tutorials",
+                    url: "#"
+                },
+                {
+                    title: "Google Gemini: A Complete Guide (2025)",
+                    excerpt: "Everything you need to know about Google's flagship AI model and its capabilities.",
+                    date: "2025-05-06",
+                    typingTime: "9 min read",
+                    tags: ["AI", "Google", "Gemini"],
+                    category: "research",
+                    url: "#"
+                }
+            ];
+            
+            function renderArticles(filter = 'all') {
+                const filteredArticles = filter === 'all' 
+                    ? articlesData 
+                    : articlesData.filter(article => article.category === filter);
+                
+                loadingElement.style.display = 'none';
+                
+                articlesContainer.innerHTML = filteredArticles.map(article => `
+                    <article class="article-card fade-in-element">
+                        <h2><a href="${article.url}" class="no-underline hover:text-orange">${article.title}</a></h2>
+                        <p class="excerpt">${article.excerpt}</p>
+                        <div class="article-meta">
+                            <span>${new Date(article.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                            <span>${article.readingTime}</span>
+                        </div>
+                        <div class="article-tags">
+                            ${article.tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}
+                        </div>
+                    </article>
+                `).join('');
+                
+                // Trigger fade-in animations
+                const fadeElements = document.querySelectorAll('.fade-in-element');
+                fadeElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 100);
+                });
+            }
+            
+            // Category filtering
+            categoryButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active button
+                    categoryButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter articles
+                    loadingElement.style.display = 'block';
+                    articlesContainer.innerHTML = '<div id="articles-loading" class="text-center py-8"><div class="loader-spinner" style="width: 40px; height: 40px; border: 3px solid #e2e8f0; border-top: 3px solid #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div><p class="mt-4 text-gray-600 dark:text-gray-300">Loading articles...</p></div>';
+                    
+                    setTimeout(() => {
+                        renderArticles(category);
+                    }, 300);
+                });
+            });
+            
+            // Initial load
+            setTimeout(() => {
+                renderArticles();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

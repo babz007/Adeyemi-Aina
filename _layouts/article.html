@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ page.title }} - {{ site.title }}</title>
+
+    <!-- Mobile Meta Tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="{{ '/css/prism-okaidia.min.css' | relative_url }}" rel="stylesheet">
+    <link href="{{ '/css/prism-toolbar.min.css' | relative_url }}" rel="stylesheet">
+    <link href="{{ '/css/main.min.css' | relative_url }}" rel="stylesheet">
+    <link href="{{ '/css/page-transitions.css' | relative_url }}" rel="stylesheet">
+
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else if(localStorage.theme === 'light'){
+            document.documentElement.classList.add('light')
+        } else if(localStorage.theme === 'auto' || !('theme' in localStorage)){
+            document.documentElement.classList.add('auto')
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                document.documentElement.classList.add('dark')
+                document.documentElement.classList.remove('light')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
+        }
+        if(navigator.platform.indexOf('Mac') > -1){
+            document.documentElement.classList.add('mac')
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description }}">
+    <link rel="icon" href="{{ '/images/DARK-GREY_FINAL--transparent--.png' | relative_url }}" type="image/png">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description | default: page.excerpt | default: site.description }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    {% if page.image %}
+    <meta property="og:image" content="{{ page.image | absolute_url }}">
+    {% else %}
+    <meta property="og:image" content="{{ '/images/RANDOM-PICS--2-.png' | absolute_url }}">
+    {% endif %}
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.description | default: page.excerpt | default: site.description }}">
+    {% if page.image %}
+    <meta name="twitter:image" content="{{ page.image | absolute_url }}">
+    {% endif %}
+
+    <!-- Article-specific CSS -->
+    <style>
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .article-date {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        
+        .article-reading-time {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .article-content .highlight {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .article-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .dark .article-tag {
+            background: #334155;
+            color: #cbd5e1;
+        }
+        
+        .articles-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 2rem;
+            overflow-y: auto;
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .dark .articles-sidebar {
+            background: #1e293b;
+            border-right-color: #334155;
+        }
+        
+        .articles-sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .articles-sidebar h3 {
+            margin-bottom: 1.5rem;
+            color: #1f2937;
+        }
+        
+        .dark .articles-sidebar h3 {
+            color: #f9fafb;
+        }
+        
+        .article-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .article-list li {
+            margin-bottom: 1rem;
+        }
+        
+        .article-list a {
+            color: #374151;
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.2s;
+        }
+        
+        .dark .article-list a {
+            color: #d1d5db;
+        }
+        
+        .article-list a:hover {
+            color: #f59e0b;
+        }
+        
+        .article-list .date {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+        
+        .dark .article-list .date {
+            color: #9ca3af;
+        }
+        
+        @media (min-width: 1024px) {
+            .main-content {
+                margin-left: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+    <!-- Sidebar Container -->
+    <div class="sidebar-container"></div>
+    
+    <!-- Backdrop Overlay -->
+    <div class="backdrop"></div>
+    
+    <!-- Articles Sidebar -->
+    <aside class="articles-sidebar" id="articles-sidebar">
+        <h3>Recent Articles</h3>
+        <ul class="article-list">
+            {% for article in site.articles limit:10 %}
+            <li>
+                <a href="{{ article.url | relative_url }}">{{ article.title }}</a>
+                <div class="date">{{ article.date | date: "%b %d, %Y" }}</div>
+            </li>
+            {% endfor %}
+        </ul>
+        
+        <div class="mt-8">
+            <a href="{{ '/articles/' | relative_url }}" class="btn btn-gray-border">View All Articles</a>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content flex-1 px-6 py-24 lg:py-20 min-h-screen">
+        <!-- Article Header -->
+        <header class="max-w-4xl mx-auto mb-8">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-1 dark:text-white">{{ page.title }}</h1>
+            
+            <div class="article-meta">
+                <div class="article-date">{{ page.date | date: "%B %d, %Y" }}</div>
+                <div class="article-reading-time">
+                    {% assign words = content | number_of_words %}
+                    {% if words < 360 %}
+                      1 min read
+                    {% else %}
+                      {{ words | divided_by: 180 }} min read
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <article class="prose prose-lg max-w-4xl mx-auto article-content">
+            {{ content }}
+            
+            {% if page.tags.size > 0 %}
+            <div class="article-tags">
+                {% for tag in page.tags %}
+                <span class="article-tag">{{ tag }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </article>
+
+        <!-- Navigation -->
+        <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center">
+                {% if page.previous %}
+                <a href="{{ page.previous.url | relative_url }}" class="btn btn-gray-border">
+                    ← {{ page.previous.title }}
+                </a>
+                {% else %}
+                <div></div>
+                {% endif %}
+                
+                <a href="{{ '/articles/' | relative_url }}" class="btn btn-gray-border">
+                    All Articles
+                </a>
+                
+                {% if page.next %}
+                <a href="{{ page.next.url | relative_url }}" class="btn btn-gray-border">
+                    {{ page.next.title }} →
+                </a>
+                {% else %}
+                <div></div>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="{{ '/js/prism.min.js' | relative_url }}"></script>
+    <script src="{{ '/js/prism-toolbar.min.js' | relative_url }}"></script>
+    <script src="{{ '/js/prism-copy-to-clipboard.min.js' | relative_url }}"></script>
+    <script src="{{ '/js/prism-autoloader.min.js' | relative_url }}"></script>
+    <script src="{{ '/js/main.min.js' | relative_url }}"></script>
+    <script src="{{ '/js/sidebar-loader.js' | relative_url }}"></script>
+    <script src="{{ '/js/page-transitions.js' | relative_url }}"></script>
+
+    <!-- Mobile Sidebar Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarToggle = document.querySelector('.trigger-sidebar');
+            const articlesSidebar = document.getElementById('articles-sidebar');
+            const backdrop = document.querySelector('.backdrop');
+            
+            if (sidebarToggle && articlesSidebar) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    articlesSidebar.classList.toggle('open');
+                    if (backdrop) {
+                        backdrop.style.display = articlesSidebar.classList.contains('open') ? 'block' : 'none';
+                    }
+                });
+            }
+            
+            if (backdrop) {
+                backdrop.addEventListener('click', function() {
+                    articlesSidebar.classList.remove('open');
+                    backdrop.style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
