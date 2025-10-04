@@ -112,6 +112,108 @@
         .dark .article-tags {
             border-top-color: #374151;
         }
+        
+        /* Enhanced Title Styles */
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        h1 span {
+            transition: background-position 0.3s ease;
+        }
+        
+        h1 span:hover {
+            background-size: 200% 200%;
+            animation: gradient-shift 2s ease-in-out;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* Mobile Responsiveness Enhancements */
+        body, html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .flex-1 {
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        
+        .article-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .article-content pre {
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre;
+        }
+        
+        .article-content code {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+        
+        .sidebar {
+            max-width: calc(100vw - 2rem);
+        }
+        
+        /* Mobile-first responsive adjustments */
+        @media (max-width: 768px) {
+            .flex-1 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .article-content {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                word-break: break-word;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .article-meta {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .flex-1 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem !important;
+            }
+        }
     </style>
 </head>
 
@@ -266,7 +368,11 @@
     <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
         <!-- Article Header -->
         <header class="max-w-4xl mx-auto mb-8">
-            <h1 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-1 dark:text-white">Top 5 AI Tips for iPhone Users</h1>
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-gray-1 dark:text-white leading-tight tracking-tight">
+                <span class="bg-gradient-to-r from-gray-900 transition-colors duration-500 hover:from-blue-600 hover:via-purple-600 to-orange-500 dark:from-white dark:via-blue-400 dark:to-orange-400 bg-clip-text text-transparent">
+                    Top 5 AI Tips for iPhone Users
+                </span>
+            </h1>
             
             <div class="article-meta">
                 <div class="article-date">September 8, 2025</div>
@@ -276,6 +382,7 @@
 
         <!-- Article Content -->
         <article class="prose prose-lg max-w-4xl mx-auto article-content">
+
             <p>Apple has integrated AI deeply into the iPhone experience, but many users aren't taking advantage of the smartest features available. Here are the top 5 AI-powered capabilities that can significantly boost your productivity.</p>
 
 <h2>1. Siri Shortcuts Automation</h2>
@@ -397,10 +504,10 @@ Remember that while these AI features are powerful, they process data both on-de
 <p>💡 <strong>Pro Tip</strong>: Many of these features work better with iOS 17+ and require an iPhone Xs or newer for optimum AI processing power.</p>
             <div class="article-tags">
                 <span class="article-tag">AI</span>
-            <span class="article-tag">iPhone</span>
-            <span class="article-tag">Mobile</span>
-            <span class="article-tag">Productivity</span>
-            <span class="article-tag">iOS</span>
+                <span class="article-tag">iPhone</span>
+                <span class="article-tag">Mobile</span>
+                <span class="article-tag">Productivity</span>
+                <span class="article-tag">iOS</span>
             </div>
         </article>
 

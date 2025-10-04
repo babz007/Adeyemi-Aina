@@ -112,6 +112,30 @@
         .dark .article-tags {
             border-top-color: #374151;
         }
+        
+        /* Enhanced Title Styles */
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        h1 span {
+            transition: background-position 0.3s ease;
+        }
+        
+        h1 span:hover {
+            background-size: 200% 200%;
+            animation: gradient-shift 2s ease-in-out;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
     </style>
 </head>
 
@@ -266,7 +290,11 @@
     <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
         <!-- Article Header -->
         <header class="max-w-4xl mx-auto mb-8">
-            <h1 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-1 dark:text-white">Top 5 AI Tips for iPhone Users</h1>
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-gray-1 dark:text-white leading-tight tracking-tight">
+                <span class="bg-gradient-to-r from-gray-900 transition-colors duration-500 hover:from-blue-600 hover:via-purple-600 to-orange-500 dark:from-white dark:via-blue-400 dark:to-orange-400 bg-clip-text text-transparent">
+                    Top 5 AI Tips for iPhone Users
+                </span>
+            </h1>
             
             <div class="article-meta">
                 <div class="article-date">September 09, 2025</div>
