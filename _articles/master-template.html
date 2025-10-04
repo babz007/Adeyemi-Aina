@@ -44,7 +44,7 @@
     <!-- SEO Meta Tags -->
     <meta name="description" content="Essential AI features and apps every iPhone user should know about in 2025. Transform your iPhone into an AI-powered productivity machine.">
     <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
-    <link rel="canonical" href="/articles/ai-tips-for-iphone-users/">
+    <link rel="canonical" href="/articles/top-5-ai-tips-for-iphone-users/">
 
     <!-- Article-specific CSS -->
     <style>
@@ -170,6 +170,23 @@
             max-width: calc(100vw - 2rem);
         }
         
+        /* Fix sidebar positioning on desktop - always fixed */
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                max-height: 100vh;
+                z-index: 30;
+            }
+            
+            /* Add proper margin to main content so it doesn't overlap sidebar */
+            .flex-1 {
+                margin-left: 20rem; /* 20rem = w-80 sidebar width */
+            }
+        }
+        
         /* Mobile-first responsive adjustments */
         @media (max-width: 768px) {
             .flex-1 {
@@ -244,8 +261,7 @@
     <div class="backdrop"></div>
 
     <!-- Main Sidebar (this will be loaded into sidebar-container) -->
-    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">
-        <div class="relative flex">
+    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">        <div class="relative flex">
             <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
             <div class="absolute inset-0 bg-gray-14 opacity-0 dark:opacity-100 duration-300"></div>
             <div class="inner relative flex flex-col border-r lg:border border-orange-2 dark:border-gray-10 w-full w-80 lg:rounded pt-0 lg:pt-6 px-6 pb-6 overflow-auto hide-scrollbar duration-300">
@@ -375,114 +391,133 @@
             </h1>
             
             <div class="article-meta">
-                <div class="article-date">September 09, 2025</div>
+                <div class="article-date">September 8, 2025</div>
                 <div class="article-reading-time">3 min read</div>
             </div>
         </header>
 
         <!-- Article Content -->
         <article class="prose prose-lg max-w-4xl mx-auto article-content">
+
             <p>Apple has integrated AI deeply into the iPhone experience, but many users aren't taking advantage of the smartest features available. Here are the top 5 AI-powered capabilities that can significantly boost your productivity.</p>
 
-            <h2 id="tip-1">1. Siri Shortcuts Automation</h2>
+<h2>1. Siri Shortcuts Automation</h2>
 
-            <p>The most underrated AI feature on iPhone is <strong>Siri Shortcuts</strong>. You can create complex automation workflows that trigger based on location, time, or other conditions.</p>
+<p>The most underrated AI feature on iPhone is <strong>Siri Shortcuts</strong>. You can create complex automation workflows that trigger based on location, time, or other conditions.</p>
 
-            <h3 id="quick-setup">Quick Setup</h3>
-            <ol>
-            <li>Open <strong>Shortcuts</strong> app</li>
-            <li>Tap <strong>Automation</strong> → <strong>Create Personal Automation</strong></li>
-            <li>Choose trigger (Location, Time, etc.)</li>
-            <li>Add actions</li>
-            </ol>
+<h3>Quick Setup</h3>
+1. Open <strong>Shortcuts</strong> app
+2. Tap <strong>Automation</strong> → <strong>Create Personal Automation</strong>
+3. Choose trigger (Location, Time, etc.)
+4. Add actions
 
-            <h3 id="example-morning-routine">Example: Morning Routine</h3>
-            <pre><code class="language-text">When: 7:00 AM on weekdays
-    Actions:
-    - Turn on Do Not Disturb
-    - Play morning playlist
-    - Send daily summary message
-    - Open weather app
-    </code></pre>
+<h3>Example: Morning Routine</h3>
+<pre><code class="language-text">When: 7:00 AM on weekdays
+Actions:
+<li>Turn on Do Not Disturb</li>
+<li>Play morning playlist</li>
+<li>Send daily summary message</li>
+<li>Open weather app</code></pre></li>
 
-            <h2 id="tip-2">2. Live Text with Advanced OCR</h2>
+<p>!<a href="/images/myphoto.jpeg">iPhone Shortcuts</a></p>
 
-            <p>Live Text can read and interact with text in photos and videos. But you can supercharge it with these tricks:</p>
+<h2>2. Live Text with Advanced OCR</h2>
 
-            <h3 id="advanced-techniques">Advanced Techniques</h3>
-            <ul>
-            <li><strong>Translate text</strong>: Tap and hold → Translate</li>
-            <li><strong>Copy handwriting</strong>: Works great for handwritten notes</li>
-            <li><strong>Currency conversion</strong>: Automatically detects prices and offers conversion</li>
-            <li><strong>Phone numbers</strong>: Tap to call directly</li>
-            </ul>
+<p>Live Text can read and interact with text in photos and videos. But you can supercharge it with these tricks:</p>
 
-            <h3 id="pro-tip">Pro Tip</h3>
-            <p>Enable <strong>Camera Words</strong> in Settings → General → Language & Region → Live Text for better text recognition.</p>
+<h3>Advanced Techniques</h3>
+<li><strong>Translate text</strong>: Tap and hold → Translate</li>
+<li><strong>Copy handwriting</strong>: Works great for handwritten notes</li>
+<li><strong>Currency conversion</strong>: Automatically detects prices and offers conversion</li>
+<li><strong>Phone numbers</strong>: Tap to call directly</li>
 
-            <h2 id="tip-3">3. Spotlight Search Intelligence</h2>
+<h3>Pro Tip</h3>
+Enable <strong>Camera Words</strong> in Settings → General → Language & Region → Live Text for better text recognition.
 
-            <p>Spotlight has become incredibly smart. It can:</p>
+<h2>3. Spotlight Search Intelligence</h2>
 
-            <ul>
-            <li><strong>Find photos by content</strong>: "Show me photos of my dogs"</li>
-            <li><strong>Search within app content</strong>: "Weather tomorrow"</li>
-            <li><strong>Perform calculations</strong>: Type "150 * 1.2" for instant results</li>
-            <li><strong>Convert units</strong>: "100 km to miles"</li>
-            <li><strong>Create reminders</strong>: "Remind me to buy groceries tomorrow"</li>
-            </ul>
+<p>Spotlight has become incredibly smart. It can:</p>
 
-            <h3 id="hidden-spotlight-tricks">Hidden Spotlight Tricks</h3>
-            <ul>
-            <li>Use natural language: "What's on my calendar today?"</li>
-            <li>Combine commands: "Text Sarah I'll be 10 minutes late"</li>
-            <li>Quick app launching: Just type app name + first letter of what you want</li>
-            </ul>
+<p><li><strong>Find photos by content</strong>: "Show me photos of my dogs"</li>
+<li><strong>Search within app content</strong>: "Weather tomorrow"</li>
+<li><strong>Perform calculations</strong>: Type "150 * 1.2" for instant results</li>
+<li><strong>Convert units</strong>: "100 km to miles"</li>
+<li><strong>Create reminders</strong>: "Remind me to buy groceries tomorrow"</li></p>
 
-            <h2 id="tip-4">4. Focus Modes with Smart Suggestions</h2>
+<h3>Hidden Spotlight Tricks</h3>
+<li>Use natural language: "What's on my calendar today?"</li>
+<li>Combine commands: "Text Sarah I'll be 10 minutes late"</li>
+<li>Quick app launching: Just type app name + first letter of what you want</li>
 
-            <p>Focus modes aren't just for notifications—they're AI-powered context switching:</p>
+<h2>4. Focus Modes with Smart Suggestions</h2>
 
-            <h3 id="smart-notifications">Smart Notifications</h3>
-            <ul>
-            <li><strong>Automatic suggestions</strong> for people to include/exclude</li>
-            <li><strong>Smart scheduling</strong> learns your patterns</li>
-            <li><strong>Location-based</strong> activation</li>
-            <li><strong>App suggestions</strong> based on time and location</li>
-            </ul>
+<p>Focus modes aren't just for notifications—they're AI-powered context switching:</p>
 
-            <h2 id="tip-5">5. Photos App AI Magic</h2>
+<h3>Smart Notifications</h3>
+<li><strong>Automatic suggestions</strong> for people to include/exclude</li>
+<li><strong>Smart scheduling</strong> learns your patterns</li>
+<li><strong>Location-based</strong> activation</li>
+<li><strong>App suggestions</strong> based on time and location</li>
 
-            <p>The Photos app is your secret AI assistant:</p>
+<h3>Advanced Setup</h3>
+1. Settings → Focus
+2. Create custom focus mode
+3. Enable <strong>Smart Activation</strong>
+4. Set automatic schedules
+5. Configure notification deliveries
 
-            <h3 id="smart-features">Smart Features</h3>
-            <ul>
-            <li><strong>Search by content</strong>: "Photos with cars"</li>
-            <li><strong>People grouping</strong>: Automatic face recognition</li>
-            <li><strong>Memories</strong>: AI-curated collections</li>
-            <li><strong>Remove backgrounds</strong>: Long-press subject → Copy → Paste</li>
-            </ul>
+<h2>5. Photos App AI Magic</h2>
 
-            <h2 id="pro-setup-recommendations">Pro Setup Recommendations</h2>
+<p>The Photos app is your secret AI assistant:</p>
 
-            <h3 id="make-your-iphone-truly-intelligent">Make Your iPhone Truly Intelligent</h3>
-            <ol>
-            <li><strong>Enable all Spotlight suggestions</strong> in Settings</li>
-            <li><strong>Set up comprehensive Focus modes</strong> for different contexts</li>
-            <li><strong>Use Shortcuts</strong> for complex workflows</li>
-            <li><strong>Train Siri</strong> with more diverse commands</li>
-            <li><strong>Enable Live Text</strong> in all supported languages</li>
-            </ol>
+<h3>Smart Features</h3>
+<li><strong>Search by content</strong>: "Photos with cars"</li>
+<li><strong>People grouping</strong>: Automatic face recognition</li>
+<li><strong>Memories</strong>: AI-curated collections</li>
+<li><strong>Remove backgrounds</strong>: Long-press subject → Copy → Paste</li>
 
-            <h3 id="privacy-considerations">Privacy Considerations</h3>
-            <p>Remember that while these AI features are powerful, they process data both on-device and in the cloud. Review your Privacy & Security settings to understand what's being processed where.</p>
+<h3>Hidden Features</h3>
+<li><strong>Object search</strong>: Find photos by what's in them</li>
+<li><strong>Text search</strong>: Search handwritten notes in images</li>
+<li><strong>Duplicate detection</strong>: Find and remove duplicates</li>
+<li><strong>Live Photos</strong>: Create animations automatically</li>
 
-            <hr>
+<h2>Bonus: Third-Party AI Apps</h2>
 
-            <p><em>Ready to transform your iPhone into an AI superpower? Start with just one of these features and build from there. Which tip will you try first?</em></p>
+<p>While native features are great, these third-party apps supercharge your iPhone:</p>
 
-            <p>💡 <strong>Pro Tip</strong>: Many of these features work better with iOS 17+ and require an iPhone Xs or newer for optimum AI processing power.</p>
-            
+<h3>1. ChatGPT App</h3>
+<li><strong>Voice conversations</strong> with ChatGPT</li>
+<li><strong>Image analysis</strong> with GPT-4 Vision</li>
+<li><strong>Custom instructions</strong> for personalized experience</li>
+
+<h3>2. Perplexity</h3>
+<li><strong>Real-time information</strong> gathering</li>
+<li><strong>Voice queries</strong> in natural language</li>
+<li><strong>Citation sources</strong> for fact-checking</li>
+
+<h3>3. Notion AI</h3>
+<li><strong>Writing assistance</strong> across all notes</li>
+<li><strong>Meeting summaries</strong> from voice recordings</li>
+<li><strong>Task generation</strong> from simple descriptions</li>
+
+<h2>Pro Setup Recommendations</h2>
+
+<h3>Make Your iPhone Truly Intelligent</h3>
+1. <strong>Enable all Spotlight suggestions</strong> in Settings
+2. <strong>Set up comprehensive Focus modes</strong> for different contexts
+3. <strong>Use Shortcuts</strong> for complex workflows
+4. <strong>Train Siri</strong> with more diverse commands
+5. <strong>Enable Live Text</strong> in all supported languages
+
+<h3>Privacy Considerations</h3>
+Remember that while these AI features are powerful, they process data both on-device and in the cloud. Review your Privacy & Security settings to understand what's being processed where.
+
+<p>---</p>
+
+<p><em>Ready to transform your iPhone into an AI superpower? Start with just one of these features and build from there. Which tip will you try first?</em></p>
+
+<p>💡 <strong>Pro Tip</strong>: Many of these features work better with iOS 17+ and require an iPhone Xs or newer for optimum AI processing power.</p>
             <div class="article-tags">
                 <span class="article-tag">AI</span>
                 <span class="article-tag">iPhone</span>
@@ -495,7 +530,7 @@
         <!-- Navigation -->
         <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <div class="flex justify-between items-center">
-                <a href="../_articles/chatgpt-5-prompting-best-practices.html" class="btn btn-gray-border">
+                <a href="#" class="btn btn-gray-border">
                     ← ChatGPT-5 Prompting Best Practices
                 </a>
                 
@@ -503,7 +538,7 @@
                     All Articles
                 </a>
                 
-                <a href="../_articles/ai-habits-productivity.html" class="btn btn-gray-border">
+                <a href="#" class="btn btn-gray-border">
                     3 AI Habits That Save Me 20+ Hours a Week →
                 </a>
             </div>

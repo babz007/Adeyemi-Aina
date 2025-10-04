@@ -44,7 +44,7 @@
     <!-- SEO Meta Tags -->
     <meta name="description" content="Practical AI workflows that automate repetitive tasks and boost productivity. These habits have transformed my work routine.">
     <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
-    <link rel="canonical" href="/articles/3-ai-habits-that-saves-me-20-hours-a-week/">
+    <link rel="canonical" href="/articles/top-5-ai-tips-for-iphone-users/">
 
     <!-- Article-specific CSS -->
     <style>
@@ -170,6 +170,23 @@
             max-width: calc(100vw - 2rem);
         }
         
+        /* Fix sidebar positioning on desktop - always fixed */
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                max-height: 100vh;
+                z-index: 30;
+            }
+            
+            /* Add proper margin to main content so it doesn't overlap sidebar */
+            .flex-1 {
+                margin-left: 20rem; /* 20rem = w-80 sidebar width */
+            }
+        }
+        
         /* Mobile-first responsive adjustments */
         @media (max-width: 768px) {
             .flex-1 {
@@ -244,8 +261,7 @@
     <div class="backdrop"></div>
 
     <!-- Main Sidebar (this will be loaded into sidebar-container) -->
-    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">
-        <div class="relative flex">
+    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">        <div class="relative flex">
             <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
             <div class="absolute inset-0 bg-gray-14 opacity-0 dark:opacity-100 duration-300"></div>
             <div class="inner relative flex flex-col border-r lg:border border-orange-2 dark:border-gray-10 w-full w-80 lg:rounded pt-0 lg:pt-6 px-6 pb-6 overflow-auto hide-scrollbar duration-300">
@@ -375,7 +391,7 @@
             </h1>
             
             <div class="article-meta">
-                <div class="article-date">August 26, 2025</div>
+                <div class="article-date">September 8, 2025</div>
                 <div class="article-reading-time">8 min read</div>
             </div>
         </header>
