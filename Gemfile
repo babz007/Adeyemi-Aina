@@ -11,8 +11,8 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-# ruby gemspecs we're building jekyll around for jekyll's plugins
-gemspec path: File.dirname(__FILE__)
+# Jekyll configuration
+gem "jekyll", "~> 4.3"
 
 # specify what group groups we want
 group :jekyll_plugins do

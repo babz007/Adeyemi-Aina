@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ page.title }} - {{ site.title }}</title>
+    <title>ChatGPT-5 Prompting Best Practices - Adeyemi Aina</title>
 
     <!-- Mobile Meta Tags -->
     <meta name="HandheldFriendly" content="True">
@@ -15,10 +15,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheets -->
-    <link href="{{ '/css/prism-okaidia.min.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/css/prism-toolbar.min.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/css/main.min.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/css/page-transitions.css' | relative_url }}" rel="stylesheet">
+    <link href="../css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href="../css/page-transitions.css" rel="stylesheet">
 
     <!-- Theme Detection Script -->
     <script>
@@ -36,221 +36,93 @@
                 document.documentElement.classList.remove('dark')
             }
         }
-        if(navigator.platform.indexOf('Mac') > -1){
+        if(navigator.mac){
             document.documentElement.classList.add('mac')
         }
     </script>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description }}">
-    <link rel="icon" href="{{ '/images/DARK-GREY_FINAL--transparent--.png' | relative_url }}" type="image/png">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:site_name" content="{{ site.title }}">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:description" content="{{ page.description | default: page.excerpt | default: site.description }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    {% if page.image %}
-    <meta property="og:image" content="{{ page.image | absolute_url }}">
-    {% else %}
-    <meta property="og:image" content="{{ '/images/RANDOM-PICS--2-.png' | absolute_url }}">
-    {% endif %}
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.description | default: page.excerpt | default: site.description }}">
-    {% if page.image %}
-    <meta name="twitter:image" content="{{ page.image | absolute_url }}">
-    {% endif %}
+    <meta name="description" content="Discover the most effective prompting techniques for ChatGPT-5 to get better results and unlock its full potential.">
+    <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="/articles/chatgpt-5-prompting-best-practices/">
 
-    <!-- Enhanced Article CSS -->
+    <!-- Article-specific CSS -->
     <style>
-        /* Beautiful Header Styles */
-        .article-header-gradient {
-            background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-            position: relative;
-            overflow: hidden;
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
         }
         
-        .article-header-gradient::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-            pointer-events: none;
+        .article-date {
+            color: #64748b;
+            font-size: .875rem;
         }
         
-        /* Gradient Text Effect */
-        .gradient-text {
-            background: linear-gradient(135deg, #374151, #1f2937, #ea580c);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 300% 300%;
-            animation: gradient-shift 6s ease infinite;
+        .article-reading-time {
+            color: #64748b;
+            font-size: .875rem;
         }
         
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        /* Smooth Animations */
-        .article-header {
-            animation: slide-up 1s ease-out;
-        }
-        
-        @keyframes slide-up {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Enhanced Content Styling */
-        .article-content {
-            animation: fade-in 1.2s ease-out 0.3s both;
-        }
-        
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Improved Images */
         .article-content img {
             max-width: 100%;
             height: auto;
-            border-radius: 12px;
-            margin: 2rem 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            margin: 1.5rem 0;
         }
         
-        .article-content img:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Enhanced Code Blocks */
         .article-content .highlight {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border: 1px solid rgba(251, 146, 60, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
             overflow-x: auto;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
         
-        .dark .article-content .highlight {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            border-color: rgba(251, 146, 60, 0.3);
-        }
-        
-        /* Better Tag Styling */
         .article-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(226, 232, 240, 0.5);
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
         }
         
         .article-tag {
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            background: #f1f5f9;
             color: #475569;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
             text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(251, 146, 60, 0.1);
-        }
-        
-        .article-tag:hover {
-            background: linear-gradient(135deg, #ea580c, #dc2626);
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
         }
         
         .dark .article-tag {
-            background: linear-gradient(135deg, #334155, #1e293b);
+            background: #334155;
             color: #cbd5e1;
-            border-color: rgba(251, 146, 60, 0.2);
+        }
+
+        .dark .article-meta {
+            border-bottom-color: #374151;
         }
         
-        .dark .article-tag:hover {
-            background: linear-gradient(135deg, #ea580c, #dc2626);
-            color: white;
-        }
-        
-        /* Responsive Typography */
-        @media (max-width: 768px) {
-            .article-header h1 {
-                font-size: 3rem !important;
-                line-height: 1.1 !important;
-            }
-            
-            .article-header p {
-                font-size: 1.125rem !important;
-            }
-            
-            .article-header .flex-wrap {
-                gap: 1.5rem;
-            }
-        }
-        
-        /* Enhanced Link Styling */
-        .article-content a {
-            color: #ea580c;
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .article-content a:hover {
-            color: #dc2626;
-            border-bottom-color: #dc2626;
-        }
-        
-        .dark .article-content a {
-            color: #fb923c;
-        }
-        
-        .dark .article-content a:hover {
-            color: #f97316;
-            border-bottom-color: #f97316;
+        .dark .article-tags {
+            border-top-color: #374151;
         }
     </style>
 </head>
 
 <body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+
     <!-- Mobile Header -->
     <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
         <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
         <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
-        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-6 flex items-center justify-between relative z-20 duration-300">
-            <a href="../index.html" class="text-gray-1 dark:text-white">
+        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-5 flex items-center justify-between relative z-20 duration-300">
+            <a href="/" class="text-gray-1 dark:text-white">
                 <!-- Logo SVG can be added here -->
             </a>
             <a href="#" class="trigger-sidebar text-gray-1 dark:text-white">
@@ -269,7 +141,7 @@
     <!-- Backdrop Overlay -->
     <div class="backdrop"></div>
 
-    <!-- Main Sidebar (inline for articles) -->
+    <!-- Main Sidebar (this will be loaded into sidebar-container) -->
     <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">
         <div class="relative flex">
             <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
@@ -288,7 +160,7 @@
                         <div class="kg-product-card-container">
                             <img src="../images/Frame.svg" width="18" height="16" class="kg-product-card-image" loading="lazy">
                             <div class="kg-product-card-title-container">
-                                <h4 class="kg-product-card-header"><span style="white-space: pre-wrap;">Home</span></h4>
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Home</span></h4>
                             </div>
                             <div class="kg-product-card-description"></div>
                             <a href="../index.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
@@ -299,7 +171,7 @@
                         <div class="kg-product-card-container">
                             <img src="../images/Frame-1.svg" width="16" height="16" class="kg-product-card-image" loading="lazy">
                             <div class="kg-product-card-title-container">
-                            <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
                             </div>
                             <div class="kg-product-card-description"></div>
                             <a href="../about.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
@@ -369,7 +241,7 @@
                     <div class="kg-card kg-product-card">
                         <div class="kg-product-card-container">
                             <img src="https://www.jeffsu.org/content/images/2024/03/Frame--65-.svg" width="14" height="16" class="kg-product-card-image" loading="lazy">
-                            <div class="kg-product-card-title-container">
+                        <div class="kg-product-card-title-container">
                                 <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">GitHub</span></h4>
                             </div>
                             <div class="kg-product-card-description"></div>
@@ -392,144 +264,145 @@
 
     <!-- Main Content Area -->
     <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
-        <!-- Beautiful Article Header -->
-        <header class="relative overflow-hidden mb-16">
-            <!-- Background Gradient -->
-            <div class="absolute inset-0 bg-gradient-to-br from-orange-50/30 via-transparent to-blue-50/20 dark:from-gray-800/50 dark:via-transparent dark:to-gray-700/30 rounded-3xl"></div>
+        <!-- Article Header -->
+        <header class="max-w-4xl mx-auto mb-8">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-1 dark:text-white">ChatGPT-5 Prompting Best Practices</h1>
             
-            <!-- Header Content -->
-            <div class="relative max-w-5xl mx-auto px-6 py-12">
-                <!-- Article Category Badge -->
-                {% if page.category %}
-                <div class="inline-flex items-center mb-6">
-                    <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 text-orange-800 dark:text-orange-200 rounded-full text-sm font-semibold shadow-sm">
-                        {{ page.category }}
-                    </span>
-                </div>
-                {% endif %}
-                
-                <!-- Main Title -->
-                <h1 class="text-5xl lg:text-7xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
-                    <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-orange-600 dark:from-white dark:via-gray-200 dark:to-orange-400 bg-clip-text text-transparent">
-                        {{ page.title }}
-                    </span>
-                </h1>
-                
-                <!-- Excerpt -->
-                {% if page.excerpt %}
-                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
-                    {{ page.excerpt }}
-                </p>
-                {% endif %}
-                
-                <!-- Author & Meta Information -->
-                <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
-                    <!-- Author -->
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold text-lg">{{ page.author | slice: 0 }}</span>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-700 dark:text-gray-300">{{ page.author }}</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-500">Author</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Divider -->
-                    <div class="w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
-                    
-                    <!-- Publication Date -->
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="font-medium">{{ page.date | date: "%B %d, %Y" }}</span>
-                    </div>
-                    
-                    <!-- Reading Time -->
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span class="font-medium">{{ page.reading_time }}</span>
-                    </div>
-                    
-                    <!-- Article Tags -->
-                    {% if page.tags.size > 0 %}
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" regexp="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-1.414.586H7
-a2 2 0 01-2-2V5a2 2 0 012-2z"/>
-                        </svg>
-                        <div class="flex flex-wrap gap-2">
-                            {% for tag in page.tags limit:3 %}
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">
-                                #{{ tag }}
-                            </span>
-                            {% endfor %}
-                            {% if page.tags.size > 3 %}
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">
-                                +{{ page.tags.size | minus: 3 }} more
-                            </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
+            <div class="article-meta">
+                <div class="article-date">September 22, 2025</div>
+                <div class="article-reading-time">5 min read</div>
             </div>
-            
-            <!-- Decorative Elements -->
-            <div class="absolute top-8 right-8 w-32 h-32 bg-gradient-to-br from-orange-400/20 to-transparent rounded-full blur-xl"></div>
-            <div class="absolute bottom-8 left-8 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full blur-lg"></div>
         </header>
 
         <!-- Article Content -->
         <article class="prose prose-lg max-w-4xl mx-auto article-content">
-            {{ content }}
-            
-            {% if page.tags.size > 0 %}
+            <p>With ChatGPT-5's enhanced capabilities, prompting has become both an art and a science. After extensive testing with the latest model, I've identified key strategies that consistently produce superior results.</p>
+
+<h2>Principle 1: Start with the Problem, Not the Tool</h2>
+
+<p>With so many new AI tools (and features) emerging daily, it's tempting to get caught up in the hype and start trying them all out. But this is a mistake.</p>
+
+<p><strong>The key is to begin with your actual problem, not the AI tool.</strong></p>
+
+<p>* <strong>Case in point</strong>: When OpenAI announced <strong>Custom GPTs</strong>, they convinced many developers to spend time creating GPTs by making a big deal about monetization via the <strong>GPT Store</strong>. And yet, very little progress has been made.</p>
+
+<p>!<a href="/images/bulb.png">AI Tools Landscape</a></p>
+
+<h2>Essential Prompting Elements</h2>
+
+<h3>1. Context Setting</h3>
+Always provide sufficient context about your domain, constraints, and expected output format:
+
+<pre><code class="language-text">You are a senior software engineer reviewing a pull request. 
+The codebase follows a microservices architecture using Node.js and PostgreSQL.
+Please provide feedback on code quality, potential bugs, and architectural concerns.</code></pre>
+
+<h3>2. Specific Output Formats</h3>
+Be explicit about the structure you want:
+
+<pre><code class="language-text">Format your response as:
+<li><strong>Summary</strong>: One-line overview</li>
+<li><strong>Concerns</strong>: List of issues found</li>
+<li><strong>Recommendations</strong>: Specific actions to take</li>
+<li><strong>Code Examples</strong>: If applicable</code></pre></li>
+
+<h3>3. Iterative Refinement</h3>
+The magic often happens in the second or third prompt:
+
+<p><strong>First prompt</strong>: "Help me analyze this data"
+<strong>Second prompt</strong>: "Focus specifically on trends and anomalies"
+<strong>Third prompt</strong>: "Present findings in an executive summary format"</p>
+
+<h2>Advanced Techniques</h2>
+
+<h3>Chain of Thought Prompting</h3>
+Encourage step-by-step reasoning:
+
+<pre><code class="language-text">Think through this problem step by step:
+1. Identify the core issue
+2. Consider potential causes
+3. Evaluate solution approaches
+4. Recommend the best course of action</code></pre>
+
+<h3>Few-Shot Learning</h3>
+Provide examples of the output you expect:
+
+<pre><code class="language-text">I need help categorizing customer feedback. Here are some examples:
+
+<p>Positive: "Love the new interface, much more intuitive"
+Category: User Experience - Interface</p>
+
+<p>Neutral: "The app works fine, no complaints"
+Category: General - Neutral</p>
+
+<p>Please categorize this feedback: "The loading time is too slow"</code></pre></p>
+
+<h2>Common Mistakes to Avoid</h2>
+
+<p>1. <strong>Being too vague</strong>: "Help me improve my code"
+2. <strong>Providing no context</strong>: Assumptions about domain knowledge
+3. <strong>Ignoring constraints</strong>: Not mentioning limitations or requirements
+4. <strong>Single-shot thinking</strong>: Expecting perfect results from one prompt</p>
+
+<h2>Real-World Applications</h2>
+
+<h3>Code Review</h3>
+<pre><code class="language-text">As an experienced senior developer, review this JavaScript function for:
+<li>Logic correctness</li>
+<li>Performance issues  </li>
+<li>Security vulnerabilities</li>
+<li>Code cleanliness</li>
+
+<p>The function will be deployed to production with high traffic.</p>
+
+<p>[Insert code here]</code></pre></p>
+
+<h3>Business Analysis</h3>
+<pre><code class="language-text">Analyze this quarterly sales data and provide insights:
+1. Key trends and patterns
+2. Areas of concern
+3. Opportunities for growth
+4. Executive summary (2 sentences max)
+
+<p>Consider our target market is enterprise SaaS companies.</code></pre></p>
+
+<p>---</p>
+
+<p><em>Want to see these techniques in action? Check out our <a href="/free-toolkit">AI Toolkit</a> for more prompting resources.</em></p>
             <div class="article-tags">
-                {% for tag in page.tags %}
-                <span class="article-tag">{{ tag }}</span>
-                {% endfor %}
+                <span class="article-tag">AI</span>
+            <span class="article-tag">ChatGPT</span>
+            <span class="article-tag">Prompts</span>
+            <span class="article-tag">Best Practices</span>
             </div>
-            {% endif %}
         </article>
 
         <!-- Navigation -->
         <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <div class="flex justify-between items-center">
-                {% if page.previous %}
-                <a href="{{ page.previous.url | relative_url }}" class="btn btn-gray-border">
-                    ← {{ page.previous.title }}
+                <a href="#" class="btn btn-gray-border">
+                    ← ChatGPT-5 Prompting Best Practices
                 </a>
-                {% else %}
-                <div></div>
-                {% endif %}
                 
-                <a href="{{ '/articles/' | relative_url }}" class="btn btn-gray-border">
+                <a href="../articles.html" class="btn btn-gray-border">
                     All Articles
                 </a>
                 
-                {% if page.next %}
-                <a href="{{ page.next.url | relative_url }}" class="btn btn-gray-border">
-                    {{ page.next.title }} →
+                <a href="#" class="btn btn-gray-border">
+                    3 AI Habits That Save Me 20+ Hours a Week →
                 </a>
-                {% else %}
-                <div></div>
-                {% endif %}
             </div>
         </nav>
     </div>
 
     <!-- JavaScript Libraries -->
-    <script src="{{ '/js/prism.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/prism-toolbar.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/prism-copy-to-clipboard.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/prism-autoloader.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/main.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/sidebar-loader.js' | relative_url }}"></script>
-    <script src="{{ '/js/page-transitions.js' | relative_url }}"></script>
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/prism-toolbar.min.js"></script>
+    <script src="../js/prism-copy-to-clipboard.min.js"></script>
+    <script src="../js/prism-autoloader.min.js"></script>
+    <script src="../js/main.min.js"></script>
+    <script src="../js/sidebar-loader.js"></script>
+    <script src="../js/page-transitions.js"></script>
 
     <!-- Mobile Navigation and Sidebar Functionality -->
     <script>
@@ -558,7 +431,7 @@ a2 2 0 01-2-2V5a2 2 0 012-2z"/>
             }
 
             // Color mode functionality
-            const colorMode = document.querySelector('.loader.js');
+            const colorMode = document.querySelector('.color-mode');
             if (colorMode) {
                 const links = colorMode.querySelectorAll('a');
                 const span = colorMode.querySelector('span');

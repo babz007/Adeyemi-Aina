@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ page.title }} - {{ site.title }}</title>
+    <title>Build Your First AI Agent in n8n: A Step-by-Step Guide - Adeyemi Aina</title>
 
     <!-- Mobile Meta Tags -->
     <meta name="HandheldFriendly" content="True">
@@ -15,10 +15,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 
     <!-- CSS Stylesheets -->
-    <link href="{{ '/css/prism-okaidia.min.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/css/prism-toolbar.min.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/css/main.min.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/css/page-transitions.css' | relative_url }}" rel="stylesheet">
+    <link href="../css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href="../css/page-transitions.css" rel="stylesheet">
 
     <!-- Theme Detection Script -->
     <script>
@@ -36,221 +36,93 @@
                 document.documentElement.classList.remove('dark')
             }
         }
-        if(navigator.platform.indexOf('Mac') > -1){
+        if(navigator.mac){
             document.documentElement.classList.add('mac')
         }
     </script>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="{{ page.description | default: page.excerpt | default: site.description }}">
-    <link rel="icon" href="{{ '/images/DARK-GREY_FINAL--transparent--.png' | relative_url }}" type="image/png">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:site_name" content="{{ site.title }}">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:description" content="{{ page.description | default: page.excerpt | default: site.description }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    {% if page.image %}
-    <meta property="og:image" content="{{ page.image | absolute_url }}">
-    {% else %}
-    <meta property="og:image" content="{{ '/images/RANDOM-PICS--2-.png' | absolute_url }}">
-    {% endif %}
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ page.title }}">
-    <meta name="twitter:description" content="{{ page.description | default: page.excerpt | default: site.description }}">
-    {% if page.image %}
-    <meta name="twitter:image" content="{{ page.image | absolute_url }}">
-    {% endif %}
+    <meta name="description" content="Learn how to create intelligent automation workflows using n8n and AI integrations. From zero to automating complex tasks in under 30 minutes.">
+    <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="/articles/build-your-first-ai-agent-in-n8n-a-step-by-step-guide/">
 
-    <!-- Enhanced Article CSS -->
+    <!-- Article-specific CSS -->
     <style>
-        /* Beautiful Header Styles */
-        .article-header-gradient {
-            background: linear-gradient(135deg, rgba(251, 146, 60, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
-            position: relative;
-            overflow: hidden;
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
         }
         
-        .article-header-gradient::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-            pointer-events: none;
+        .article-date {
+            color: #64748b;
+            font-size: .875rem;
         }
         
-        /* Gradient Text Effect */
-        .gradient-text {
-            background: linear-gradient(135deg, #374151, #1f2937, #ea580c);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 300% 300%;
-            animation: gradient-shift 6s ease infinite;
+        .article-reading-time {
+            color: #64748b;
+            font-size: .875rem;
         }
         
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        /* Smooth Animations */
-        .article-header {
-            animation: slide-up 1s ease-out;
-        }
-        
-        @keyframes slide-up {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Enhanced Content Styling */
-        .article-content {
-            animation: fade-in 1.2s ease-out 0.3s both;
-        }
-        
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Improved Images */
         .article-content img {
             max-width: 100%;
             height: auto;
-            border-radius: 12px;
-            margin: 2rem 0;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            margin: 1.5rem 0;
         }
         
-        .article-content img:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Enhanced Code Blocks */
         .article-content .highlight {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border: 1px solid rgba(251, 146, 60, 0.2);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 2rem 0;
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
             overflow-x: auto;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
         
-        .dark .article-content .highlight {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            border-color: rgba(251, 146, 60, 0.3);
-        }
-        
-        /* Better Tag Styling */
         .article-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(226, 232, 240, 0.5);
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
         }
         
         .article-tag {
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            background: #f1f5f9;
             color: #475569;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
             text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(251, 146, 60, 0.1);
-        }
-        
-        .article-tag:hover {
-            background: linear-gradient(135deg, #ea580c, #dc2626);
-            color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
         }
         
         .dark .article-tag {
-            background: linear-gradient(135deg, #334155, #1e293b);
+            background: #334155;
             color: #cbd5e1;
-            border-color: rgba(251, 146, 60, 0.2);
+        }
+
+        .dark .article-meta {
+            border-bottom-color: #374151;
         }
         
-        .dark .article-tag:hover {
-            background: linear-gradient(135deg, #ea580c, #dc2626);
-            color: white;
-        }
-        
-        /* Responsive Typography */
-        @media (max-width: 768px) {
-            .article-header h1 {
-                font-size: 3rem !important;
-                line-height: 1.1 !important;
-            }
-            
-            .article-header p {
-                font-size: 1.125rem !important;
-            }
-            
-            .article-header .flex-wrap {
-                gap: 1.5rem;
-            }
-        }
-        
-        /* Enhanced Link Styling */
-        .article-content a {
-            color: #ea580c;
-            text-decoration: none;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .article-content a:hover {
-            color: #dc2626;
-            border-bottom-color: #dc2626;
-        }
-        
-        .dark .article-content a {
-            color: #fb923c;
-        }
-        
-        .dark .article-content a:hover {
-            color: #f97316;
-            border-bottom-color: #f97316;
+        .dark .article-tags {
+            border-top-color: #374151;
         }
     </style>
 </head>
 
 <body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+
     <!-- Mobile Header -->
     <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
         <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
         <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
-        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-6 flex items-center justify-between relative z-20 duration-300">
-            <a href="../index.html" class="text-gray-1 dark:text-white">
+        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-5 flex items-center justify-between relative z-20 duration-300">
+            <a href="/" class="text-gray-1 dark:text-white">
                 <!-- Logo SVG can be added here -->
             </a>
             <a href="#" class="trigger-sidebar text-gray-1 dark:text-white">
@@ -269,7 +141,7 @@
     <!-- Backdrop Overlay -->
     <div class="backdrop"></div>
 
-    <!-- Main Sidebar (inline for articles) -->
+    <!-- Main Sidebar (this will be loaded into sidebar-container) -->
     <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">
         <div class="relative flex">
             <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
@@ -288,7 +160,7 @@
                         <div class="kg-product-card-container">
                             <img src="../images/Frame.svg" width="18" height="16" class="kg-product-card-image" loading="lazy">
                             <div class="kg-product-card-title-container">
-                                <h4 class="kg-product-card-header"><span style="white-space: pre-wrap;">Home</span></h4>
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Home</span></h4>
                             </div>
                             <div class="kg-product-card-description"></div>
                             <a href="../index.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
@@ -299,7 +171,7 @@
                         <div class="kg-product-card-container">
                             <img src="../images/Frame-1.svg" width="16" height="16" class="kg-product-card-image" loading="lazy">
                             <div class="kg-product-card-title-container">
-                            <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
                             </div>
                             <div class="kg-product-card-description"></div>
                             <a href="../about.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
@@ -369,7 +241,7 @@
                     <div class="kg-card kg-product-card">
                         <div class="kg-product-card-container">
                             <img src="https://www.jeffsu.org/content/images/2024/03/Frame--65-.svg" width="14" height="16" class="kg-product-card-image" loading="lazy">
-                            <div class="kg-product-card-title-container">
+                        <div class="kg-product-card-title-container">
                                 <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">GitHub</span></h4>
                             </div>
                             <div class="kg-product-card-description"></div>
@@ -392,144 +264,345 @@
 
     <!-- Main Content Area -->
     <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
-        <!-- Beautiful Article Header -->
-        <header class="relative overflow-hidden mb-16">
-            <!-- Background Gradient -->
-            <div class="absolute inset-0 bg-gradient-to-br from-orange-50/30 via-transparent to-blue-50/20 dark:from-gray-800/50 dark:via-transparent dark:to-gray-700/30 rounded-3xl"></div>
+        <!-- Article Header -->
+        <header class="max-w-4xl mx-auto mb-8">
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4 text-gray-1 dark:text-white">Build Your First AI Agent in n8n: A Step-by-Step Guide</h1>
             
-            <!-- Header Content -->
-            <div class="relative max-w-5xl mx-auto px-6 py-12">
-                <!-- Article Category Badge -->
-                {% if page.category %}
-                <div class="inline-flex items-center mb-6">
-                    <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 text-orange-800 dark:text-orange-200 rounded-full text-sm font-semibold shadow-sm">
-                        {{ page.category }}
-                    </span>
-                </div>
-                {% endif %}
-                
-                <!-- Main Title -->
-                <h1 class="text-5xl lg:text-7xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
-                    <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-orange-600 dark:from-white dark:via-gray-200 dark:to-orange-400 bg-clip-text text-transparent">
-                        {{ page.title }}
-                    </span>
-                </h1>
-                
-                <!-- Excerpt -->
-                {% if page.excerpt %}
-                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
-                    {{ page.excerpt }}
-                </p>
-                {% endif %}
-                
-                <!-- Author & Meta Information -->
-                <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
-                    <!-- Author -->
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center shadow-lg">
-                            <span class="text-white font-bold text-lg">{{ page.author | slice: 0 }}</span>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-700 dark:text-gray-300">{{ page.author }}</p>
-                            <p class="text-sm text-gray-500 dark:text-gray-500">Author</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Divider -->
-                    <div class="w-px h-8 bg-gray-300 dark:bg-gray-600"></div>
-                    
-                    <!-- Publication Date -->
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="font-medium">{{ page.date | date: "%B %d, %Y" }}</span>
-                    </div>
-                    
-                    <!-- Reading Time -->
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span class="font-medium">{{ page.reading_time }}</span>
-                    </div>
-                    
-                    <!-- Article Tags -->
-                    {% if page.tags.size > 0 %}
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" regexp="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-1.414.586H7
-a2 2 0 01-2-2V5a2 2 0 012-2z"/>
-                        </svg>
-                        <div class="flex flex-wrap gap-2">
-                            {% for tag in page.tags limit:3 %}
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">
-                                #{{ tag }}
-                            </span>
-                            {% endfor %}
-                            {% if page.tags.size > 3 %}
-                            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium">
-                                +{{ page.tags.size | minus: 3 }} more
-                            </span>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
+            <div class="article-meta">
+                <div class="article-date">August 11, 2025</div>
+                <div class="article-reading-time">12 min read</div>
             </div>
-            
-            <!-- Decorative Elements -->
-            <div class="absolute top-8 right-8 w-32 h-32 bg-gradient-to-br from-orange-400/20 to-transparent rounded-full blur-xl"></div>
-            <div class="absolute bottom-8 left-8 w-24 h-24 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full blur-lg"></div>
         </header>
 
         <!-- Article Content -->
         <article class="prose prose-lg max-w-4xl mx-auto article-content">
-            {{ content }}
-            
-            {% if page.tags.size > 0 %}
+            <p>n8n is the most powerful visual workflow automation platform you're probably not using yet. Today, we'll build an intelligent AI agent that can analyze emails, generate responses, and take action—all while you sleep.</p>
+
+<h2>Why n8n Over Zapier/Make?</h2>
+
+<p>After building 500+ automation workflows, here's why n8n wins:</p>
+
+<p><li><strong>🧠 Self-hosted</strong>: Your data stays private</li>
+<li><strong>💸 Cost-effective</strong>: Handle 1000s of workflows for free</li>
+<li><strong>🔧 Extremely flexible</strong>: JavaScript customization</li>
+<li><strong>⚡ High performance</strong>: Real-time processing</li>
+<li><strong>🤖 AI-native</strong>: Built for LLM integrations</li></p>
+
+<h2>Prerequisite Setup</h2>
+
+<h3>Installation Options</h3>
+1. <strong>Docker</strong> (Recommended): <code>docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n</code>
+2. <strong>npm</strong>: <code>npm install n8n -g && n8n start</code>
+3. <strong>Cloud</strong>: Use n8n Cloud for instant setup
+
+<h3>Initial Configuration</h3>
+1. Open http://localhost:5678
+2. Create admin account
+3. Enable AI features in Settings → Feature Flags
+
+<h2>Project 1: Smart Email Analysis Agent</h2>
+
+<p>We'll build an AI agent that:
+<li>Monitors your inbox for specific keywords</li>
+<li>Analyzes email content and sentiment</li>
+<li>Generates appropriate responses</li>
+<li>Forwards urgent emails to Slack</li></p>
+
+<h3>Step 1: Email Trigger Setup</h3>
+
+<pre><code class="language-json">// Email Trigger Node Configuration
+{
+  "method": "webhook",
+  "webhookUrl": "https://your-domain.com/webhook/email",
+  "triggerMode": "whenWebhookCalled",
+  "httpMethod": "POST"
+}</code></pre>
+
+<p><strong>Setup Instructions</strong>:
+1. Add <strong>Email Trigger</strong> node
+2. Connect Gmail/Outlook account
+3. Configure filter conditions:
+   - Keywords: ["urgent", "ASAP", "priority"]
+   - From domains: your colleagues' domains
+   - Subject patterns: regex patterns</p>
+
+<h3>Step 2: AI Analysis Workflow</h3>
+
+<pre><code class="language-javascript">// OpenAI Analysis Node
+async function analyzeEmail(content, sender) {
+  const prompt = `
+    Analyze this email for priority and sentiment:
+    
+    From: ${sender}
+    Content: ${content}
+    
+    Respond with JSON:
+    {
+      "priority": "high|medium|low",
+      "sentiment": "positive|negative|neutral", 
+      "action_required": "response|forward|none",
+      "suggested_response": "brief response text"
+    }
+  `;
+  
+  const analysis = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': <code>Bearer ${process.env.OPENAI_API_KEY}</code>,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'gpt-4',
+      messages: [{ role: 'user', content: prompt }],
+      response_format: { type: 'json_object' }
+    })
+  });
+  
+  return await analysis.json();
+}</code></pre>
+
+<h3>Step 3: Conditional Action Logic</h3>
+
+<pre><code class="language-javascript">// Switch Node for Conditional Processing
+{
+  "rules": [
+    {
+      "operation": "equal",
+      "value1": "{{$json.analysis.priority}}",
+      "value2": "high"
+    },
+    {
+      "operation": "equal", 
+      "value1": "{{$json.analysis.action_required}}",
+      "value2": "response"
+    }
+  ]
+}</code></pre>
+
+<h3>Step 4: Slack Integration</h3>
+
+<pre><code class="language-json">// Slack Notification Node
+{
+  "channel": "#urgent-alerts",
+  "message": "🚨 High Priority Email Detected\n\n",
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "<em>From:</em> {{$json.sender}}\n<em>Subject:</em> {{$json.subject}}\n<em>Analysis:</em> {{$json.analysis.suggested_response}}"
+      }
+    }
+  ]
+}</code></pre>
+
+<h2>Project 2: Intelligent Content Curator</h2>
+
+<p>Build an agent that curates content from your industry:</p>
+
+<h3>RSS Feed Monitoring</h3>
+<li>Monitor 20+ industry blogs/RSS feeds</li>
+<li>AI-summerize articles with key insights</li>
+<li>Filter by relevance to your audience</li>
+<li>Generate personalized newsletters</li>
+
+<h3>Implementation Steps</h3>
+
+<p>1. <strong>RSS Trigger</strong>: Monitor multiple feeds every hour
+2. <strong>Content Analysis</strong>: Use Claude/GPT-4 to extract key insights
+3. <strong>Relevance Scoring</strong>: Rate content importance (1-10)
+4. <strong>Content Generation</strong>: Create newsletter summaries
+5. <strong>Distribution</strong>: Send via email/Slack/Teams</p>
+
+<pre><code class="language-javascript">// Content Analysis Function
+async function analyzeArticle(url, title, content) {
+  const prompt = `
+    Analyze this article for my audience (software engineers, AI enthusiasts):
+    
+    Title: ${title}
+    URL: ${url}
+    Content: ${content.substring(0, 2000)}...
+    
+    Rate relevance (1-10) and provide:
+    - Key insights (3 bullet points)
+    - Actionable takeaways
+    - Related resources
+    
+    Format as JSON.
+  `;
+  
+  // Implementation details...
+}</code></pre>
+
+<h2>Project 3: Automated Code Review Assistant</h2>
+
+<p>Create an AI agent that reviews pull requests:</p>
+
+<h3>Workflow Components</h3>
+1. <strong>GitHub Webhook</strong>: Trigger on PR events
+2. <strong>Code Analysis</strong>: AI reviews for best practices
+3. <strong>Security Scan</strong>: Automated vulnerability detection  
+4. <strong>Quality Report</strong>: Generate comprehensive review
+5. <strong>Auto-comment</strong>: Post findings back to GitHub
+
+<pre><code class="language-javascript">// Code Review Analysis
+async function reviewPullRequest(diff, codeContext) {
+  const prompt = `
+    As a senior software engineer, review this PR:
+    
+    Context: ${codeContext}
+    Diff: ${diff}
+    
+    Focus on:
+    - Security vulnerabilities
+    - Performance issues
+    - Code maintainability
+    - Best practices
+    
+    Provide constructive feedback with specific suggestions.
+  `;
+  
+  return await analyzeWithAI(prompt);
+}</code></pre>
+
+<h2>Advanced Features</h2>
+
+<h3>Custom Node Development</h3>
+Create reusable components:
+
+<pre><code class="language-javascript">// custom-nodes/crypto-price-monitor/node.ts
+export class CryptoPriceMonitor implements INodeType {
+  description: INodeTypeDescription = {
+    displayName: 'Crypto Price Monitor',
+    name: 'cryptoPriceMonitor',
+    icon: 'bitcoin',
+    group: ['input'],
+    version: 1,
+    description: 'Monitor cryptocurrency prices',
+    defaults: {
+      name: 'Crypto Price Monitor'
+    },
+    inputs: ['main'],
+    outputs: ['main'],
+    credentials: []
+  };
+
+<p>async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+    // Implementation...
+  }
+}</code></pre></p>
+
+<h3>Error Handling & Monitoring</h3>
+<li>Set up comprehensive error tracking</li>
+<li>Implement retry logic for API failures</li>
+<li>Monitor workflow performance metrics</li>
+<li>Create alerting for critical failures</li>
+
+<h3>Security Best Practices</h3>
+<li>Use environment variables for API keys</li>
+<li>Implement rate limiting</li>
+<li>Encrypt sensitive data</li>
+<li>Regular security audits</li>
+
+<h2>Real-World Deployment Tips</h2>
+
+<h3>Production Setup</h3>
+1. <strong>Self-hosting</strong>: Use Docker Compose for easy management
+2. <strong>Database</strong>: Postgres for workflow execution data
+3. <strong>Monitoring</strong>: Integrate with Grafana/Prometheus
+4. <strong>Backups</strong>: Regular workflow and data backups
+
+<h3>Scaling Considerations</h3>
+<li><strong>Rate Limits</strong>: Implement queuing for high-volume workflows</li>
+<li><strong>Resources</strong>: Monitor memory/CPU usage</li>
+<li><strong>Database</strong>: Optimize query performance</li>
+<li><strong>Caching</strong>: Redis for frequently accessed data</li>
+
+<h2>Troubleshooting Common Issues</h2>
+
+<h3>API Integration Problems</h3>
+<pre><code class="language-javascript">// Robust error handling
+async function callAPI(url, options, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url, options);
+      
+      if (!response.ok) {
+        throw new Error(<code>HTTP ${response.status}: ${response.statusText}</code>);
+      }
+      
+      return await response.json();
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      
+      // Exponential backoff
+      await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+    }
+  }
+}</code></pre>
+
+<h3>Workflow Debugging</h3>
+<li>Use <strong>Debug Mode</strong> to inspect data at each step</li>
+<li>Add <strong>Set node</strong> for logging variables</li>
+<li>Test workflows with <strong>manual triggers</strong></li>
+<li>Use <strong>version control</strong> for workflow management</li>
+
+<h2>What's Next?</h2>
+
+<h3>Advanced AI Agents</h3>
+<li><strong>Multi-agent systems</strong>: Agents that collaborate</li>
+<li><strong>Learning agents</strong>: Improve over time based on feedback</li>
+<li><strong>Specialized agents</strong>: Domain-specific automation</li>
+<li><strong>Visual agents</strong>: Process images/documents with computer vision</li>
+
+<h3>Integration Opportunities</h3>
+<li><strong>CRM Systems</strong>: Salesforce, HubSpot automation</li>
+<li><strong>E-commerce</strong>: Shopify, WooCommerce workflows</li>
+<li><strong>DevOps</strong>: CI/CD pipeline enhancements</li>
+<li><strong>Analytics</strong>: Custom reporting dashboards</li>
+
+<p>---</p>
+
+<p><strong>Your Next Challenge</strong>: Pick one automation from this guide and build it this week. Start simple—even a basic email to Slack workflow saves significant time every day.</p>
+
+<p>💡 <strong>Pro Tip</strong>: Begin with manual workflows, then gradually add AI automation. This iterative approach ensures reliability before complexity.</p>
+
+<p><em>Ready to automate your first task? The automation journey starts with a single workflow.</em></p>
             <div class="article-tags">
-                {% for tag in page.tags %}
-                <span class="article-tag">{{ tag }}</span>
-                {% endfor %}
+                <span class="article-tag">n8n</span>
+            <span class="article-tag">AI</span>
+            <span class="article-tag">Automation</span>
+            <span class="article-tag">Workflow</span>
+            <span class="article-tag">Agent</span>
             </div>
-            {% endif %}
         </article>
 
         <!-- Navigation -->
         <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <div class="flex justify-between items-center">
-                {% if page.previous %}
-                <a href="{{ page.previous.url | relative_url }}" class="btn btn-gray-border">
-                    ← {{ page.previous.title }}
+                <a href="#" class="btn btn-gray-border">
+                    ← ChatGPT-5 Prompting Best Practices
                 </a>
-                {% else %}
-                <div></div>
-                {% endif %}
                 
-                <a href="{{ '/articles/' | relative_url }}" class="btn btn-gray-border">
+                <a href="../articles.html" class="btn btn-gray-border">
                     All Articles
                 </a>
                 
-                {% if page.next %}
-                <a href="{{ page.next.url | relative_url }}" class="btn btn-gray-border">
-                    {{ page.next.title }} →
+                <a href="#" class="btn btn-gray-border">
+                    3 AI Habits That Save Me 20+ Hours a Week →
                 </a>
-                {% else %}
-                <div></div>
-                {% endif %}
             </div>
         </nav>
     </div>
 
     <!-- JavaScript Libraries -->
-    <script src="{{ '/js/prism.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/prism-toolbar.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/prism-copy-to-clipboard.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/prism-autoloader.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/main.min.js' | relative_url }}"></script>
-    <script src="{{ '/js/sidebar-loader.js' | relative_url }}"></script>
-    <script src="{{ '/js/page-transitions.js' | relative_url }}"></script>
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/prism-toolbar.min.js"></script>
+    <script src="../js/prism-copy-to-clipboard.min.js"></script>
+    <script src="../js/prism-autoloader.min.js"></script>
+    <script src="../js/main.min.js"></script>
+    <script src="../js/sidebar-loader.js"></script>
+    <script src="../js/page-transitions.js"></script>
 
     <!-- Mobile Navigation and Sidebar Functionality -->
     <script>
@@ -558,7 +631,7 @@ a2 2 0 01-2-2V5a2 2 0 012-2z"/>
             }
 
             // Color mode functionality
-            const colorMode = document.querySelector('.loader.js');
+            const colorMode = document.querySelector('.color-mode');
             if (colorMode) {
                 const links = colorMode.querySelectorAll('a');
                 const span = colorMode.querySelector('span');

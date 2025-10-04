@@ -9,8 +9,15 @@ class SidebarLoader {
         // Find the sidebar container
         this.sidebarContainer = document.querySelector('.sidebar-container');
         
-        if (this.sidebarContainer) {
+        // Check if we're on an article page (sidebar already exists)
+        const existingSidebar = document.querySelector('.sidebar');
+        
+        if (this.sidebarContainer && !existingSidebar) {
+            // Only load sidebar if it doesn't already exist (for main pages)
             await this.loadSidebar();
+        } else if (this.sidebarContainer && existingSidebar) {
+            // For article pages with existing sidebar, just initialize functionality
+            this.initializeSidebarFunctionality();
         }
     }
 
