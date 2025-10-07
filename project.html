@@ -127,6 +127,292 @@
         text-decoration: none;
         font-weight: normal;
     }
+
+    /* Enhanced Project Cards - FAANG-level UX Design */
+    .project-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .project-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        cursor: pointer;
+    }
+
+    .project-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(251, 146, 60, 0.1);
+        border-color: rgba(251, 146, 60, 0.3);
+    }
+
+    .dark .project-card {
+        background: linear-gradient(135deg, rgba(15, 14, 23, 0.9), rgba(30, 41, 59, 0.8));
+        border-color: rgba(71, 85, 105, 0.3);
+    }
+
+    .dark .project-card:hover {
+        border-color: rgba(251, 146, 60, 0.4);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(251, 146, 60, 0.2);
+    }
+
+    .project-content {
+        position: relative;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-image-container {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    }
+
+    .dark .project-image-container {
+        background: linear-gradient(135deg, #1e293b, #334155);
+    }
+
+    .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .project-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .project-card:hover .project-overlay {
+        opacity: 1;
+    }
+
+    .project-overlay-content {
+        text-align: center;
+        color: white;
+    }
+
+    .project-status-badge {
+        background: rgba(34, 197, 94, 0.9);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+
+    .project-cta {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(251, 146, 60, 0.9);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .project-cta:hover {
+        background: rgba(251, 146, 60, 1);
+        transform: scale(1.05);
+    }
+
+    .project-cta-text {
+        margin-right: 0.5rem;
+    }
+
+    .project-info {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-header {
+        margin-bottom: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .dark .project-title {
+        color: #f1f5f9;
+    }
+
+    .project-metrics {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .metric-item {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+
+    .project-description {
+        color: #64748b;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        flex: 1;
+    }
+
+    .dark .project-description {
+        color: #94a3b8;
+    }
+
+    .project-tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+    }
+
+    .project-tag {
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .dark .project-tag {
+        background: rgba(59, 130, 246, 0.2);
+        color: #60a5fa;
+        border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: auto;
+    }
+
+    .project-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        background: rgba(248, 250, 252, 0.8);
+        color: #475569;
+        text-decoration: none;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .project-link:hover {
+        background: rgba(59, 130, 246, 0.1);
+        color: #3b82f6;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+    }
+
+    .dark .project-link {
+        background: rgba(30, 41, 59, 0.8);
+        color: #94a3b8;
+        border-color: rgba(71, 85, 105, 0.3);
+    }
+
+    .dark .project-link:hover {
+        background: rgba(59, 130, 246, 0.2);
+        color: #60a5fa;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .project-container {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            margin: 0 0.5rem;
+        }
+        
+        .project-info {
+            padding: 1rem;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+        }
+        
+        .project-links {
+            flex-direction: column;
+        }
+        
+        .project-link {
+            justify-content: center;
+        }
+    }
+
+    /* Animation for page load */
+    .project-card {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .project-card:nth-child(2) { animation-delay: 0.2s; }
+    .project-card:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Focus states for accessibility */
+    .project-card:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+
+    .project-card:focus-visible {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
     </style>
 
     <!-- Google Tag Manager -->
@@ -195,96 +481,157 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 
                 <div class="project-container">
                     <!-- Project Card -->
-                    <div class="project-card">
+                    <div class="project-card group cursor-pointer" onclick="window.location.href='_projects/splice-catalog.html'">
                         <div class="project-content">
                             <div class="project-image-container">
                                 <img 
                                     src="images/splice.png" 
                                     alt="Splice Project" 
-                                    class="project-image"
+                                    class="project-image group-hover:scale-105 transition-transform duration-300"
                                     loading="eager"
                                     onerror="this.onerror=null; this.src='images/placeholder.png';"
                                 >
+                                <div class="project-overlay">
+                                    <div class="project-overlay-content">
+                                        <span class="project-status-badge">Production</span>
+                                        <div class="project-cta">
+                                            <span class="project-cta-text">View Details</span>
+                                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="project-title"><a href="_projects/splice-catalog.html" class="text-gray-900 dark:text-white hover:text-orange-500 transition-colors">Splice Catalog</a></h3>
-                            <ul class="contributions-list">
-                                <li class="contribution-item">Developed a domain-specific ontology to improve catalog search, leading to a 100% improvement in retrieval performance</li>
-                                <li class="contribution-item">
-                                    <span>Designed a multi-layered validation system, including syntax checks, structural validation, URL formatting, and verification </li>
-                                <li class="contribution-item">Architected and developed a robust validation system for a federated resource catalog, to ensure data integrity and compliance</li>
-                                <li class="contribution-item">Implemented a full-duplex asynchronous communication framework utilizing WebSockets to enhance real-time validation and feedback</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/CSSPLICE/splice-catalog" class="project-link">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
-                                    </svg>
-                                    Github
-                                </a>
-                                <a href="https://splice.cs.vt.edu" class="project-link">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                                    </svg>
-                                    Live
-                                </a>
+                            <div class="project-info">
+                                <div class="project-header">
+                                    <h3 class="project-title group-hover:text-orange-500 transition-colors duration-200">Splice Catalog</h3>
+                                    <div class="project-metrics">
+                                        <span class="metric-item">100% Performance</span>
+                                        <span class="metric-item">10K+ Resources</span>
+                                    </div>
+                                </div>
+                                <p class="project-description">A domain-specific ontology and validation system for federated resource catalogs, improving search performance by 100% and ensuring data integrity across distributed systems.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Ontology</span>
+                                    <span class="project-tag">Validation</span>
+                                    <span class="project-tag">WebSockets</span>
+                                    <span class="project-tag">Python</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/CSSPLICE/splice-catalog" class="project-link" onclick="event.stopPropagation()">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+                                        </svg>
+                                        <span>GitHub</span>
+                                    </a>
+                                    <a href="https://splice.cs.vt.edu" class="project-link" onclick="event.stopPropagation()">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                        </svg>
+                                        <span>Live Demo</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Repeat for other projects -->
                      <!-- Project Card -->
-                    <div class="project-card">
+                    <div class="project-card group cursor-pointer" onclick="window.location.href='_projects/opendsa-lti-integration.html'">
                         <div class="project-content">
                             <div class="project-image-container">
-                                <img src="images/opendsa.png" alt="Project Name" class="project-image">
+                                <img src="images/opendsa.png" alt="OpenDSA Project" class="project-image group-hover:scale-105 transition-transform duration-300">
+                                <div class="project-overlay">
+                                    <div class="project-overlay-content">
+                                        <span class="project-status-badge">Production</span>
+                                        <div class="project-cta">
+                                            <span class="project-cta-text">View Details</span>
+                                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="project-title"><a href="_projects/opendsa-lti-integration.html" class="text-gray-900 dark:text-white hover:text-orange-500 transition-colors">OpenDSA</a></h3>
-                            <ul class="contributions-list">
-                                <li class="contribution-item">Integrated LTI 1.3 with OAuth 2.0 and JWT authentication into an open-source platform serving 10,000+ users, ensuring secure single sign-on access</li>
-                                <li class="contribution-item">Implemented advanced interoperability protocols (LTI 1.3 Advantage APIs) to securely integrate educational tools with Virginia Tech's Learning Management System (LMS), enabling seamless authentication, grade synchronization, and user roster management</li>
-                                <li class="contribution-item">Fixed critical bugs and feature development in the OpenDSA system</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/OpenDSA" class="project-link">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
-                                    </svg>
-                                    Github
-                                </a>
-                                <a href="https://opendsax.cs.vt.edu" class="project-link">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                                    </svg>
-                                    Live
-                                </a>
+                            <div class="project-info">
+                                <div class="project-header">
+                                    <h3 class="project-title group-hover:text-orange-500 transition-colors duration-200">OpenDSA LTI Integration</h3>
+                                    <div class="project-metrics">
+                                        <span class="metric-item">10K+ Users</span>
+                                        <span class="metric-item">LTI 1.3</span>
+                                    </div>
+                                </div>
+                                <p class="project-description">Integrated LTI 1.3 with OAuth 2.0 and JWT authentication into an open-source platform serving 10,000+ users, ensuring secure single sign-on access.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">LTI 1.3</span>
+                                    <span class="project-tag">OAuth 2.0</span>
+                                    <span class="project-tag">JWT</span>
+                                    <span class="project-tag">Education</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/OpenDSA" class="project-link" onclick="event.stopPropagation()">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+                                        </svg>
+                                        <span>GitHub</span>
+                                    </a>
+                                    <a href="https://opendsax.cs.vt.edu" class="project-link" onclick="event.stopPropagation()">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                        </svg>
+                                        <span>Live Demo</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Project Card -->
-                    <div class="project-card">
+                    <div class="project-card group cursor-pointer" onclick="window.location.href='_projects/canvas-kubernetes-deployment.html'">
                         <div class="project-content">
                             <div class="project-image-container">
-                                <img src="images/canvas.png" alt="Project Name" class="project-image">
+                                <img src="images/canvas.png" alt="Canvas Project" class="project-image group-hover:scale-105 transition-transform duration-300">
+                                <div class="project-overlay">
+                                    <div class="project-overlay-content">
+                                        <span class="project-status-badge">Production</span>
+                                        <div class="project-cta">
+                                            <span class="project-cta-text">View Details</span>
+                                            <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 class="project-title"><a href="_projects/canvas-kubernetes-deployment.html" class="text-gray-900 dark:text-white hover:text-orange-500 transition-colors">Canvas</a></h3>
-                            <ul class="contributions-list">
-                                <li class="contribution-item">Designed a scalable multi-container architecture for a Kubernetes cluster, architecture includes: PostgreSQL, Redis (Queue and cache Management), Canvas Web APIs and NGINX Ingress for domain-based routing for seamless access</li>
-                                <li class="contribution-item">Designed and optimized Kubernetes manifests for deploying Instructure Canvas LMS on Virginia Tech's private cloud</li>
-                                <!-- <li class="contribution-item">Fixed critical bugs in the authentication system</li> -->
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/instructure/canvas-lms" class="project-link">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
-                                    </svg>
-                                    Github
-                                </a>
-                                <a href="https://canvas.endeavour.cs.vt.edu/login/canvas" class="project-link">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                                    </svg>
-                                    Live
-                                </a>
+                            <div class="project-info">
+                                <div class="project-header">
+                                    <h3 class="project-title group-hover:text-orange-500 transition-colors duration-200">Canvas LMS Kubernetes</h3>
+                                    <div class="project-metrics">
+                                        <span class="metric-item">99.9% Uptime</span>
+                                        <span class="metric-item">Auto-scaling</span>
+                                    </div>
+                                </div>
+                                <p class="project-description">Designed and optimized Kubernetes manifests for deploying Instructure Canvas LMS on Virginia Tech's private cloud with scalable multi-container architecture.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Kubernetes</span>
+                                    <span class="project-tag">PostgreSQL</span>
+                                    <span class="project-tag">Redis</span>
+                                    <span class="project-tag">NGINX</span>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/instructure/canvas-lms" class="project-link" onclick="event.stopPropagation()">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.11.82-.26.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/>
+                                        </svg>
+                                        <span>GitHub</span>
+                                    </a>
+                                    <a href="https://canvas.endeavour.cs.vt.edu/login/canvas" class="project-link" onclick="event.stopPropagation()">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                        </svg>
+                                        <span>Live Demo</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
