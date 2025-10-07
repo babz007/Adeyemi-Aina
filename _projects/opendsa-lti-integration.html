@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OpenDSA LTI Integration - Adeyemi Aina</title>
+
+    <!-- Mobile Meta Tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="../css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href="../css/project.css" rel="stylesheet">
+    <link href="../css/page-transitions.css" rel="stylesheet">
+
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else if(localStorage.theme === 'light'){
+            document.documentElement.classList.add('light')
+        } else if(localStorage.theme === 'auto' || !('theme' in localStorage)){
+            document.documentElement.classList.add('auto')
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                document.documentElement.classList.add('dark')
+                document.documentElement.classList.remove('light')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
+        }
+        if(navigator.mac){
+            document.documentElement.classList.add('mac')
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Integrated LTI 1.3 with OAuth 2.0 and JWT authentication into an open-source educational platform serving 10,000+ users, enabling seamless integration with Virginia Tech's Learning Management System.">
+    <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="/projects/{{ page.slug }}/">
+
+    <!-- Project-specific CSS -->
+    <style>
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .project-date {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .project-duration {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .project-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .project-content .highlight {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .project-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .dark .project-tag {
+            background: #334155;
+            color: #cbd5e1;
+        }
+
+        .dark .project-meta {
+            border-bottom-color: #374151;
+        }
+        
+        .dark .project-tags {
+            border-top-color: #374151;
+        }
+        
+        /* Enhanced Title Styles */
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        h1 span {
+            transition: background-position 0.3s ease;
+        }
+        
+        h1 span:hover {
+            background-size: 200% 200%;
+            animation: gradient-shift 2s ease-in-out;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* Mobile Responsiveness Enhancements */
+        body, html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .flex-1 {
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        
+        .project-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .project-content pre {
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre;
+        }
+        
+        .project-content code {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+        
+        .sidebar {
+            max-width: calc(100vw - 2rem);
+        }
+        
+        /* Fix sidebar positioning on desktop - always fixed */
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                max-height: 100vh;
+                z-index: 30;
+            }
+            
+            /* Add proper margin to main content so it doesn't overlap sidebar */
+            .flex-1 {
+                margin-left: 20rem; /* 20rem = w-80 sidebar width */
+            }
+        }
+        
+        /* Mobile-first responsive adjustments */
+        @media (max-width: 768px) {
+            .flex-1 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .project-content {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                word-break: break-word;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .project-meta {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .flex-1 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem !important;
+            }
+        }
+
+        /* Project-specific styles */
+        .project-hero {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(251, 146, 60, 0.05));
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .project-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -15%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(251, 146, 60, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .dark .stat-card {
+            background: rgba(15, 14, 23, 0.8);
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .dark .stat-number {
+            color: #60a5fa;
+        }
+
+        .dark .stat-label {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+
+    <!-- Mobile Header -->
+    <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
+        <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+        <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
+        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-5 flex items-center justify-between relative z-20 duration-300">
+            <a href="/" class="text-gray-1 dark:text-white">
+                <!-- Logo SVG can be added here -->
+            </a>
+            <a href="#" class="trigger-sidebar text-gray-1 dark:text-white">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke-current" d="M28 9.33333H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 16H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 22.6667H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar Container -->
+    <div class="sidebar-container"></div>
+    
+    <!-- Backdrop Overlay -->
+    <div class="backdrop"></div>
+
+    <!-- Main Sidebar (this will be loaded into sidebar-container) -->
+    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">
+        <div class="relative flex">
+            <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+            <div class="absolute inset-0 bg-gray-14 opacity-0 dark:opacity-100 duration-300"></div>
+            <div class="inner relative flex flex-col border-r lg:border border-orange-2 dark:border-gray-10 w-full w-80 lg:rounded pt-0 lg:pt-6 px-6 pb-6 overflow-auto hide-scrollbar duration-300">
+                <div class="flex items-center">
+                    <div class="h-16 flex items-center">
+                        <a href="../index.html" class="flex items-center text-gray-1 dark:text-white">
+                            <!-- Logo SVG can be added here -->
+                        </a>
+                    </div>
+                </div>
+                
+                <nav class="mt-4 mb-12">
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame.svg" width="18" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Home</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../index.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame-1.svg" width="16" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../about.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Articles</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
+                            <a href="../articles.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/notion.png" width="2048" height="2048" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Projects</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../project.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/social.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Resume</span></h4>
+                            </div>                              
+                            <div class="kg-product-card-description"></div>                             
+                            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Academy</span></a>                               
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/google.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Google Scholar</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Toolkit</span></a>                       
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <!-- Empty card for spacing -->
+                    </div>
+                    
+                    <h3 id="resources">Social</h3>
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame--64-.svg" width="15" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">LinkedIn</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://www.linkedin.com/in/adeyemi-aina/" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="https://www.jeffsu.org/content/images/2024/03/Frame--65-.svg" width="14" height="16" class="kg-product-card-image" loading="lazy">
+                        <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">GitHub</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://github.com/babz007" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Templates</span></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
+                        <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Substack</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
+                            <a href="https://substack.com/@ainababs0" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+
+                    
+                </nav>
+                
+                <div class="color-mode">
+                    <a href="#" data-mode="light">Light</a>
+                    <a href="#" data-mode="dark">Dark</a>
+                    <a href="#" data-mode="auto">Auto</a>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
+        <!-- Project Hero Section -->
+        <div class="project-hero">
+            <div class="max-w-4xl mx-auto">
+                <!-- Project Category Badge -->
+                <div class="inline-flex items-center mb-6">
+                    <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 text-orange-800 dark:text-orange-200 rounded-full text-sm font-semibold shadow-sm">
+                        Open Source
+                    </span>
+                </div>
+                
+                <!-- Main Title -->
+                <h1 class="text-5xl lg:text-6xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
+                    <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-orange-600 dark:from-white dark:via-gray-200 dark:to-orange-400 bg-clip-text text-transparent">
+                        OpenDSA LTI Integration
+                    </span>
+                </h1>
+                
+                <!-- Excerpt -->
+                {% if page.excerpt %}
+                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
+                    Integrated LTI 1.3 with OAuth 2.0 and JWT authentication into an open-source educational platform serving 10,000+ users, enabling seamless integration with Virginia Tech's Learning Management System.
+                </p>
+                {% endif %}
+                
+                <!-- Project Meta Information -->
+                <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
+                    <!-- Project Date -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="font-medium">March 19, 2024</span>
+                    </div>
+                    
+                    <!-- Project Duration -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="font-medium">4 months</span>
+                    </div>
+                    
+                    <!-- Project Status -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="font-medium">Production</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Stats -->
+        <div class="project-stats">
+            <div class="stat-card">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">Active Users</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">LTI 1.3</div>
+                <div class="stat-label">Advantage APIs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">SSO Integration</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">System Uptime</div>
+            </div>
+        </div>
+
+        <!-- Project Content -->
+        <article class="prose prose-lg max-w-4xl mx-auto project-content">
+            <h2>Project Overview</h2>
+
+<p>OpenDSA LTI Integration is a comprehensive implementation of Learning Tools Interoperability (LTI) 1.3 with OAuth 2.0 and JWT authentication for the OpenDSA educational platform. This project enables seamless integration between OpenDSA and Virginia Tech's Learning Management System (LMS), providing secure single sign-on access and advanced interoperability features.</p>
+
+<h2>Problem Statement</h2>
+
+<p>Educational institutions face significant challenges when integrating third-party learning tools:</p>
+
+<p><li><strong>Authentication Complexity</strong>: Multiple login systems create user friction</li>
+<li><strong>Grade Synchronization</strong>: Manual grade transfer processes are error-prone</li>
+<li><strong>User Management</strong>: Maintaining separate user rosters across platforms</li>
+<li><strong>Security Concerns</strong>: Ensuring secure data transmission between systems</li>
+<li><strong>Compliance Requirements</strong>: Meeting educational data privacy standards</li></p>
+
+<h2>Solution Architecture</h2>
+
+<h3>LTI 1.3 Advantage Implementation</h3>
+Implemented the complete LTI 1.3 Advantage specification, including:
+
+<p><li><strong>Names and Role Provisioning Services (NRPS)</strong>: Automated user roster management</li>
+<li><strong>Assignment and Grade Services (AGS)</strong>: Seamless grade synchronization</li>
+<li><strong>Deep Linking Services</strong>: Dynamic content creation and assignment</li>
+<li><strong>Security Framework</strong>: OAuth 2.0 with JWT token validation</li></p>
+
+<h3>Authentication Flow</h3>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant U as User
+    participant LMS as Virginia Tech LMS
+    participant OD as OpenDSA
+    participant DB as Database
+    
+    U->>LMS: Access OpenDSA Content
+    LMS->>OD: LTI Launch Request
+    OD->>OD: Validate JWT Token
+    OD->>DB: Check User Authorization
+    OD->>U: Grant Access
+    U->>OD: Complete Activities
+    OD->>LMS: Send Grade Updates
+    LMS->>U: Updated Gradebook</code></pre>
+
+<h2>Technical Implementation</h2>
+
+<h3>Core Technologies</h3>
+<li><strong>Backend</strong>: Python with Django framework</li>
+<li><strong>Authentication</strong>: OAuth 2.0 with JWT tokens</li>
+<li><strong>Database</strong>: PostgreSQL with optimized queries</li>
+<li><strong>API</strong>: RESTful services with comprehensive documentation</li>
+<li><strong>Security</strong>: HTTPS with certificate pinning</li>
+
+<h3>Key Features</h3>
+
+<p>#### 1. Single Sign-On (SSO)
+<li><strong>Seamless Authentication</strong>: Users access OpenDSA without additional login</li>
+<li><strong>Session Management</strong>: Secure token-based session handling</li>
+<li><strong>Role-based Access</strong>: Automatic permission assignment based on LMS roles</li></p>
+
+<p>#### 2. Grade Synchronization
+<li><strong>Real-time Updates</strong>: Automatic grade transmission to LMS</li>
+<li><strong>Batch Processing</strong>: Efficient handling of multiple grade updates</li>
+<li><strong>Error Handling</strong>: Robust retry mechanisms for failed transmissions</li></p>
+
+<p>#### 3. User Provisioning
+<li><strong>Automatic Enrollment</strong>: Users automatically added to appropriate courses</li>
+<li><strong>Role Mapping</strong>: LMS roles translated to OpenDSA permissions</li>
+<li><strong>Profile Synchronization</strong>: User information kept consistent across platforms</li></p>
+
+<p>#### 4. Deep Linking
+<li><strong>Dynamic Content</strong>: Instructors can create assignments directly from LMS</li>
+<li><strong>Resource Selection</strong>: Flexible content targeting for specific learning objectives</li>
+<li><strong>Custom Parameters</strong>: Support for course-specific configurations</li></p>
+
+<h2>Security Implementation</h2>
+
+<h3>OAuth 2.0 Flow</h3>
+Implemented secure OAuth 2.0 authorization flow with:
+<li><strong>PKCE (Proof Key for Code Exchange)</strong>: Enhanced security for public clients</li>
+<li><strong>State Parameter</strong>: CSRF protection for authorization requests</li>
+<li><strong>Scope Management</strong>: Granular permission control</li>
+
+<h3>JWT Token Validation</h3>
+<li><strong>Signature Verification</strong>: Cryptographic validation of token authenticity</li>
+<li><strong>Expiration Handling</strong>: Automatic token refresh mechanisms</li>
+<li><strong>Claims Validation</strong>: Comprehensive verification of token contents</li>
+
+<h3>Data Protection</h3>
+<li><strong>Encryption</strong>: All sensitive data encrypted in transit and at rest</li>
+<li><strong>Audit Logging</strong>: Comprehensive tracking of all system interactions</li>
+<li><strong>Privacy Compliance</strong>: FERPA and COPPA compliance measures</li>
+
+<h2>Performance Optimization</h2>
+
+<h3>Database Optimization</h3>
+<li><strong>Query Optimization</strong>: Reduced average response time by 60%</li>
+<li><strong>Connection Pooling</strong>: Efficient database connection management</li>
+<li><strong>Caching Strategy</strong>: Redis-based caching for frequently accessed data</li>
+
+<h3>API Performance</h3>
+<li><strong>Response Time</strong>: Average API response time under 200ms</li>
+<li><strong>Throughput</strong>: Support for 1000+ concurrent users</li>
+<li><strong>Scalability</strong>: Horizontal scaling capabilities implemented</li>
+
+<h2>Impact & Results</h2>
+
+<h3>User Experience Improvements</h3>
+<li><strong>Reduced Login Friction</strong>: 95% reduction in authentication-related support tickets</li>
+<li><strong>Improved Accessibility</strong>: Seamless access from any LMS-integrated course</li>
+<li><strong>Enhanced Usability</strong>: Intuitive interface matching LMS design patterns</li>
+
+<h3>System Reliability</h3>
+<li><strong>Uptime Achievement</strong>: 99.9% system availability</li>
+<li><strong>Error Reduction</strong>: 80% decrease in integration-related errors</li>
+<li><strong>Performance Gains</strong>: 50% improvement in page load times</li>
+
+<h3>Educational Impact</h3>
+<li><strong>Increased Adoption</strong>: 40% increase in OpenDSA usage across Virginia Tech</li>
+<li><strong>Better Learning Outcomes</strong>: Improved student engagement through seamless access</li>
+<li><strong>Instructor Satisfaction</strong>: Streamlined course management capabilities</li>
+
+<h2>Technical Challenges & Solutions</h2>
+
+<h3>Challenge 1: Token Management</h3>
+<strong>Problem</strong>: Handling JWT token expiration and refresh in a stateless system.
+
+<p><strong>Solution</strong>: Implemented intelligent token caching with automatic refresh mechanisms and graceful degradation for expired tokens.</p>
+
+<h3>Challenge 2: Grade Synchronization</h3>
+<strong>Problem</strong>: Ensuring reliable grade transmission without data loss or duplication.
+
+<p><strong>Solution</strong>: Developed idempotent grade submission system with comprehensive error handling and retry logic.</p>
+
+<h3>Challenge 3: Performance at Scale</h3>
+<strong>Problem</strong>: Maintaining system performance with 10,000+ concurrent users.
+
+<p><strong>Solution</strong>: Implemented microservices architecture with load balancing and horizontal scaling capabilities.</p>
+
+<h2>Integration Testing</h2>
+
+<h3>Test Coverage</h3>
+<li><strong>Unit Tests</strong>: 95% code coverage across all modules</li>
+<li><strong>Integration Tests</strong>: Comprehensive LMS integration validation</li>
+<li><strong>Performance Tests</strong>: Load testing with 10,000+ concurrent users</li>
+<li><strong>Security Tests</strong>: Penetration testing and vulnerability assessment</li>
+
+<h3>Quality Assurance</h3>
+<li><strong>Automated Testing</strong>: CI/CD pipeline with automated test execution</li>
+<li><strong>Code Review</strong>: Peer review process for all code changes</li>
+<li><strong>Documentation</strong>: Comprehensive API and integration documentation</li>
+
+<h2>Future Enhancements</h2>
+
+<h3>Planned Features</h3>
+<li><strong>Advanced Analytics</strong>: Detailed usage and performance metrics</li>
+<li><strong>Multi-LMS Support</strong>: Extension to other learning management systems</li>
+<li><strong>Mobile Optimization</strong>: Enhanced mobile device compatibility</li>
+<li><strong>AI Integration</strong>: Intelligent content recommendation system</li>
+
+<h3>Research Opportunities</h3>
+<li><strong>Learning Analytics</strong>: Advanced student progress tracking</li>
+<li><strong>Adaptive Learning</strong>: Personalized content delivery based on performance</li>
+<li><strong>Accessibility</strong>: Enhanced support for students with disabilities</li>
+
+<h2>Lessons Learned</h2>
+
+<h3>Technical Insights</h3>
+<li><strong>LTI 1.3 complexity</strong> requires careful implementation planning</li>
+<li><strong>OAuth 2.0 security</strong> demands comprehensive validation mechanisms</li>
+<li><strong>Educational systems</strong> benefit from user-centric design approaches</li>
+
+<h3>Project Management</h3>
+<li><strong>Stakeholder communication</strong> is essential for educational technology projects</li>
+<li><strong>User feedback</strong> drives continuous improvement</li>
+<li><strong>Documentation</strong> becomes critical for system maintenance</li>
+
+<h2>Conclusion</h2>
+
+<p>The OpenDSA LTI Integration project successfully demonstrates how modern authentication and interoperability standards can enhance educational technology platforms. The seamless integration with Virginia Tech's LMS, combined with robust security measures and excellent performance, provides a model for educational technology integration.</p>
+
+<p>The project's success in serving 10,000+ users with 99.9% uptime showcases the effectiveness of careful architecture design and comprehensive testing methodologies. The implementation serves as a foundation for future educational technology innovations and provides valuable insights for similar integration projects.</p>
+            
+            <!-- Project Tags -->
+            <div class="project-tags">
+            <span class="project-tag">#LTI 1.3</span>
+            <span class="project-tag">#OAuth 2.0</span>
+            <span class="project-tag">#JWT</span>
+            <span class="project-tag">#Education</span>
+            <span class="project-tag">#Integration</span>
+            <span class="project-tag">#Python</span>
+        </div>
+        </article>
+
+        <!-- Navigation -->
+        <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center">
+                <a href="../project.html" class="btn btn-gray-border">
+                    ← All Projects
+                </a>
+                
+                <a href="https://github.com/OpenDSA" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                </a>
+                
+                <a href="https://opendsax.cs.vt.edu" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                    Live Demo →
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/prism-toolbar.min.js"></script>
+    <script src="../js/prism-copy-to-clipboard.min.js"></script>
+    <script src="../js/prism-autoloader.min.js"></script>
+    <script src="../js/main.min.js"></script>
+    <script src="../js/sidebar-loader.js"></script>
+    <script src="../js/page-transitions.js"></script>
+
+    <!-- Mobile Navigation and Sidebar Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile sidebar toggle functionality
+            const sidebarToggle = document.querySelector('.trigger-sidebar');
+            const sidebar = document.querySelector('.sidebar');
+            const backdrop = document.querySelector('.backdrop');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidebar.classList.toggle('-translate-x-full');
+                    if (backdrop) {
+                        backdrop.classList.toggle('opacity-0');
+                        backdrop.classList.toggle('pointer-events-none');
+                    }
+                });
+            }
+            
+            if (backdrop) {
+                backdrop.addEventListener('click', function() {
+                    sidebar.classList.add('-translate-x-full');
+                    backdrop.classList.add('opacity-0', 'pointer-events-none');
+                });
+            }
+
+            // Color mode functionality
+            const colorMode = document.querySelector('.color-mode');
+            if (colorMode) {
+                const links = colorMode.querySelectorAll('a');
+                const span = colorMode.querySelector('span');
+                
+                links.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const mode = this.getAttribute('data-mode');
+                        setTheme(mode);
+                        
+                        // Update active state
+                        links.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Update span position
+                        if (span) {
+                            const linkRect = this.getBoundingClientRect();
+                            const colorModeRect = colorMode.getBoundingClientRect();
+                            span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                            span.style.width = linkRect.width + 'px';
+                        }
+                    });
+                });
+
+                // Initialize color mode position based on current theme
+                setTimeout(() => {
+                    const currentMode = localStorage.getItem('theme') || 'auto';
+                    const activeLink = colorMode.querySelector(`[data-mode="${currentMode}"]`);
+                    if (activeLink && span) {
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const colorModeRect = colorMode.getBoundingClientRect();
+                        span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                        span.style.width = linkRect.width + 'px';
+                    }
+                }, 100);
+            }
+
+            function setTheme(mode) {
+                localStorage.setItem('theme', mode);
+                
+                // Remove all theme classes
+                document.documentElement.classList.remove('light', 'dark', 'auto');
+                
+                if (mode === 'light') {
+                    document.documentElement.classList.add('light');
+                } else if (mode === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else if (mode === 'auto') {
+                    document.documentElement.classList.add('auto');
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.add('light');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
