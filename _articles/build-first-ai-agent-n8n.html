@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Build Your First AI Agent in n8n: A Step-by-Step Guide - Adeyemi Aina</title>
+
+    <!-- Mobile Meta Tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="../css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href="../css/page-transitions.css" rel="stylesheet">
+
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else if(localStorage.theme === 'light'){
+            document.documentElement.classList.add('light')
+        } else if(localStorage.theme === 'auto' || !('theme' in localStorage)){
+            document.documentElement.classList.add('auto')
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                document.documentElement.classList.add('dark')
+                document.documentElement.classList.remove('light')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
+        }
+        if(navigator.mac){
+            document.documentElement.classList.add('mac')
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn how to create intelligent automation workflows using n8n and AI integrations. From zero to automating complex tasks in under 30 minutes.">
+    <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="/articles/top-5-ai-tips-for-iphone-users/">
+
+    <!-- Article-specific CSS -->
+    <style>
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .article-date {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .article-reading-time {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .article-content .highlight {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .article-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .dark .article-tag {
+            background: #334155;
+            color: #cbd5e1;
+        }
+
+        .dark .article-meta {
+            border-bottom-color: #374151;
+        }
+        
+        .dark .article-tags {
+            border-top-color: #374151;
+        }
+        
+        /* Enhanced Title Styles */
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        h1 span {
+            transition: background-position 0.3s ease;
+        }
+        
+        h1 span:hover {
+            background-size: 200% 200%;
+            animation: gradient-shift 2s ease-in-out;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* Mobile Responsiveness Enhancements */
+        body, html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .flex-1 {
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        
+        .article-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .article-content pre {
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre;
+        }
+        
+        .article-content code {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+        
+        .sidebar {
+            max-width: calc(100vw - 2rem);
+        }
+        
+        /* Fix sidebar positioning on desktop - always fixed */
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                max-height: 100vh;
+                z-index: 30;
+            }
+            
+            /* Add proper margin to main content so it doesn't overlap sidebar */
+            .flex-1 {
+                margin-left: 20rem; /* 20rem = w-80 sidebar width */
+            }
+        }
+        
+        /* Mobile-first responsive adjustments */
+        @media (max-width: 768px) {
+            .flex-1 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .article-content {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                word-break: break-word;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .article-meta {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .flex-1 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+
+    <!-- Mobile Header -->
+    <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
+        <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+        <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
+        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-5 flex items-center justify-between relative z-20 duration-300">
+            <a href="/" class="text-gray-1 dark:text-white">
+                <!-- Logo SVG can be added here -->
+            </a>
+            <a href="#" class="trigger-sidebar text-gray-1 dark:text-white">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke-current" d="M28 9.33333H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 16H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 22.6667H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar Container -->
+    <div class="sidebar-container"></div>
+    
+    <!-- Backdrop Overlay -->
+    <div class="backdrop"></div>
+
+    <!-- Main Sidebar (this will be loaded into sidebar-container) -->
+    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">        <div class="relative flex">
+            <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+            <div class="absolute inset-0 bg-gray-14 opacity-0 dark:opacity-100 duration-300"></div>
+            <div class="inner relative flex flex-col border-r lg:border border-orange-2 dark:border-gray-10 w-full w-80 lg:rounded pt-0 lg:pt-6 px-6 pb-6 overflow-auto hide-scrollbar duration-300">
+                <div class="flex items-center">
+                    <div class="h-16 flex items-center">
+                        <a href="../index.html" class="flex items-center text-gray-1 dark:text-white">
+                            <!-- Logo SVG can be added here -->
+                        </a>
+                    </div>
+                </div>
+                
+                <nav class="mt-4 mb-12">
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame.svg" width="18" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Home</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../index.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame-1.svg" width="16" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../about.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Articles</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
+                            <a href="../articles.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/notion.png" width="2048" height="2048" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Projects</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../project.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/social.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Resume</span></h4>
+                            </div>                              
+                            <div class="kg-product-card-description"></div>                             
+                            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Academy</span></a>                               
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/google.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Google Scholar</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Toolkit</span></a>                       
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <!-- Empty card for spacing -->
+                    </div>
+                    
+                    <h3 id="resources">Social</h3>
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame--64-.svg" width="15" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">LinkedIn</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://www.linkedin.com/in/adeyemi-aina/" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="https://www.jeffsu.org/content/images/2024/03/Frame--65-.svg" width="14" height="16" class="kg-product-card-image" loading="lazy">
+                        <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">GitHub</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://github.com/babz007" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Templates</span></a>
+                        </div>
+                    </div>
+
+                    
+                </nav>
+                
+                <div class="color-mode">
+                    <a href="#" data-mode="light">Light</a>
+                    <a href="#" data-mode="dark">Dark</a>
+                    <a href="#" data-mode="auto">Auto</a>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
+        <!-- Article Header -->
+        <header class="max-w-4xl mx-auto mb-8">
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-gray-1 dark:text-white leading-tight tracking-tight">
+                <span class="bg-gradient-to-r from-gray-900 transition-colors duration-500 hover:from-blue-600 hover:via-purple-600 to-orange-500 dark:from-white dark:via-blue-400 dark:to-orange-400 bg-clip-text text-transparent">
+                    Build Your First AI Agent in n8n: A Step-by-Step Guide
+                </span>
+            </h1>
+            
+            <div class="article-meta">
+                <div class="article-date">September 8, 2025</div>
+                <div class="article-reading-time">12 min read</div>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <article class="prose prose-lg max-w-4xl mx-auto article-content">
+
+            <p>n8n is the most powerful visual workflow automation platform you're probably not using yet. Today, we'll build an intelligent AI agent that can analyze emails, generate responses, and take action—all while you sleep.</p>
+
+<h2>Why n8n Over Zapier/Make?</h2>
+
+<p>After building 500+ automation workflows, here's why n8n wins:</p>
+
+<p><li><strong>🧠 Self-hosted</strong>: Your data stays private</li>
+<li><strong>💸 Cost-effective</strong>: Handle 1000s of workflows for free</li>
+<li><strong>🔧 Extremely flexible</strong>: JavaScript customization</li>
+<li><strong>⚡ High performance</strong>: Real-time processing</li>
+<li><strong>🤖 AI-native</strong>: Built for LLM integrations</li></p>
+
+<h2>Prerequisite Setup</h2>
+
+<h3>Installation Options</h3>
+1. <strong>Docker</strong> (Recommended): <code>docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n</code>
+2. <strong>npm</strong>: <code>npm install n8n -g && n8n start</code>
+3. <strong>Cloud</strong>: Use n8n Cloud for instant setup
+
+<h3>Initial Configuration</h3>
+1. Open http://localhost:5678
+2. Create admin account
+3. Enable AI features in Settings → Feature Flags
+
+<h2>Project 1: Smart Email Analysis Agent</h2>
+
+<p>We'll build an AI agent that:
+<li>Monitors your inbox for specific keywords</li>
+<li>Analyzes email content and sentiment</li>
+<li>Generates appropriate responses</li>
+<li>Forwards urgent emails to Slack</li></p>
+
+<h3>Step 1: Email Trigger Setup</h3>
+
+<pre><code class="language-json">// Email Trigger Node Configuration
+{
+  "method": "webhook",
+  "webhookUrl": "https://your-domain.com/webhook/email",
+  "triggerMode": "whenWebhookCalled",
+  "httpMethod": "POST"
+}</code></pre>
+
+<p><strong>Setup Instructions</strong>:
+1. Add <strong>Email Trigger</strong> node
+2. Connect Gmail/Outlook account
+3. Configure filter conditions:
+   - Keywords: ["urgent", "ASAP", "priority"]
+   - From domains: your colleagues' domains
+   - Subject patterns: regex patterns</p>
+
+<h3>Step 2: AI Analysis Workflow</h3>
+
+<pre><code class="language-javascript">// OpenAI Analysis Node
+async function analyzeEmail(content, sender) {
+  const prompt = `
+    Analyze this email for priority and sentiment:
+    
+    From: ${sender}
+    Content: ${content}
+    
+    Respond with JSON:
+    {
+      "priority": "high|medium|low",
+      "sentiment": "positive|negative|neutral", 
+      "action_required": "response|forward|none",
+      "suggested_response": "brief response text"
+    }
+  `;
+  
+  const analysis = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': <code>Bearer ${process.env.OPENAI_API_KEY}</code>,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      model: 'gpt-4',
+      messages: [{ role: 'user', content: prompt }],
+      response_format: { type: 'json_object' }
+    })
+  });
+  
+  return await analysis.json();
+}</code></pre>
+
+<h3>Step 3: Conditional Action Logic</h3>
+
+<pre><code class="language-javascript">// Switch Node for Conditional Processing
+{
+  "rules": [
+    {
+      "operation": "equal",
+      "value1": "{{$json.analysis.priority}}",
+      "value2": "high"
+    },
+    {
+      "operation": "equal", 
+      "value1": "{{$json.analysis.action_required}}",
+      "value2": "response"
+    }
+  ]
+}</code></pre>
+
+<h3>Step 4: Slack Integration</h3>
+
+<pre><code class="language-json">// Slack Notification Node
+{
+  "channel": "#urgent-alerts",
+  "message": "🚨 High Priority Email Detected\n\n",
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "<em>From:</em> {{$json.sender}}\n<em>Subject:</em> {{$json.subject}}\n<em>Analysis:</em> {{$json.analysis.suggested_response}}"
+      }
+    }
+  ]
+}</code></pre>
+
+<h2>Project 2: Intelligent Content Curator</h2>
+
+<p>Build an agent that curates content from your industry:</p>
+
+<h3>RSS Feed Monitoring</h3>
+<li>Monitor 20+ industry blogs/RSS feeds</li>
+<li>AI-summerize articles with key insights</li>
+<li>Filter by relevance to your audience</li>
+<li>Generate personalized newsletters</li>
+
+<h3>Implementation Steps</h3>
+
+<p>1. <strong>RSS Trigger</strong>: Monitor multiple feeds every hour
+2. <strong>Content Analysis</strong>: Use Claude/GPT-4 to extract key insights
+3. <strong>Relevance Scoring</strong>: Rate content importance (1-10)
+4. <strong>Content Generation</strong>: Create newsletter summaries
+5. <strong>Distribution</strong>: Send via email/Slack/Teams</p>
+
+<pre><code class="language-javascript">// Content Analysis Function
+async function analyzeArticle(url, title, content) {
+  const prompt = `
+    Analyze this article for my audience (software engineers, AI enthusiasts):
+    
+    Title: ${title}
+    URL: ${url}
+    Content: ${content.substring(0, 2000)}...
+    
+    Rate relevance (1-10) and provide:
+    - Key insights (3 bullet points)
+    - Actionable takeaways
+    - Related resources
+    
+    Format as JSON.
+  `;
+  
+  // Implementation details...
+}</code></pre>
+
+<h2>Project 3: Automated Code Review Assistant</h2>
+
+<p>Create an AI agent that reviews pull requests:</p>
+
+<h3>Workflow Components</h3>
+1. <strong>GitHub Webhook</strong>: Trigger on PR events
+2. <strong>Code Analysis</strong>: AI reviews for best practices
+3. <strong>Security Scan</strong>: Automated vulnerability detection  
+4. <strong>Quality Report</strong>: Generate comprehensive review
+5. <strong>Auto-comment</strong>: Post findings back to GitHub
+
+<pre><code class="language-javascript">// Code Review Analysis
+async function reviewPullRequest(diff, codeContext) {
+  const prompt = `
+    As a senior software engineer, review this PR:
+    
+    Context: ${codeContext}
+    Diff: ${diff}
+    
+    Focus on:
+    - Security vulnerabilities
+    - Performance issues
+    - Code maintainability
+    - Best practices
+    
+    Provide constructive feedback with specific suggestions.
+  `;
+  
+  return await analyzeWithAI(prompt);
+}</code></pre>
+
+<h2>Advanced Features</h2>
+
+<h3>Custom Node Development</h3>
+Create reusable components:
+
+<pre><code class="language-javascript">// custom-nodes/crypto-price-monitor/node.ts
+export class CryptoPriceMonitor implements INodeType {
+  description: INodeTypeDescription = {
+    displayName: 'Crypto Price Monitor',
+    name: 'cryptoPriceMonitor',
+    icon: 'bitcoin',
+    group: ['input'],
+    version: 1,
+    description: 'Monitor cryptocurrency prices',
+    defaults: {
+      name: 'Crypto Price Monitor'
+    },
+    inputs: ['main'],
+    outputs: ['main'],
+    credentials: []
+  };
+
+<p>async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
+    // Implementation...
+  }
+}</code></pre></p>
+
+<h3>Error Handling & Monitoring</h3>
+<li>Set up comprehensive error tracking</li>
+<li>Implement retry logic for API failures</li>
+<li>Monitor workflow performance metrics</li>
+<li>Create alerting for critical failures</li>
+
+<h3>Security Best Practices</h3>
+<li>Use environment variables for API keys</li>
+<li>Implement rate limiting</li>
+<li>Encrypt sensitive data</li>
+<li>Regular security audits</li>
+
+<h2>Real-World Deployment Tips</h2>
+
+<h3>Production Setup</h3>
+1. <strong>Self-hosting</strong>: Use Docker Compose for easy management
+2. <strong>Database</strong>: Postgres for workflow execution data
+3. <strong>Monitoring</strong>: Integrate with Grafana/Prometheus
+4. <strong>Backups</strong>: Regular workflow and data backups
+
+<h3>Scaling Considerations</h3>
+<li><strong>Rate Limits</strong>: Implement queuing for high-volume workflows</li>
+<li><strong>Resources</strong>: Monitor memory/CPU usage</li>
+<li><strong>Database</strong>: Optimize query performance</li>
+<li><strong>Caching</strong>: Redis for frequently accessed data</li>
+
+<h2>Troubleshooting Common Issues</h2>
+
+<h3>API Integration Problems</h3>
+<pre><code class="language-javascript">// Robust error handling
+async function callAPI(url, options, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url, options);
+      
+      if (!response.ok) {
+        throw new Error(<code>HTTP ${response.status}: ${response.statusText}</code>);
+      }
+      
+      return await response.json();
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      
+      // Exponential backoff
+      await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+    }
+  }
+}</code></pre>
+
+<h3>Workflow Debugging</h3>
+<li>Use <strong>Debug Mode</strong> to inspect data at each step</li>
+<li>Add <strong>Set node</strong> for logging variables</li>
+<li>Test workflows with <strong>manual triggers</strong></li>
+<li>Use <strong>version control</strong> for workflow management</li>
+
+<h2>What's Next?</h2>
+
+<h3>Advanced AI Agents</h3>
+<li><strong>Multi-agent systems</strong>: Agents that collaborate</li>
+<li><strong>Learning agents</strong>: Improve over time based on feedback</li>
+<li><strong>Specialized agents</strong>: Domain-specific automation</li>
+<li><strong>Visual agents</strong>: Process images/documents with computer vision</li>
+
+<h3>Integration Opportunities</h3>
+<li><strong>CRM Systems</strong>: Salesforce, HubSpot automation</li>
+<li><strong>E-commerce</strong>: Shopify, WooCommerce workflows</li>
+<li><strong>DevOps</strong>: CI/CD pipeline enhancements</li>
+<li><strong>Analytics</strong>: Custom reporting dashboards</li>
+
+<p>---</p>
+
+<p><strong>Your Next Challenge</strong>: Pick one automation from this guide and build it this week. Start simple—even a basic email to Slack workflow saves significant time every day.</p>
+
+<p>💡 <strong>Pro Tip</strong>: Begin with manual workflows, then gradually add AI automation. This iterative approach ensures reliability before complexity.</p>
+
+<p><em>Ready to automate your first task? The automation journey starts with a single workflow.</em></p>
+            <div class="article-tags">
+                <span class="article-tag">n8n</span>
+                <span class="article-tag">AI</span>
+                <span class="article-tag">Automation</span>
+                <span class="article-tag">Workflow</span>
+                <span class="article-tag">Agent</span>
+            </div>
+        </article>
+
+        <!-- Navigation -->
+        <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center">
+                <a href="#" class="btn btn-gray-border">
+                    ← ChatGPT-5 Prompting Best Practices
+                </a>
+                
+                <a href="../articles.html" class="btn btn-gray-border">
+                    All Articles
+                </a>
+                
+                <a href="#" class="btn btn-gray-border">
+                    3 AI Habits That Save Me 20+ Hours a Week →
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/prism-toolbar.min.js"></script>
+    <script src="../js/prism-copy-to-clipboard.min.js"></script>
+    <script src="../js/prism-autoloader.min.js"></script>
+    <script src="../js/main.min.js"></script>
+    <script src="../js/sidebar-loader.js"></script>
+    <script src="../js/page-transitions.js"></script>
+
+    <!-- Mobile Navigation and Sidebar Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile sidebar toggle functionality
+            const sidebarToggle = document.querySelector('.trigger-sidebar');
+            const sidebar = document.querySelector('.sidebar');
+            const backdrop = document.querySelector('.backdrop');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidebar.classList.toggle('-translate-x-full');
+                    if (backdrop) {
+                        backdrop.classList.toggle('opacity-0');
+                        backdrop.classList.toggle('pointer-events-none');
+                    }
+                });
+            }
+            
+            if (backdrop) {
+                backdrop.addEventListener('click', function() {
+                    sidebar.classList.add('-translate-x-full');
+                    backdrop.classList.add('opacity-0', 'pointer-events-none');
+                });
+            }
+
+            // Color mode functionality
+            const colorMode = document.querySelector('.color-mode');
+            if (colorMode) {
+                const links = colorMode.querySelectorAll('a');
+                const span = colorMode.querySelector('span');
+                
+                links.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const mode = this.getAttribute('data-mode');
+                        setTheme(mode);
+                        
+                        // Update active state
+                        links.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Update span position
+                        if (span) {
+                            const linkRect = this.getBoundingClientRect();
+                            const colorModeRect = colorMode.getBoundingClientRect();
+                            span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                            span.style.width = linkRect.width + 'px';
+                        }
+                    });
+                });
+
+                // Initialize color mode position based on current theme
+                setTimeout(() => {
+                    const currentMode = localStorage.getItem('theme') || 'auto';
+                    const activeLink = colorMode.querySelector(`[data-mode="${currentMode}"]`);
+                    if (activeLink && span) {
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const colorModeRect = colorMode.getBoundingClientRect();
+                        span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                        span.style.width = linkRect.width + 'px';
+                    }
+                }, 100);
+            }
+
+            function setTheme(mode) {
+                localStorage.setItem('theme', mode);
+                
+                // Remove all theme classes
+                document.documentElement.classList.remove('light', 'dark', 'auto');
+                
+                if (mode === 'light') {
+                    document.documentElement.classList.add('light');
+                } else if (mode === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else if (mode === 'auto') {
+                    document.documentElement.classList.add('auto');
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.add('light');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

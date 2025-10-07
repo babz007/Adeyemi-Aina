@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ChatGPT-5 Prompting Best Practices - Adeyemi Aina</title>
+
+    <!-- Mobile Meta Tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="../css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href="../css/page-transitions.css" rel="stylesheet">
+
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else if(localStorage.theme === 'light'){
+            document.documentElement.classList.add('light')
+        } else if(localStorage.theme === 'auto' || !('theme' in localStorage)){
+            document.documentElement.classList.add('auto')
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                document.documentElement.classList.add('dark')
+                document.documentElement.classList.remove('light')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
+        }
+        if(navigator.mac){
+            document.documentElement.classList.add('mac')
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Discover the most effective prompting techniques for ChatGPT-5 to get better results and unlock its full potential.">
+    <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="/articles/top-5-ai-tips-for-iphone-users/">
+
+    <!-- Article-specific CSS -->
+    <style>
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .article-date {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .article-reading-time {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .article-content .highlight {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .article-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .dark .article-tag {
+            background: #334155;
+            color: #cbd5e1;
+        }
+
+        .dark .article-meta {
+            border-bottom-color: #374151;
+        }
+        
+        .dark .article-tags {
+            border-top-color: #374151;
+        }
+        
+        /* Enhanced Title Styles */
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        h1 span {
+            transition: background-position 0.3s ease;
+        }
+        
+        h1 span:hover {
+            background-size: 200% 200%;
+            animation: gradient-shift 2s ease-in-out;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* Mobile Responsiveness Enhancements */
+        body, html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .flex-1 {
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        
+        .article-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .article-content pre {
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre;
+        }
+        
+        .article-content code {
+            word-break: break-all;
+            overflow-wrap: break-word;
+        }
+        
+        .sidebar {
+            max-width: calc(100vw - 2rem);
+        }
+        
+        /* Fix sidebar positioning on desktop - always fixed */
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                max-height: 100vh;
+                z-index: 30;
+            }
+            
+            /* Add proper margin to main content so it doesn't overlap sidebar */
+            .flex-1 {
+                margin-left: 20rem; /* 20rem = w-80 sidebar width */
+            }
+        }
+        
+        /* Mobile-first responsive adjustments */
+        @media (max-width: 768px) {
+            .flex-1 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .article-content {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                word-break: break-word;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .article-meta {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .flex-1 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+
+    <!-- Mobile Header -->
+    <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
+        <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+        <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
+        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-5 flex items-center justify-between relative z-20 duration-300">
+            <a href="/" class="text-gray-1 dark:text-white">
+                <!-- Logo SVG can be added here -->
+            </a>
+            <a href="#" class="trigger-sidebar text-gray-1 dark:text-white">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke-current" d="M28 9.33333H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 16H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 22.6667H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar Container -->
+    <div class="sidebar-container"></div>
+    
+    <!-- Backdrop Overlay -->
+    <div class="backdrop"></div>
+
+    <!-- Main Sidebar (this will be loaded into sidebar-container) -->
+    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">        <div class="relative flex">
+            <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+            <div class="absolute inset-0 bg-gray-14 opacity-0 dark:opacity-100 duration-300"></div>
+            <div class="inner relative flex flex-col border-r lg:border border-orange-2 dark:border-gray-10 w-full w-80 lg:rounded pt-0 lg:pt-6 px-6 pb-6 overflow-auto hide-scrollbar duration-300">
+                <div class="flex items-center">
+                    <div class="h-16 flex items-center">
+                        <a href="../index.html" class="flex items-center text-gray-1 dark:text-white">
+                            <!-- Logo SVG can be added here -->
+                        </a>
+                    </div>
+                </div>
+                
+                <nav class="mt-4 mb-12">
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame.svg" width="18" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Home</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../index.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame-1.svg" width="16" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../about.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Articles</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
+                            <a href="../articles.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/notion.png" width="2048" height="2048" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Projects</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../project.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/social.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Resume</span></h4>
+                            </div>                              
+                            <div class="kg-product-card-description"></div>                             
+                            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Academy</span></a>                               
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/google.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Google Scholar</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Toolkit</span></a>                       
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <!-- Empty card for spacing -->
+                    </div>
+                    
+                    <h3 id="resources">Social</h3>
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame--64-.svg" width="15" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">LinkedIn</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://www.linkedin.com/in/adeyemi-aina/" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="https://www.jeffsu.org/content/images/2024/03/Frame--65-.svg" width="14" height="16" class="kg-product-card-image" loading="lazy">
+                        <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">GitHub</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://github.com/babz007" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Templates</span></a>
+                        </div>
+                    </div>
+
+                    
+                </nav>
+                
+                <div class="color-mode">
+                    <a href="#" data-mode="light">Light</a>
+                    <a href="#" data-mode="dark">Dark</a>
+                    <a href="#" data-mode="auto">Auto</a>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
+        <!-- Article Header -->
+        <header class="max-w-4xl mx-auto mb-8">
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-gray-1 dark:text-white leading-tight tracking-tight">
+                <span class="bg-gradient-to-r from-gray-900 transition-colors duration-500 hover:from-blue-600 hover:via-purple-600 to-orange-500 dark:from-white dark:via-blue-400 dark:to-orange-400 bg-clip-text text-transparent">
+                    ChatGPT-5 Prompting Best Practices
+                </span>
+            </h1>
+            
+            <div class="article-meta">
+                <div class="article-date">September 8, 2025</div>
+                <div class="article-reading-time">5 min read</div>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <article class="prose prose-lg max-w-4xl mx-auto article-content">
+
+            <p>With ChatGPT-5's enhanced capabilities, prompting has become both an art and a science. After extensive testing with the latest model, I've identified key strategies that consistently produce superior results.</p>
+
+<h2>Principle 1: Start with the Problem, Not the Tool</h2>
+
+<p>With so many new AI tools (and features) emerging daily, it's tempting to get caught up in the hype and start trying them all out. But this is a mistake.</p>
+
+<p><strong>The key is to begin with your actual problem, not the AI tool.</strong></p>
+
+<p>* <strong>Case in point</strong>: When OpenAI announced <strong>Custom GPTs</strong>, they convinced many developers to spend time creating GPTs by making a big deal about monetization via the <strong>GPT Store</strong>. And yet, very little progress has been made.</p>
+
+<p>!<a href="/images/bulb.png">AI Tools Landscape</a></p>
+
+<h2>Essential Prompting Elements</h2>
+
+<h3>1. Context Setting</h3>
+Always provide sufficient context about your domain, constraints, and expected output format:
+
+<pre><code class="language-text">You are a senior software engineer reviewing a pull request. 
+The codebase follows a microservices architecture using Node.js and PostgreSQL.
+Please provide feedback on code quality, potential bugs, and architectural concerns.</code></pre>
+
+<h3>2. Specific Output Formats</h3>
+Be explicit about the structure you want:
+
+<pre><code class="language-text">Format your response as:
+<li><strong>Summary</strong>: One-line overview</li>
+<li><strong>Concerns</strong>: List of issues found</li>
+<li><strong>Recommendations</strong>: Specific actions to take</li>
+<li><strong>Code Examples</strong>: If applicable</code></pre></li>
+
+<h3>3. Iterative Refinement</h3>
+The magic often happens in the second or third prompt:
+
+<p><strong>First prompt</strong>: "Help me analyze this data"
+<strong>Second prompt</strong>: "Focus specifically on trends and anomalies"
+<strong>Third prompt</strong>: "Present findings in an executive summary format"</p>
+
+<h2>Advanced Techniques</h2>
+
+<h3>Chain of Thought Prompting</h3>
+Encourage step-by-step reasoning:
+
+<pre><code class="language-text">Think through this problem step by step:
+1. Identify the core issue
+2. Consider potential causes
+3. Evaluate solution approaches
+4. Recommend the best course of action</code></pre>
+
+<h3>Few-Shot Learning</h3>
+Provide examples of the output you expect:
+
+<pre><code class="language-text">I need help categorizing customer feedback. Here are some examples:
+
+<p>Positive: "Love the new interface, much more intuitive"
+Category: User Experience - Interface</p>
+
+<p>Neutral: "The app works fine, no complaints"
+Category: General - Neutral</p>
+
+<p>Please categorize this feedback: "The loading time is too slow"</code></pre></p>
+
+<h2>Common Mistakes to Avoid</h2>
+
+<p>1. <strong>Being too vague</strong>: "Help me improve my code"
+2. <strong>Providing no context</strong>: Assumptions about domain knowledge
+3. <strong>Ignoring constraints</strong>: Not mentioning limitations or requirements
+4. <strong>Single-shot thinking</strong>: Expecting perfect results from one prompt</p>
+
+<h2>Real-World Applications</h2>
+
+<h3>Code Review</h3>
+<pre><code class="language-text">As an experienced senior developer, review this JavaScript function for:
+<li>Logic correctness</li>
+<li>Performance issues  </li>
+<li>Security vulnerabilities</li>
+<li>Code cleanliness</li>
+
+<p>The function will be deployed to production with high traffic.</p>
+
+<p>[Insert code here]</code></pre></p>
+
+<h3>Business Analysis</h3>
+<pre><code class="language-text">Analyze this quarterly sales data and provide insights:
+1. Key trends and patterns
+2. Areas of concern
+3. Opportunities for growth
+4. Executive summary (2 sentences max)
+
+<p>Consider our target market is enterprise SaaS companies.</code></pre></p>
+
+<p>---</p>
+
+<p><em>Want to see these techniques in action? Check out our <a href="/free-toolkit">AI Toolkit</a> for more prompting resources.</em></p>
+            <div class="article-tags">
+                <span class="article-tag">AI</span>
+                <span class="article-tag">ChatGPT</span>
+                <span class="article-tag">Prompts</span>
+                <span class="article-tag">Best Practices</span>
+            </div>
+        </article>
+
+        <!-- Navigation -->
+        <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center">
+                <a href="#" class="btn btn-gray-border">
+                    ← ChatGPT-5 Prompting Best Practices
+                </a>
+                
+                <a href="../articles.html" class="btn btn-gray-border">
+                    All Articles
+                </a>
+                
+                <a href="#" class="btn btn-gray-border">
+                    3 AI Habits That Save Me 20+ Hours a Week →
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/prism-toolbar.min.js"></script>
+    <script src="../js/prism-copy-to-clipboard.min.js"></script>
+    <script src="../js/prism-autoloader.min.js"></script>
+    <script src="../js/main.min.js"></script>
+    <script src="../js/sidebar-loader.js"></script>
+    <script src="../js/page-transitions.js"></script>
+
+    <!-- Mobile Navigation and Sidebar Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile sidebar toggle functionality
+            const sidebarToggle = document.querySelector('.trigger-sidebar');
+            const sidebar = document.querySelector('.sidebar');
+            const backdrop = document.querySelector('.backdrop');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidebar.classList.toggle('-translate-x-full');
+                    if (backdrop) {
+                        backdrop.classList.toggle('opacity-0');
+                        backdrop.classList.toggle('pointer-events-none');
+                    }
+                });
+            }
+            
+            if (backdrop) {
+                backdrop.addEventListener('click', function() {
+                    sidebar.classList.add('-translate-x-full');
+                    backdrop.classList.add('opacity-0', 'pointer-events-none');
+                });
+            }
+
+            // Color mode functionality
+            const colorMode = document.querySelector('.color-mode');
+            if (colorMode) {
+                const links = colorMode.querySelectorAll('a');
+                const span = colorMode.querySelector('span');
+                
+                links.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const mode = this.getAttribute('data-mode');
+                        setTheme(mode);
+                        
+                        // Update active state
+                        links.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Update span position
+                        if (span) {
+                            const linkRect = this.getBoundingClientRect();
+                            const colorModeRect = colorMode.getBoundingClientRect();
+                            span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                            span.style.width = linkRect.width + 'px';
+                        }
+                    });
+                });
+
+                // Initialize color mode position based on current theme
+                setTimeout(() => {
+                    const currentMode = localStorage.getItem('theme') || 'auto';
+                    const activeLink = colorMode.querySelector(`[data-mode="${currentMode}"]`);
+                    if (activeLink && span) {
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const colorModeRect = colorMode.getBoundingClientRect();
+                        span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                        span.style.width = linkRect.width + 'px';
+                    }
+                }, 100);
+            }
+
+            function setTheme(mode) {
+                localStorage.setItem('theme', mode);
+                
+                // Remove all theme classes
+                document.documentElement.classList.remove('light', 'dark', 'auto');
+                
+                if (mode === 'light') {
+                    document.documentElement.classList.add('light');
+                } else if (mode === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else if (mode === 'auto') {
+                    document.documentElement.classList.add('auto');
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.add('light');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

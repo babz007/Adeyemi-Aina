@@ -1,0 +1,109 @@
+# Jekyll Configuration for GitHub Pages
+title: "Adeyemi Aina - Software Engineer & AI Researcher"
+description: "Software Engineer, ex-Technology Consultant @KPMG, part-time digital craftsman, and full-time code whisperer based in Virginia, USA."
+email: ainababs0@gmail.com
+baseurl: "/" # Remove this if publishing to username.github.io or custom domain
+url: "https://people.cs.vt.edu/ainababs0/"
+
+# GitHub Pages Configuration
+github: [username]
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Collections for Articles
+collections:
+  articles:
+    output: true
+    permalink: /articles/:name/
+
+# Defaults for Articles
+defaults:
+  - scope:
+      path: ""
+      type: "articles"
+    values:
+      layout: "article"
+      author: "Adeyemi Aina"
+      category: "AI & Technology"
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "About Me"
+    url: "/about.html"
+  - title: "Articles"
+    url: "/articles/"
+  - title: "Projects"
+    url: "/project has.html"
+  - title: "Resume"
+    url: "https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing"
+    external: true
+
+# Plugins (GitHub Pages compatible)
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Build settings
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - _site
+  - .gitignore
+  - .DS_Store
+
+# Keep files for GitHub Pages
+keep_files:
+  - css/
+  - js/
+  - images/
+  - index.html
+  - about.html
+  - project.html
+  - career.html
+  - ai-ml.html
+  - xxxx.html
+  - sidebar.html
+
+# SEO Settings
+logo: "/images/DARK-GREY_FINAL--transparent--.png"
+twitter:
+  username: "adeyemi_aina"
+  card: "summary_large_image"
+
+# Article Settings
+article_settings:
+  show_reading_time: true
+  show_author: true
+  show_date: true
+  show_categories: true
+  show_tags: true
+
+# Syntax highlighting
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'
+
+# Author information
+author:
+  name: "Adeyemi Aina"
+  bio: "Software Engineer, ex-Technology Consultant @KPMG, part-time digital craftsman, and full-time code whisperer"
+  avatar: "/images/myphoto2.jpeg"
+  twitter: "adeyemi_aina"
+  github: "babz007"
+  linkedin: "adeyemi-aina"
+
+# Social links
+social:
+  - icon: "linkedin"
+    url: "https://www.linkedin.com/in/adeyemi-aina/"
+  - icon: "github"
+    url: "https://github.com/babz007"
+  - icon: "scholar"
+    url: "https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en"
