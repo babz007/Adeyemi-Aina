@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ETD Knowledge Platform - Adeyemi Aina</title>
+
+    <!-- Mobile Meta Tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="../css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href="../css/project.css" rel="stylesheet">
+    <link href="../css/page-transitions.css" rel="stylesheet">
+
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else if(localStorage.theme === 'light'){
+            document.documentElement.classList.add('light')
+        } else if(localStorage.theme === 'auto' || !('theme' in localStorage)){
+            document.documentElement.classList.add('auto')
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                document.documentElement.classList.add('dark')
+                document.documentElement.classList.remove('light')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
+        }
+        if(navigator.mac){
+            document.documentElement.classList.add('mac')
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Architected a production-grade Electronic Thesis & Dissertation system transforming raw PDFs into a semantically rich, searchable knowledge repository. Led infrastructure team developing 30+ APIs with custom gateway, orchestrating 6 microservices across Kubernetes with event-driven architecture using Kafka, Elasticsearch, and Virtuoso.">
+    <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="/projects/{{ page.slug }}/">
+
+    <!-- Project-specific CSS -->
+    <style>
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .project-date {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .project-duration {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .project-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .project-content .highlight {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .project-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .dark .project-tag {
+            background: #334155;
+            color: #cbd5e1;
+        }
+
+        .dark .project-meta {
+            border-bottom-color: #374151;
+        }
+        
+        .dark .project-tags {
+            border-top-color: #374151;
+        }
+        
+        /* Enhanced Title Styles */
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        h1 span {
+            transition: background-position 0.3s ease;
+        }
+        
+        h1 span:hover {
+            background-size: 200% 200%;
+            animation: gradient-shift 2s ease-in-out;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* Mobile Responsiveness Enhancements */
+        body, html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .flex-1 {
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        
+        .project-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .project-content pre {
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
+        }
+        
+        .project-content code {
+            word-break: break-all;
+            overflow-wrap: break-word;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-size: 0.875em;
+        }
+        
+        /* Ensure proper spacing for headings and content */
+        .project-content h1,
+        .project-content h2,
+        .project-content h3,
+        .project-content h4,
+        .project-content h5,
+        .project-content h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+        
+        .project-content h1:first-child,
+        .project-content h2:first-child,
+        .project-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .project-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .project-content ul,
+        .project-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .project-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark .project-content pre {
+            background-color: #1f2937;
+        }
+        
+        .dark .project-content code {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar {
+            max-width: calc(100vw - 2rem);
+        }
+        
+        /* Fix sidebar positioning on desktop - always fixed */
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                max-height: 100vh;
+                z-index: 30;
+            }
+            
+            /* Add proper margin to main content so it doesn't overlap sidebar */
+            .flex-1 {
+                margin-left: 20rem; /* 20rem = w-80 sidebar width */
+            }
+        }
+        
+        /* Mobile-first responsive adjustments */
+        @media (max-width: 768px) {
+            .flex-1 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .project-content {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                word-break: break-word;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .project-meta {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .flex-1 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem !important;
+            }
+        }
+
+        /* Project-specific styles */
+        .project-hero {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(251, 146, 60, 0.05));
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .project-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -15%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(251, 146, 60, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .dark .stat-card {
+            background: rgba(15, 14, 23, 0.8);
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .dark .stat-number {
+            color: #60a5fa;
+        }
+
+        .dark .stat-label {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+
+    <!-- Mobile Header -->
+    <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
+        <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+        <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
+        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-5 flex items-center justify-between relative z-20 duration-300">
+            <a href="/" class="text-gray-1 dark:text-white">
+                <!-- Logo SVG can be added here -->
+            </a>
+            <a href="#" class="trigger-sidebar text-gray-1 dark:text-white">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke-current" d="M28 9.33333H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 16H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 22.6667H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar Container -->
+    <div class="sidebar-container"></div>
+    
+    <!-- Backdrop Overlay -->
+    <div class="backdrop"></div>
+
+    <!-- Main Sidebar (this will be loaded into sidebar-container) -->
+    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">
+        <div class="relative flex">
+            <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+            <div class="absolute inset-0 bg-gray-14 opacity-0 dark:opacity-100 duration-300"></div>
+            <div class="inner relative flex flex-col border-r lg:border border-orange-2 dark:border-gray-10 w-full w-80 lg:rounded pt-0 lg:pt-6 px-6 pb-6 overflow-auto hide-scrollbar duration-300">
+                <div class="flex items-center">
+                    <div class="h-16 flex items-center">
+                        <a href="../index.html" class="flex items-center text-gray-1 dark:text-white">
+                            <!-- Logo SVG can be added here -->
+                        </a>
+                    </div>
+                </div>
+                
+                <nav class="mt-4 mb-12">
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame.svg" width="18" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Home</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../index.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame-1.svg" width="16" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../about.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Articles</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
+                            <a href="../articles.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/notion.png" width="2048" height="2048" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Projects</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../project.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/social.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Resume</span></h4>
+                            </div>                              
+                            <div class="kg-product-card-description"></div>                             
+                            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Academy</span></a>                               
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/google.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Google Scholar</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Toolkit</span></a>                       
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <!-- Empty card for spacing -->
+                    </div>
+                    
+                    <h3 id="resources">Social</h3>
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame--64-.svg" width="15" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">LinkedIn</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://www.linkedin.com/in/adeyemi-aina/" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="https://www.jeffsu.org/content/images/2024/03/Frame--65-.svg" width="14" height="16" class="kg-product-card-image" loading="lazy">
+                        <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">GitHub</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://github.com/babz007" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Templates</span></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
+                        <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Substack</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
+                            <a href="https://substack.com/@ainababs0" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+
+                    
+                </nav>
+                
+                <div class="color-mode">
+                    <a href="#" data-mode="light">Light</a>
+                    <a href="#" data-mode="dark">Dark</a>
+                    <a href="#" data-mode="auto">Auto</a>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
+        <!-- Project Hero Section -->
+        <div class="project-hero">
+            <div class="max-w-4xl mx-auto">
+                <!-- Project Category Badge -->
+                <div class="inline-flex items-center mb-6">
+                    <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 text-orange-800 dark:text-orange-200 rounded-full text-sm font-semibold shadow-sm">
+                        Infrastructure
+                    </span>
+                </div>
+                
+                <!-- Main Title -->
+                <h1 class="text-5xl lg:text-6xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
+                    <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-orange-600 dark:from-white dark:via-gray-200 dark:to-orange-400 bg-clip-text text-transparent">
+                        ETD Knowledge Platform
+                    </span>
+                </h1>
+                
+                <!-- Excerpt -->
+                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">Architected a production-grade Electronic Thesis & Dissertation system transforming raw PDFs into a semantically rich, searchable knowledge repository. Led infrastructure team developing 30+ APIs with custom gateway, orchestrating 6 microservices across Kubernetes with event-driven architecture using Kafka, Elasticsearch, and Virtuoso.</p>
+                
+                <!-- Project Meta Information -->
+                <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
+                    <!-- Project Date -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="font-medium">January 14, 2024</span>
+                    </div>
+                    
+                    <!-- Project Duration -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="font-medium">12 months</span>
+                    </div>
+                    
+                    <!-- Project Status -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="font-medium">Production</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Stats -->
+        
+
+        <!-- Project Content -->
+        <article class="prose prose-lg max-w-4xl mx-auto project-content">
+            <h1 class="text-3xl font-bold mt-12 mb-8 text-gray-900 dark:text-white">ETD Knowledge Platform</h1>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The ETD (Electronic Thesis & Dissertation) system is a cloud-native, event-driven platform that transforms raw thesis PDFs and metadata into a richly indexed, searchable, and explorable knowledge repository. This production-grade system consists of six specialized teams working in concert to deliver a comprehensive solution for academic research discovery and analysis.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">System Architecture Overview</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The ETD system leverages modern microservices architecture with event-driven communication, enabling scalable and maintainable knowledge management at enterprise scale.</p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Core Components</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><ul class="list-disc list-inside mb-6 space-y-2"><li class="mb-2"><strong>Ingestion & Knowledge Graph</strong> – Parses XML/PDF into RDF triples</li> <li class="mb-2"><strong>Search & Recommendation</strong> – Builds hybrid BM25 + vector search index</li> <li class="mb-2"><strong>Topic Modeling & Object Detection</strong> – Extracts latent themes and visual elements</li> <li class="mb-2"><strong>Classification & Summaries</strong> – Labels chapters by subject and generates summaries</li> <li class="mb-2"><strong>Infrastructure & DevOps</strong> – Orchestrates Kubernetes, Kafka, CI/CD, and observability</li> <li class="mb-2"><strong>UI</strong> – Provides secured React SPA with faceted search and real-time notifications</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Implementation</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Infrastructure Team Leadership</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">As the lead infrastructure engineer, I architected and developed the foundational infrastructure supporting all six microservice teams:</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### API Gateway Development <li class="mb-2"><strong>30+ RESTful APIs</strong> with custom gateway implementation</li> <li class="mb-2"><strong>GraphQL façade</strong> for unified data access across microservices</li> <li class="mb-2"><strong>Authentication & Authorization</strong> via Keycloak OIDC integration</li> <li class="mb-2"><strong>Rate limiting and throttling</strong> for production stability</li> <li class="mb-2"><strong>API versioning and documentation</strong> with OpenAPI specifications</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Event-Driven Architecture <li class="mb-2"><strong>Apache Kafka</strong> for asynchronous communication between services</li> <li class="mb-2"><strong>Event streaming</strong> with topics: <code>etd.triples</code>, <code>objects.out</code>, <code>summary.done</code></li> <li class="mb-2"><strong>Message schemas</strong> and event sourcing for auditability</li> <li class="mb-2"><strong>Dead letter queues</strong> for error handling and retry logic</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Container Orchestration <li class="mb-2"><strong>Kubernetes clusters</strong> with Rancher management</li> <li class="mb-2"><strong>GitOps workflow</strong> with GitHub Actions → Helm → Argo CD</li> <li class="mb-2"><strong>Auto-scaling</strong> based on CPU and memory metrics</li> <li class="mb-2"><strong>Resource quotas</strong> and network policies for security</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Microservices Architecture</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 1. Ingestion & Knowledge Graph Service <strong>Problem</strong>: Raw ETD packages lack machine-readable structure.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2">Upload API receives PDF + XML bundles</li> <li class="mb-2">ETL pipeline parses MODS/METS XML → RDF triples (~600 per ETD)</li> <li class="mb-2">Ontology validation ensures data consistency (OWL)</li> <li class="mb-2">Bulk-load triples into Virtuoso database</li> <li class="mb-2">Publish <code>etd.triples</code> Kafka events for downstream processing</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 2. Search & Recommendation Service <strong>Problem</strong>: Simple keyword search misses semantic relevance.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2">Nightly ETL reads triples → JSON documents → Elasticsearch</li> <li class="mb-2">Hybrid search: BM25 + dense_vector fields with HNSW k-NN</li> <li class="mb-2">Content-based recommendations with collaborative filtering</li> <li class="mb-2">RESTful APIs: <code>/search</code>, <code>/recs/{uri}</code> microservices</li> <li class="mb-2">GraphQL gateway for unified query interface</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 3. Topic Modeling & Object Detection Service <strong>Problem</strong>: Users need thematic grouping and direct access to figures/tables.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2"><strong>Topic Modeling</strong>: SPARQL → chapter text → embeddings (e5-large) → BERTopic</li> <li class="mb-2"><strong>Object Detection</strong>: PDF rasterization → YOLOv7 inference → bounding boxes</li> <li class="mb-2">Crop and store images in S3 with <code>etd:hasFigure</code> triples</li> <li class="mb-2">Emit <code>etd.objects</code> Kafka events for UI updates</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 4. Classification & Summaries Service <strong>Problem</strong>: Long chapters are hard to skim; manual subject tagging is laborious.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2"><strong>Classification</strong>: Fine-tune SciBERT for ProQuest subject codes</li> <li class="mb-2"><strong>Summarization</strong>: TextRank (extractive) + BigBird-Pegasus (abstractive)</li> <li class="mb-2">Store summaries as RDF triples and Elasticsearch fields</li> <li class="mb-2">Publish <code>summary.done</code> Kafka events for real-time updates</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 5. Infrastructure & DevOps Service <strong>Problem</strong>: Coordinating six rapidly-evolving microservices at scale.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2"><strong>GitOps Pipeline</strong>: GitHub Actions → Helm → Argo CD → Kubernetes</li> <li class="mb-2"><strong>Observability</strong>: Prometheus Operator + Grafana + Alertmanager</li> <li class="mb-2"><strong>Security</strong>: Keycloak OIDC for SSO/RBAC + network policies</li> <li class="mb-2"><strong>Backup</strong>: Hourly snapshots of ES & Virtuoso to S3</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 6. UI Service <strong>Problem</strong>: Hiding complexity while surfacing relevant insights.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2">React SPA with GraphQL client</li> <li class="mb-2">Global search with hybrid results</li> <li class="mb-2">Faceted search for subjects, topics, and visual elements</li> <li class="mb-2">Real-time notifications via WebSocket connections</li> <li class="mb-2">Admin dashboard with cluster monitoring</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technology Stack</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Backend Infrastructure</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Container Orchestration</strong>: Kubernetes with Rancher</li> <li class="mb-2"><strong>Message Queue</strong>: Apache Kafka</li> <li class="mb-2"><strong>Databases</strong>: Virtuoso (RDF), Elasticsearch (search), Neo4j (graph analytics)</li> <li class="mb-2"><strong>Storage</strong>: Amazon S3 for static assets</li> <li class="mb-2"><strong>Authentication</strong>: Keycloak OIDC</li> <li class="mb-2"><strong>Monitoring</strong>: Prometheus, Grafana, Alertmanager</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">AI/ML Components</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Language Models</strong>: e5-large, SciBERT, BigBird-Pegasus</li> <li class="mb-2"><strong>Computer Vision</strong>: YOLOv7 for object detection</li> <li class="mb-2"><strong>Topic Modeling</strong>: BERTopic with HDBSCAN clustering</li> <li class="mb-2"><strong>Search</strong>: Hybrid BM25 + vector search with HNSW indexing</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Development & Deployment</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>API Gateway</strong>: Custom implementation with 30+ endpoints</li> <li class="mb-2"><strong>CI/CD</strong>: GitHub Actions with Helm charts</li> <li class="mb-2"><strong>GitOps</strong>: Argo CD for automated deployments</li> <li class="mb-2"><strong>Documentation</strong>: OpenAPI specifications</li> <li class="mb-2"><strong>Testing</strong>: Unit, integration, and end-to-end test suites</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Key Achievements</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Scalability & Performance</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Event-driven architecture</strong> enables independent service scaling</li> <li class="mb-2"><strong>Kubernetes auto-scaling</strong> handles varying workloads</li> <li class="mb-2"><strong>Caching strategies</strong> with Redis for improved response times</li> <li class="mb-2"><strong>Database optimization</strong> with proper indexing and query optimization</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Data Processing Pipeline</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>600+ RDF triples</strong> generated per thesis document</li> <li class="mb-2"><strong>Real-time processing</strong> of PDF uploads and metadata extraction</li> <li class="mb-2"><strong>Batch processing</strong> for topic modeling and object detection</li> <li class="mb-2"><strong>Incremental updates</strong> for search index maintenance</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Security & Compliance</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>OIDC authentication</strong> with role-based access control</li> <li class="mb-2"><strong>Network policies</strong> for service-to-service communication</li> <li class="mb-2"><strong>Data encryption</strong> in transit and at rest</li> <li class="mb-2"><strong>Audit logging</strong> for all API interactions</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Impact & Results</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Technical Impact</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Production-grade platform</strong> serving academic researchers</li> <li class="mb-2"><strong>30+ APIs</strong> enabling comprehensive data access</li> <li class="mb-2"><strong>6 microservices</strong> working in concert for complex workflows</li> <li class="mb-2"><strong>Event-driven architecture</strong> supporting real-time updates</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Research Enablement</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Semantic search</strong> capabilities for thesis discovery</li> <li class="mb-2"><strong>Topic modeling</strong> for research trend analysis</li> <li class="mb-2"><strong>Visual element extraction</strong> for figure and table discovery</li> <li class="mb-2"><strong>Automated summarization</strong> for quick content overview</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Infrastructure Excellence</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>GitOps workflow</strong> for reliable deployments</li> <li class="mb-2"><strong>Comprehensive monitoring</strong> with alerting</li> <li class="mb-2"><strong>Automated backups</strong> ensuring data durability</li></p>
+
+<li class="mb-2"><strong>Scalable architecture</strong> supporting future growth</li></ul>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Future Considerations</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The ETD system demonstrates best practices in modern AI-powered knowledge management, with potential for commercialization and expansion to other academic institutions. The modular architecture allows for easy integration of new AI models and processing capabilities as the field evolves.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Conclusion</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">This project showcases advanced skills in cloud-native architecture, microservices development, API design, and AI/ML integration. The successful delivery of a production-grade system with 30+ APIs and 6 microservices demonstrates expertise in large-scale software engineering and infrastructure leadership.</p>
+            
+            <!-- Project Tags -->
+            <div class="project-tags">
+            <span class="project-tag">#API Gateway</span>
+            <span class="project-tag">#LLMs</span>
+            <span class="project-tag">#Kubernetes</span>
+            <span class="project-tag">#Elasticsearch</span>
+            <span class="project-tag">#Kafka</span>
+            <span class="project-tag">#AI/ML</span>
+        </div>
+        </article>
+
+        <!-- Navigation -->
+        <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center">
+                <a href="../project.html" class="btn btn-gray-border">
+                    ← All Projects
+                </a>
+                
+                <a href="#" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                </a>
+                
+                <a href="#" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                    Live Demo →
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/prism-toolbar.min.js"></script>
+    <script src="../js/prism-copy-to-clipboard.min.js"></script>
+    <script src="../js/prism-autoloader.min.js"></script>
+    <script src="../js/main.min.js"></script>
+    <script src="../js/sidebar-loader.js"></script>
+    <script src="../js/page-transitions.js"></script>
+
+    <!-- Mobile Navigation and Sidebar Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile sidebar toggle functionality
+            const sidebarToggle = document.querySelector('.trigger-sidebar');
+            const sidebar = document.querySelector('.sidebar');
+            const backdrop = document.querySelector('.backdrop');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidebar.classList.toggle('-translate-x-full');
+                    if (backdrop) {
+                        backdrop.classList.toggle('opacity-0');
+                        backdrop.classList.toggle('pointer-events-none');
+                    }
+                });
+            }
+            
+            if (backdrop) {
+                backdrop.addEventListener('click', function() {
+                    sidebar.classList.add('-translate-x-full');
+                    backdrop.classList.add('opacity-0', 'pointer-events-none');
+                });
+            }
+
+            // Color mode functionality
+            const colorMode = document.querySelector('.color-mode');
+            if (colorMode) {
+                const links = colorMode.querySelectorAll('a');
+                const span = colorMode.querySelector('span');
+                
+                links.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const mode = this.getAttribute('data-mode');
+                        setTheme(mode);
+                        
+                        // Update active state
+                        links.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Update span position
+                        if (span) {
+                            const linkRect = this.getBoundingClientRect();
+                            const colorModeRect = colorMode.getBoundingClientRect();
+                            span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                            span.style.width = linkRect.width + 'px';
+                        }
+                    });
+                });
+
+                // Initialize color mode position based on current theme
+                setTimeout(() => {
+                    const currentMode = localStorage.getItem('theme') || 'auto';
+                    const activeLink = colorMode.querySelector(`[data-mode="${currentMode}"]`);
+                    if (activeLink && span) {
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const colorModeRect = colorMode.getBoundingClientRect();
+                        span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                        span.style.width = linkRect.width + 'px';
+                    }
+                }, 100);
+            }
+
+            function setTheme(mode) {
+                localStorage.setItem('theme', mode);
+                
+                // Remove all theme classes
+                document.documentElement.classList.remove('light', 'dark', 'auto');
+                
+                if (mode === 'light') {
+                    document.documentElement.classList.add('light');
+                } else if (mode === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else if (mode === 'auto') {
+                    document.documentElement.classList.add('auto');
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.add('light');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

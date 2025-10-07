@@ -1,5 +1,22 @@
 {
+  "name": "adeyemi-aina-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio website for Adeyemi Aina",
+  "main": "index.html",
+  "scripts": {
+    "build": "node generate_articles.js && node generate_projects.js",
+    "dev": "python -m http.server 8000"
+  },
   "dependencies": {
-    "js-yaml": "^4.1.0"
-  }
+    "js-yaml": "^4.1.0",
+    "marked": "^9.1.6"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "portfolio",
+    "website",
+    "static-site"
+  ],
+  "author": "Adeyemi Aina",
+  "license": "MIT"
 }

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Canvas LMS Kubernetes Deployment - Adeyemi Aina</title>
+
+    <!-- Mobile Meta Tags -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Imports -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@500&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="../css/prism-okaidia.min.css" rel="stylesheet">
+    <link href="../css/prism-toolbar.min.css" rel="stylesheet">
+    <link href="../css/main.min.css" rel="stylesheet">
+    <link href="../css/project.css" rel="stylesheet">
+    <link href="../css/page-transitions.css" rel="stylesheet">
+
+    <!-- Theme Detection Script -->
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        } else if(localStorage.theme === 'light'){
+            document.documentElement.classList.add('light')
+        } else if(localStorage.theme === 'auto' || !('theme' in localStorage)){
+            document.documentElement.classList.add('auto')
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+                document.documentElement.classList.add('dark')
+                document.documentElement.classList.remove('light')
+            }else{
+                document.documentElement.classList.add('light')
+                document.documentElement.classList.remove('dark')
+            }
+        }
+        if(navigator.mac){
+            document.documentElement.classList.add('mac')
+        }
+    </script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Designed and optimized Kubernetes manifests for deploying Instructure Canvas LMS on Virginia Tech's private cloud, implementing scalable multi-container architecture with PostgreSQL, Redis, and NGINX Ingress.">
+    <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
+    <link rel="canonical" href="/projects/{{ page.slug }}/">
+
+    <!-- Project-specific CSS -->
+    <style>
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .project-date {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .project-duration {
+            color: #64748b;
+            font-size: .875rem;
+        }
+        
+        .project-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .project-content .highlight {
+            background: #1e293b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .project-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        
+        .dark .project-tag {
+            background: #334155;
+            color: #cbd5e1;
+        }
+
+        .dark .project-meta {
+            border-bottom-color: #374151;
+        }
+        
+        .dark .project-tags {
+            border-top-color: #374151;
+        }
+        
+        /* Enhanced Title Styles */
+        .bg-clip-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        
+        h1 span {
+            transition: background-position 0.3s ease;
+        }
+        
+        h1 span:hover {
+            background-size: 200% 200%;
+            animation: gradient-shift 2s ease-in-out;
+        }
+        
+        @keyframes gradient-shift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* Mobile Responsiveness Enhancements */
+        body, html {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        .flex-1 {
+            min-width: 0;
+            overflow-x: hidden;
+        }
+        
+        .project-content {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        
+        .project-content pre {
+            overflow-x: auto;
+            max-width: 100%;
+            white-space: pre;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
+        }
+        
+        .project-content code {
+            word-break: break-all;
+            overflow-wrap: break-word;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-size: 0.875em;
+        }
+        
+        /* Ensure proper spacing for headings and content */
+        .project-content h1,
+        .project-content h2,
+        .project-content h3,
+        .project-content h4,
+        .project-content h5,
+        .project-content h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+        
+        .project-content h1:first-child,
+        .project-content h2:first-child,
+        .project-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .project-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .project-content ul,
+        .project-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .project-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark .project-content pre {
+            background-color: #1f2937;
+        }
+        
+        .dark .project-content code {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar {
+            max-width: calc(100vw - 2rem);
+        }
+        
+        /* Fix sidebar positioning on desktop - always fixed */
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                max-height: 100vh;
+                z-index: 30;
+            }
+            
+            /* Add proper margin to main content so it doesn't overlap sidebar */
+            .flex-1 {
+                margin-left: 20rem; /* 20rem = w-80 sidebar width */
+            }
+        }
+        
+        /* Mobile-first responsive adjustments */
+        @media (max-width: 768px) {
+            .flex-1 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .project-content {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+            
+            h1 {
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
+                word-break: break-word;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+                line-height: 1.3 !important;
+            }
+            
+            h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .project-meta {
+                padding: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .flex-1 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            h1 {
+                font-size: 1.75rem !important;
+            }
+        }
+
+        /* Project-specific styles */
+        .project-hero {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(251, 146, 60, 0.05));
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .project-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -15%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(251, 146, 60, 0.1), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .dark .stat-card {
+            background: rgba(15, 14, 23, 0.8);
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .dark .stat-number {
+            color: #60a5fa;
+        }
+
+        .dark .stat-label {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body class="font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300">
+
+    <!-- Mobile Header -->
+    <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
+        <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+        <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
+        <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-5 flex items-center justify-between relative z-20 duration-300">
+            <a href="/" class="text-gray-1 dark:text-white">
+                <!-- Logo SVG can be added here -->
+            </a>
+            <a href="#" class="trigger-sidebar text-gray-1 dark:text-white">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="stroke-current" d="M28 9.33333H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 16H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path class="stroke-current" d="M28 22.6667H4" stroke="#43403C" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar Container -->
+    <div class="sidebar-container"></div>
+    
+    <!-- Backdrop Overlay -->
+    <div class="backdrop"></div>
+
+    <!-- Main Sidebar (this will be loaded into sidebar-container) -->
+    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">
+        <div class="relative flex">
+            <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
+            <div class="absolute inset-0 bg-gray-14 opacity-0 dark:opacity-100 duration-300"></div>
+            <div class="inner relative flex flex-col border-r lg:border border-orange-2 dark:border-gray-10 w-full w-80 lg:rounded pt-0 lg:pt-6 px-6 pb-6 overflow-auto hide-scrollbar duration-300">
+                <div class="flex items-center">
+                    <div class="h-16 flex items-center">
+                        <a href="../index.html" class="flex items-center text-gray-1 dark:text-white">
+                            <!-- Logo SVG can be added here -->
+                        </a>
+                    </div>
+                </div>
+                
+                <nav class="mt-4 mb-12">
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame.svg" width="18" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Home</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../index.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame-1.svg" width="16" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">About Me</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../about.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Articles</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
+                            <a href="../articles.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/notion.png" width="2048" height="2048" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Projects</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="../project.html" class="kg-product-card-button kg-product-card-btn-accent"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/social.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Resume</span></h4>
+                            </div>                              
+                            <div class="kg-product-card-description"></div>                             
+                            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Academy</span></a>                               
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/google.png" width="512" height="512" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Google Scholar</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Workspace Toolkit</span></a>                       
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <!-- Empty card for spacing -->
+                    </div>
+                    
+                    <h3 id="resources">Social</h3>
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/Frame--64-.svg" width="15" height="16" class="kg-product-card-image" loading="lazy">
+                            <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">LinkedIn</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://www.linkedin.com/in/adeyemi-aina/" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="https://www.jeffsu.org/content/images/2024/03/Frame--65-.svg" width="14" height="16" class="kg-product-card-image" loading="lazy">
+                        <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">GitHub</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"></div>
+                            <a href="https://github.com/babz007" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"><span>Templates</span></a>
+                        </div>
+                    </div>
+
+                    <div class="kg-card kg-product-card">
+                        <div class="kg-product-card-container">
+                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
+                        <div class="kg-product-card-title-container">
+                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Substack</span></h4>
+                            </div>
+                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
+                            <a href="https://substack.com/@ainababs0" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
+                        </div>
+                    </div>
+
+                    
+                </nav>
+                
+                <div class="color-mode">
+                    <a href="#" data-mode="light">Light</a>
+                    <a href="#" data-mode="dark">Dark</a>
+                    <a href="#" data-mode="auto">Auto</a>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
+        <!-- Project Hero Section -->
+        <div class="project-hero">
+            <div class="max-w-4xl mx-auto">
+                <!-- Project Category Badge -->
+                <div class="inline-flex items-center mb-6">
+                    <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 text-orange-800 dark:text-orange-200 rounded-full text-sm font-semibold shadow-sm">
+                        DevOps
+                    </span>
+                </div>
+                
+                <!-- Main Title -->
+                <h1 class="text-5xl lg:text-6xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
+                    <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-orange-600 dark:from-white dark:via-gray-200 dark:to-orange-400 bg-clip-text text-transparent">
+                        Canvas LMS Kubernetes Deployment
+                    </span>
+                </h1>
+                
+                <!-- Excerpt -->
+                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">Designed and optimized Kubernetes manifests for deploying Instructure Canvas LMS on Virginia Tech's private cloud, implementing scalable multi-container architecture with PostgreSQL, Redis, and NGINX Ingress.</p>
+                
+                <!-- Project Meta Information -->
+                <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
+                    <!-- Project Date -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="font-medium">June 9, 2024</span>
+                    </div>
+                    
+                    <!-- Project Duration -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="font-medium">3 months</span>
+                    </div>
+                    
+                    <!-- Project Status -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="font-medium">Production</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Stats -->
+        <div class="project-stats">
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Container Services</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime Achieved</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Auto-scaling</div>
+                <div class="stat-label">Horizontal Pod Scaling</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Zero-downtime</div>
+                <div class="stat-label">Deployment Strategy</div>
+            </div>
+        </div>
+
+        <!-- Project Content -->
+        <article class="prose prose-lg max-w-4xl mx-auto project-content">
+            <h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Project Overview</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Canvas LMS Kubernetes Deployment is a comprehensive containerization and orchestration solution for Instructure Canvas Learning Management System on Virginia Tech's private cloud infrastructure. This project involved designing a scalable multi-container architecture, optimizing Kubernetes manifests, and implementing robust deployment strategies for enterprise-grade educational technology.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Problem Statement</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Virginia Tech's Canvas LMS deployment faced several critical challenges:</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><ul class="list-disc list-inside mb-6 space-y-2"><li class="mb-2"><strong>Scalability Issues</strong>: Traditional deployment couldn't handle peak usage periods</li> <li class="mb-2"><strong>Resource Management</strong>: Inefficient resource allocation and utilization</li> <li class="mb-2"><strong>Deployment Complexity</strong>: Manual deployment processes prone to errors</li> <li class="mb-2"><strong>High Availability</strong>: Single points of failure affecting system reliability</li> <li class="mb-2"><strong>Maintenance Overhead</strong>: Complex update and maintenance procedures</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Solution Architecture</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Multi-Container Architecture</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Designed a comprehensive containerized architecture with specialized services:</p>
+
+<pre><code class="language-mermaid">graph TB
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">subgraph "Kubernetes Cluster" subgraph "Ingress Layer" NGINX[NGINX Ingress Controller] end</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">subgraph "Application Layer" WEB[Canvas Web App] API[Canvas API Service] WORKER[Background Workers] end</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">subgraph "Data Layer" POSTGRES[(PostgreSQL Database)] REDIS_CACHE[(Redis Cache)] REDIS_QUEUE[(Redis Queue)] end</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">subgraph "Storage Layer" PV[Persistent Volumes] PVC[Persistent Volume Claims] end end</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">USERS[Users] --> NGINX NGINX --> WEB NGINX --> API WEB --> POSTGRES API --> POSTGRES WEB --> REDIS_CACHE WORKER --> REDIS_QUEUE WORKER --> POSTGRES POSTGRES --> PV REDIS_CACHE --> PV</p>
+
+REDIS_QUEUE --> PV</code></pre>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Service Components</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 1. Canvas Web Application <li class="mb-2"><strong>Container</strong>: Custom Canvas Docker image</li> <li class="mb-2"><strong>Scaling</strong>: Horizontal Pod Autoscaler (HPA)</li> <li class="mb-2"><strong>Resources</strong>: CPU and memory limits optimized for performance</li> <li class="mb-2"><strong>Health Checks</strong>: Comprehensive liveness and readiness probes</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 2. PostgreSQL Database <li class="mb-2"><strong>High Availability</strong>: Master-slave replication setup</li> <li class="mb-2"><strong>Backup Strategy</strong>: Automated daily backups with point-in-time recovery</li> <li class="mb-2"><strong>Performance</strong>: Optimized configuration for educational workloads</li> <li class="mb-2"><strong>Security</strong>: Encrypted connections and access controls</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 3. Redis Services <li class="mb-2"><strong>Cache Layer</strong>: Redis for session and application caching</li> <li class="mb-2"><strong>Queue Management</strong>: Redis for background job processing</li> <li class="mb-2"><strong>Persistence</strong>: RDB and AOF persistence for data durability</li> <li class="mb-2"><strong>Clustering</strong>: Redis Cluster for high availability</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 4. NGINX Ingress <li class="mb-2"><strong>Load Balancing</strong>: Intelligent traffic distribution</li> <li class="mb-2"><strong>SSL Termination</strong>: Automated SSL certificate management</li> <li class="mb-2"><strong>Rate Limiting</strong>: Protection against abuse and DDoS attacks</li> <li class="mb-2"><strong>Domain Routing</strong>: Multi-domain support for different environments</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Implementation</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Kubernetes Manifests</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Created comprehensive Kubernetes manifests including:</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Deployment Configurations</p>
+
+<pre><code class="language-yaml">apiVersion: apps/v1
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">kind: Deployment metadata: name: canvas-web spec: replicas: 3 selector: matchLabels: app: canvas-web template: metadata: labels: app: canvas-web spec: containers: - name: canvas image: canvas-lms:latest ports: - containerPort: 3000 env: - name: DATABASE_URL valueFrom: secretKeyRef: name: canvas-secrets key: database-url resources: requests: memory: "512Mi" cpu: "250m" limits: memory: "1Gi" cpu: "500m" livenessProbe: httpGet: path: /health port: 3000 initialDelaySeconds: 30 periodSeconds: 10 readinessProbe: httpGet: path: /ready port: 3000 initialDelaySeconds: 5</p>
+
+periodSeconds: 5</code></pre>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Service Definitions <li class="mb-2"><strong>ClusterIP Services</strong>: Internal communication between pods</li> <li class="mb-2"><strong>LoadBalancer Services</strong>: External access for web traffic</li> <li class="mb-2"><strong>Headless Services</strong>: Database and cache service discovery</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Ingress Configuration <li class="mb-2"><strong>Path-based Routing</strong>: Intelligent request routing</li> <li class="mb-2"><strong>SSL/TLS</strong>: Automated certificate management with Let's Encrypt</li> <li class="mb-2"><strong>Rate Limiting</strong>: Protection against abuse</li> <li class="mb-2"><strong>CORS Configuration</strong>: Cross-origin resource sharing setup</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Auto-scaling Implementation</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Implemented comprehensive auto-scaling strategies:</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Horizontal Pod Autoscaler (HPA)</p>
+
+<pre><code class="language-yaml">apiVersion: autoscaling/v2
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">kind: HorizontalPodAutoscaler metadata: name: canvas-web-hpa spec: scaleTargetRef: apiVersion: apps/v1 kind: Deployment name: canvas-web minReplicas: 3 maxReplicas: 10 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 70 - type: Resource resource: name: memory target: type: Utilization</p>
+
+averageUtilization: 80</code></pre>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Vertical Pod Autoscaler (VPA) <li class="mb-2"><strong>Resource Optimization</strong>: Automatic CPU and memory adjustment</li> <li class="mb-2"><strong>Cost Efficiency</strong>: Right-sizing based on actual usage patterns</li> <li class="mb-2"><strong>Performance Tuning</strong>: Continuous optimization of resource allocation</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Monitoring and Observability</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Prometheus Integration <li class="mb-2"><strong>Metrics Collection</strong>: Comprehensive application and infrastructure metrics</li> <li class="mb-2"><strong>Custom Dashboards</strong>: Grafana dashboards for Canvas-specific monitoring</li> <li class="mb-2"><strong>Alerting</strong>: Proactive alerting for system issues</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Logging Strategy <li class="mb-2"><strong>Centralized Logging</strong>: ELK stack for log aggregation and analysis</li> <li class="mb-2"><strong>Structured Logging</strong>: JSON-formatted logs for better parsing</li> <li class="mb-2"><strong>Log Retention</strong>: Automated log rotation and archival</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Security Implementation</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Network Security</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Network Policies</strong>: Micro-segmentation for pod-to-pod communication</li> <li class="mb-2"><strong>Service Mesh</strong>: Istio integration for advanced traffic management</li> <li class="mb-2"><strong>TLS Encryption</strong>: End-to-end encryption for all communications</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Access Control</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>RBAC</strong>: Role-based access control for Kubernetes resources</li> <li class="mb-2"><strong>Service Accounts</strong>: Dedicated service accounts for each component</li> <li class="mb-2"><strong>Secret Management</strong>: Kubernetes secrets for sensitive configuration</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Compliance</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>FERPA Compliance</strong>: Educational data privacy protection</li> <li class="mb-2"><strong>Security Scanning</strong>: Automated vulnerability scanning</li> <li class="mb-2"><strong>Audit Logging</strong>: Comprehensive audit trails for compliance</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Performance Optimization</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Database Optimization</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Connection Pooling</strong>: Optimized database connection management</li> <li class="mb-2"><strong>Query Optimization</strong>: Performance tuning for educational workloads</li> <li class="mb-2"><strong>Indexing Strategy</strong>: Strategic database indexing for common queries</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Caching Strategy</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Multi-layer Caching</strong>: Application, database, and CDN caching</li> <li class="mb-2"><strong>Cache Invalidation</strong>: Intelligent cache invalidation strategies</li> <li class="mb-2"><strong>Session Management</strong>: Optimized session handling and storage</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Resource Management</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>CPU Optimization</strong>: Right-sizing based on usage patterns</li> <li class="mb-2"><strong>Memory Management</strong>: Efficient memory allocation and garbage collection</li> <li class="mb-2"><strong>Storage Optimization</strong>: Optimized storage classes and volume management</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Deployment Strategy</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Blue-Green Deployment</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Implemented zero-downtime deployment strategy: <li class="mb-2"><strong>Parallel Environments</strong>: Blue and green environment switching</li> <li class="mb-2"><strong>Traffic Routing</strong>: Seamless traffic migration between environments</li> <li class="mb-2"><strong>Rollback Capability</strong>: Quick rollback in case of issues</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Canary Deployment</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Gradual Rollout</strong>: Phased deployment to minimize risk</li> <li class="mb-2"><strong>Traffic Splitting</strong>: Percentage-based traffic distribution</li> <li class="mb-2"><strong>Monitoring</strong>: Real-time monitoring during deployment</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">CI/CD Pipeline</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Automated Testing</strong>: Comprehensive test suite execution</li> <li class="mb-2"><strong>Image Building</strong>: Automated Docker image creation</li> <li class="mb-2"><strong>Deployment Automation</strong>: GitOps-based deployment process</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Impact & Results</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Performance Improvements</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Response Time</strong>: 60% reduction in average response time</li> <li class="mb-2"><strong>Throughput</strong>: 300% increase in concurrent user capacity</li> <li class="mb-2"><strong>Resource Utilization</strong>: 40% improvement in resource efficiency</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Reliability Enhancements</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Uptime Achievement</strong>: 99.9% system availability</li> <li class="mb-2"><strong>Fault Tolerance</strong>: Automatic failover and recovery</li> <li class="mb-2"><strong>Disaster Recovery</strong>: Comprehensive backup and recovery procedures</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Operational Benefits</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Deployment Speed</strong>: 80% reduction in deployment time</li> <li class="mb-2"><strong>Maintenance Overhead</strong>: 50% reduction in manual maintenance</li> <li class="mb-2"><strong>Cost Optimization</strong>: 30% reduction in infrastructure costs</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Challenges & Solutions</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 1: Database Scaling</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: PostgreSQL performance bottlenecks under high load.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Implemented read replicas, connection pooling, and query optimization strategies.</p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 2: Session Management</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Maintaining user sessions across multiple pod instances.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Centralized session storage using Redis with sticky session handling.</p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 3: Resource Optimization</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Balancing performance with resource costs.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Implemented VPA and HPA with intelligent scaling policies.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Monitoring and Alerting</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Key Metrics</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Application Performance</strong>: Response times, error rates, throughput</li> <li class="mb-2"><strong>Infrastructure Health</strong>: CPU, memory, disk, network utilization</li> <li class="mb-2"><strong>Database Performance</strong>: Query performance, connection counts, replication lag</li> <li class="mb-2"><strong>User Experience</strong>: Page load times, user satisfaction scores</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Alerting Rules</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Critical Alerts</strong>: System downtime, database failures, security breaches</li> <li class="mb-2"><strong>Warning Alerts</strong>: High resource utilization, performance degradation</li> <li class="mb-2"><strong>Info Alerts</strong>: Deployment completions, scaling events</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Future Enhancements</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Planned Improvements</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Service Mesh</strong>: Advanced traffic management with Istio</li> <li class="mb-2"><strong>Multi-cluster</strong>: Cross-cluster deployment for disaster recovery</li> <li class="mb-2"><strong>AI Integration</strong>: Intelligent resource optimization</li> <li class="mb-2"><strong>Edge Computing</strong>: CDN integration for global performance</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Research Opportunities</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Performance Modeling</strong>: Predictive scaling based on usage patterns</li> <li class="mb-2"><strong>Cost Optimization</strong>: Advanced cost analysis and optimization</li> <li class="mb-2"><strong>Security Enhancement</strong>: Zero-trust security model implementation</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Lessons Learned</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Technical Insights</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Container orchestration</strong> requires careful resource planning</li> <li class="mb-2"><strong>Database optimization</strong> is critical for educational workloads</li> <li class="mb-2"><strong>Monitoring</strong> becomes essential for complex distributed systems</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Project Management</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Stakeholder communication</strong> is crucial for infrastructure projects</li> <li class="mb-2"><strong>Documentation</strong> is essential for system maintenance</li></p>
+
+<li class="mb-2"><strong>Testing</strong> must be comprehensive for production deployments</li></ul>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Conclusion</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The Canvas LMS Kubernetes Deployment project successfully demonstrates how modern containerization and orchestration technologies can transform educational technology infrastructure. The implementation of scalable multi-container architecture, comprehensive monitoring, and robust deployment strategies provides a solid foundation for enterprise-grade educational platforms.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The project's success in achieving 99.9% uptime with significant performance improvements showcases the effectiveness of cloud-native approaches in educational technology. The implementation serves as a model for similar projects and provides valuable insights for future infrastructure modernization efforts.</p>
+            
+            <!-- Project Tags -->
+            <div class="project-tags">
+            <span class="project-tag">#Kubernetes</span>
+            <span class="project-tag">#Canvas LMS</span>
+            <span class="project-tag">#PostgreSQL</span>
+            <span class="project-tag">#Redis</span>
+            <span class="project-tag">#NGINX</span>
+            <span class="project-tag">#Docker</span>
+        </div>
+        </article>
+
+        <!-- Navigation -->
+        <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center">
+                <a href="../project.html" class="btn btn-gray-border">
+                    ← All Projects
+                </a>
+                
+                <a href="https://github.com/instructure/canvas-lms" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                </a>
+                
+                <a href="https://canvas.endeavour.cs.vt.edu/login/canvas" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                    Live Demo →
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="../js/prism.min.js"></script>
+    <script src="../js/prism-toolbar.min.js"></script>
+    <script src="../js/prism-copy-to-clipboard.min.js"></script>
+    <script src="../js/prism-autoloader.min.js"></script>
+    <script src="../js/main.min.js"></script>
+    <script src="../js/sidebar-loader.js"></script>
+    <script src="../js/page-transitions.js"></script>
+
+    <!-- Mobile Navigation and Sidebar Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile sidebar toggle functionality
+            const sidebarToggle = document.querySelector('.trigger-sidebar');
+            const sidebar = document.querySelector('.sidebar');
+            const backdrop = document.querySelector('.backdrop');
+            
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    sidebar.classList.toggle('-translate-x-full');
+                    if (backdrop) {
+                        backdrop.classList.toggle('opacity-0');
+                        backdrop.classList.toggle('pointer-events-none');
+                    }
+                });
+            }
+            
+            if (backdrop) {
+                backdrop.addEventListener('click', function() {
+                    sidebar.classList.add('-translate-x-full');
+                    backdrop.classList.add('opacity-0', 'pointer-events-none');
+                });
+            }
+
+            // Color mode functionality
+            const colorMode = document.querySelector('.color-mode');
+            if (colorMode) {
+                const links = colorMode.querySelectorAll('a');
+                const span = colorMode.querySelector('span');
+                
+                links.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const mode = this.getAttribute('data-mode');
+                        setTheme(mode);
+                        
+                        // Update active state
+                        links.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Update span position
+                        if (span) {
+                            const linkRect = this.getBoundingClientRect();
+                            const colorModeRect = colorMode.getBoundingClientRect();
+                            span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                            span.style.width = linkRect.width + 'px';
+                        }
+                    });
+                });
+
+                // Initialize color mode position based on current theme
+                setTimeout(() => {
+                    const currentMode = localStorage.getItem('theme') || 'auto';
+                    const activeLink = colorMode.querySelector(`[data-mode="${currentMode}"]`);
+                    if (activeLink && span) {
+                        const linkRect = activeLink.getBoundingClientRect();
+                        const colorModeRect = colorMode.getBoundingClientRect();
+                        span.style.left = (linkRect.left - colorModeRect.left) + 'px';
+                        span.style.width = linkRect.width + 'px';
+                    }
+                }, 100);
+            }
+
+            function setTheme(mode) {
+                localStorage.setItem('theme', mode);
+                
+                // Remove all theme classes
+                document.documentElement.classList.remove('light', 'dark', 'auto');
+                
+                if (mode === 'light') {
+                    document.documentElement.classList.add('light');
+                } else if (mode === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else if (mode === 'auto') {
+                    document.documentElement.classList.add('auto');
+                    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                        document.documentElement.classList.add('dark');
+                    } else {
+                        document.documentElement.classList.add('light');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

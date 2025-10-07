@@ -10,14 +10,18 @@ github: [username]
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
+safe: true
 
-# Collections for Articles
+# Collections for Articles and Projects
 collections:
   articles:
     output: true
     permalink: /articles/:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
 
-# Defaults for Articles
+# Defaults for Articles and Projects
 defaults:
   - scope:
       path: ""
@@ -26,6 +30,12 @@ defaults:
       layout: "article"
       author: "Adeyemi Aina"
       category: "AI & Technology"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+      author: "Adeyemi Aina"
 
 # Navigation
 navigation:
@@ -36,7 +46,7 @@ navigation:
   - title: "Articles"
     url: "/articles/"
   - title: "Projects"
-    url: "/project has.html"
+    url: "/project.html"
   - title: "Resume"
     url: "https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing"
     external: true
@@ -46,6 +56,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-relative-links
 
 # Build settings
 exclude:
@@ -56,6 +67,16 @@ exclude:
   - _site
   - .gitignore
   - .DS_Store
+  - assets/
+  - css/
+  - js/
+  - images/
+  - _articles/
+  - _projects/
+  - _layouts/
+  - generate_articles.js
+  - generate_projects.js
+  - generate_articles_v2.js
 
 # Keep files for GitHub Pages
 keep_files:
