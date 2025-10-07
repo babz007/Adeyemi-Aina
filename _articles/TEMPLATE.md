@@ -5,7 +5,7 @@ date: 2025-01-01
 excerpt: "Brief description of your article that will appear in previews and summaries."
 author: "Adeyemi Aina"
 category: "Engineering"
-tags: ["AI", "Productivity", "Tutorial"
+tags: ["AI", "Productivity", "Tutorial"]
 reading_time: "5 min read"
 image: "/images/your-article-image.png"
 ---

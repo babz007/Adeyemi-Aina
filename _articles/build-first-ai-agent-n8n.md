@@ -107,12 +107,12 @@ async function analyzeEmail(content, sender) {
   "rules": [
     {
       "operation": "equal",
-      "value1": "{{$json.analysis.priority}}",
+      "value1": "{{ '$json.analysis.priority' }}",
       "value2": "high"
     },
     {
       "operation": "equal", 
-      "value1": "{{$json.analysis.action_required}}",
+      "value1": "{{ '$json.analysis.action_required' }}",
       "value2": "response"
     }
   ]
@@ -131,7 +131,7 @@ async function analyzeEmail(content, sender) {
       "type": "section",
       "text": {
         "type": "mrkdwn",
-        "text": "*From:* {{$json.sender}}\n*Subject:* {{$json.subject}}\n*Analysis:* {{$json.analysis.suggested_response}}"
+        "text": "*From:* {{ '$json.sender' }}\n*Subject:* {{ '$json.subject' }}\n*Analysis:* {{ '$json.analysis.suggested_response' }}"
       }
     }
   ]
