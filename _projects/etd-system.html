@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ page.title }} - Adeyemi Aina</title>
+    <title>ETD Knowledge Platform - Adeyemi Aina</title>
 
     <!-- Mobile Meta Tags -->
     <meta name="HandheldFriendly" content="True">
@@ -43,7 +43,7 @@
     </script>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="{{ page.excerpt }}">
+    <meta name="description" content="Architected a production-grade Electronic Thesis & Dissertation system transforming raw PDFs into a semantically rich, searchable knowledge repository. Led infrastructure team developing 30+ APIs with custom gateway, orchestrating 6 microservices across Kubernetes with event-driven architecture using Kafka, Elasticsearch, and Virtuoso.">
     <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
     <link rel="canonical" href="/projects/{{ page.slug }}/">
 
@@ -533,27 +533,21 @@
         <div class="project-hero">
             <div class="max-w-4xl mx-auto">
                 <!-- Project Category Badge -->
-                {% if page.category %}
                 <div class="inline-flex items-center mb-6">
                     <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 text-orange-800 dark:text-orange-200 rounded-full text-sm font-semibold shadow-sm">
-                        {{ page.category }}
+                        Infrastructure
                     </span>
                 </div>
-                {% endif %}
                 
                 <!-- Main Title -->
                 <h1 class="text-5xl lg:text-6xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
                     <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-orange-600 dark:from-white dark:via-gray-200 dark:to-orange-400 bg-clip-text text-transparent">
-                        {{ page.title }}
+                        ETD Knowledge Platform
                     </span>
                 </h1>
                 
                 <!-- Excerpt -->
-                {% if page.excerpt %}
-                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
-                    {{ page.excerpt }}
-                </p>
-                {% endif %}
+                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">Architected a production-grade Electronic Thesis & Dissertation system transforming raw PDFs into a semantically rich, searchable knowledge repository. Led infrastructure team developing 30+ APIs with custom gateway, orchestrating 6 microservices across Kubernetes with event-driven architecture using Kafka, Elasticsearch, and Virtuoso.</p>
                 
                 <!-- Project Meta Information -->
                 <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
@@ -562,56 +556,144 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                         </svg>
-                        <span class="font-medium">{{ page.date | date: "%B %d, %Y" }}</span>
+                        <span class="font-medium">January 14, 2024</span>
                     </div>
                     
                     <!-- Project Duration -->
-                    {% if page.duration %}
                     <div class="flex items-center space-x-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span class="font-medium">{{ page.duration }}</span>
+                        <span class="font-medium">12 months</span>
                     </div>
-                    {% endif %}
                     
                     <!-- Project Status -->
-                    {% if page.status %}
                     <div class="flex items-center space-x-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span class="font-medium">{{ page.status }}</span>
+                        <span class="font-medium">Production</span>
                     </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
 
         <!-- Project Stats -->
-        {% if page.stats %}
-        <div class="project-stats">
-            {% for stat in page.stats %}
-            <div class="stat-card">
-                <div class="stat-number">{{ stat.number }}</div>
-                <div class="stat-label">{{ stat.label }}</div>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
+        
 
         <!-- Project Content -->
         <article class="prose prose-lg max-w-4xl mx-auto project-content">
-            {{ content }}
+            <h1 class="text-3xl font-bold mt-12 mb-8 text-gray-900 dark:text-white">ETD Knowledge Platform</h1>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The ETD (Electronic Thesis & Dissertation) system is a cloud-native, event-driven platform that transforms raw thesis PDFs and metadata into a richly indexed, searchable, and explorable knowledge repository. This production-grade system consists of six specialized teams working in concert to deliver a comprehensive solution for academic research discovery and analysis.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">System Architecture Overview</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The ETD system leverages modern microservices architecture with event-driven communication, enabling scalable and maintainable knowledge management at enterprise scale.</p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Core Components</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><ul class="list-disc list-inside mb-6 space-y-2"><li class="mb-2"><strong>Ingestion & Knowledge Graph</strong> – Parses XML/PDF into RDF triples</li> <li class="mb-2"><strong>Search & Recommendation</strong> – Builds hybrid BM25 + vector search index</li> <li class="mb-2"><strong>Topic Modeling & Object Detection</strong> – Extracts latent themes and visual elements</li> <li class="mb-2"><strong>Classification & Summaries</strong> – Labels chapters by subject and generates summaries</li> <li class="mb-2"><strong>Infrastructure & DevOps</strong> – Orchestrates Kubernetes, Kafka, CI/CD, and observability</li> <li class="mb-2"><strong>UI</strong> – Provides secured React SPA with faceted search and real-time notifications</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Implementation</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Infrastructure Team Leadership</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">As the lead infrastructure engineer, I architected and developed the foundational infrastructure supporting all six microservice teams:</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### API Gateway Development <li class="mb-2"><strong>30+ RESTful APIs</strong> with custom gateway implementation</li> <li class="mb-2"><strong>GraphQL façade</strong> for unified data access across microservices</li> <li class="mb-2"><strong>Authentication & Authorization</strong> via Keycloak OIDC integration</li> <li class="mb-2"><strong>Rate limiting and throttling</strong> for production stability</li> <li class="mb-2"><strong>API versioning and documentation</strong> with OpenAPI specifications</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Event-Driven Architecture <li class="mb-2"><strong>Apache Kafka</strong> for asynchronous communication between services</li> <li class="mb-2"><strong>Event streaming</strong> with topics: <code>etd.triples</code>, <code>objects.out</code>, <code>summary.done</code></li> <li class="mb-2"><strong>Message schemas</strong> and event sourcing for auditability</li> <li class="mb-2"><strong>Dead letter queues</strong> for error handling and retry logic</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Container Orchestration <li class="mb-2"><strong>Kubernetes clusters</strong> with Rancher management</li> <li class="mb-2"><strong>GitOps workflow</strong> with GitHub Actions → Helm → Argo CD</li> <li class="mb-2"><strong>Auto-scaling</strong> based on CPU and memory metrics</li> <li class="mb-2"><strong>Resource quotas</strong> and network policies for security</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Microservices Architecture</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 1. Ingestion & Knowledge Graph Service <strong>Problem</strong>: Raw ETD packages lack machine-readable structure.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2">Upload API receives PDF + XML bundles</li> <li class="mb-2">ETL pipeline parses MODS/METS XML → RDF triples (~600 per ETD)</li> <li class="mb-2">Ontology validation ensures data consistency (OWL)</li> <li class="mb-2">Bulk-load triples into Virtuoso database</li> <li class="mb-2">Publish <code>etd.triples</code> Kafka events for downstream processing</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 2. Search & Recommendation Service <strong>Problem</strong>: Simple keyword search misses semantic relevance.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2">Nightly ETL reads triples → JSON documents → Elasticsearch</li> <li class="mb-2">Hybrid search: BM25 + dense_vector fields with HNSW k-NN</li> <li class="mb-2">Content-based recommendations with collaborative filtering</li> <li class="mb-2">RESTful APIs: <code>/search</code>, <code>/recs/{uri}</code> microservices</li> <li class="mb-2">GraphQL gateway for unified query interface</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 3. Topic Modeling & Object Detection Service <strong>Problem</strong>: Users need thematic grouping and direct access to figures/tables.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2"><strong>Topic Modeling</strong>: SPARQL → chapter text → embeddings (e5-large) → BERTopic</li> <li class="mb-2"><strong>Object Detection</strong>: PDF rasterization → YOLOv7 inference → bounding boxes</li> <li class="mb-2">Crop and store images in S3 with <code>etd:hasFigure</code> triples</li> <li class="mb-2">Emit <code>etd.objects</code> Kafka events for UI updates</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 4. Classification & Summaries Service <strong>Problem</strong>: Long chapters are hard to skim; manual subject tagging is laborious.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2"><strong>Classification</strong>: Fine-tune SciBERT for ProQuest subject codes</li> <li class="mb-2"><strong>Summarization</strong>: TextRank (extractive) + BigBird-Pegasus (abstractive)</li> <li class="mb-2">Store summaries as RDF triples and Elasticsearch fields</li> <li class="mb-2">Publish <code>summary.done</code> Kafka events for real-time updates</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 5. Infrastructure & DevOps Service <strong>Problem</strong>: Coordinating six rapidly-evolving microservices at scale.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2"><strong>GitOps Pipeline</strong>: GitHub Actions → Helm → Argo CD → Kubernetes</li> <li class="mb-2"><strong>Observability</strong>: Prometheus Operator + Grafana + Alertmanager</li> <li class="mb-2"><strong>Security</strong>: Keycloak OIDC for SSO/RBAC + network policies</li> <li class="mb-2"><strong>Backup</strong>: Hourly snapshots of ES & Virtuoso to S3</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 6. UI Service <strong>Problem</strong>: Hiding complexity while surfacing relevant insights.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: <li class="mb-2">React SPA with GraphQL client</li> <li class="mb-2">Global search with hybrid results</li> <li class="mb-2">Faceted search for subjects, topics, and visual elements</li> <li class="mb-2">Real-time notifications via WebSocket connections</li> <li class="mb-2">Admin dashboard with cluster monitoring</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technology Stack</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Backend Infrastructure</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Container Orchestration</strong>: Kubernetes with Rancher</li> <li class="mb-2"><strong>Message Queue</strong>: Apache Kafka</li> <li class="mb-2"><strong>Databases</strong>: Virtuoso (RDF), Elasticsearch (search), Neo4j (graph analytics)</li> <li class="mb-2"><strong>Storage</strong>: Amazon S3 for static assets</li> <li class="mb-2"><strong>Authentication</strong>: Keycloak OIDC</li> <li class="mb-2"><strong>Monitoring</strong>: Prometheus, Grafana, Alertmanager</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">AI/ML Components</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Language Models</strong>: e5-large, SciBERT, BigBird-Pegasus</li> <li class="mb-2"><strong>Computer Vision</strong>: YOLOv7 for object detection</li> <li class="mb-2"><strong>Topic Modeling</strong>: BERTopic with HDBSCAN clustering</li> <li class="mb-2"><strong>Search</strong>: Hybrid BM25 + vector search with HNSW indexing</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Development & Deployment</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>API Gateway</strong>: Custom implementation with 30+ endpoints</li> <li class="mb-2"><strong>CI/CD</strong>: GitHub Actions with Helm charts</li> <li class="mb-2"><strong>GitOps</strong>: Argo CD for automated deployments</li> <li class="mb-2"><strong>Documentation</strong>: OpenAPI specifications</li> <li class="mb-2"><strong>Testing</strong>: Unit, integration, and end-to-end test suites</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Key Achievements</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Scalability & Performance</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Event-driven architecture</strong> enables independent service scaling</li> <li class="mb-2"><strong>Kubernetes auto-scaling</strong> handles varying workloads</li> <li class="mb-2"><strong>Caching strategies</strong> with Redis for improved response times</li> <li class="mb-2"><strong>Database optimization</strong> with proper indexing and query optimization</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Data Processing Pipeline</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>600+ RDF triples</strong> generated per thesis document</li> <li class="mb-2"><strong>Real-time processing</strong> of PDF uploads and metadata extraction</li> <li class="mb-2"><strong>Batch processing</strong> for topic modeling and object detection</li> <li class="mb-2"><strong>Incremental updates</strong> for search index maintenance</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Security & Compliance</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>OIDC authentication</strong> with role-based access control</li> <li class="mb-2"><strong>Network policies</strong> for service-to-service communication</li> <li class="mb-2"><strong>Data encryption</strong> in transit and at rest</li> <li class="mb-2"><strong>Audit logging</strong> for all API interactions</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Impact & Results</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Technical Impact</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Production-grade platform</strong> serving academic researchers</li> <li class="mb-2"><strong>30+ APIs</strong> enabling comprehensive data access</li> <li class="mb-2"><strong>6 microservices</strong> working in concert for complex workflows</li> <li class="mb-2"><strong>Event-driven architecture</strong> supporting real-time updates</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Research Enablement</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Semantic search</strong> capabilities for thesis discovery</li> <li class="mb-2"><strong>Topic modeling</strong> for research trend analysis</li> <li class="mb-2"><strong>Visual element extraction</strong> for figure and table discovery</li> <li class="mb-2"><strong>Automated summarization</strong> for quick content overview</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Infrastructure Excellence</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>GitOps workflow</strong> for reliable deployments</li> <li class="mb-2"><strong>Comprehensive monitoring</strong> with alerting</li> <li class="mb-2"><strong>Automated backups</strong> ensuring data durability</li></p>
+
+<li class="mb-2"><strong>Scalable architecture</strong> supporting future growth</li></ul>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Future Considerations</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The ETD system demonstrates best practices in modern AI-powered knowledge management, with potential for commercialization and expansion to other academic institutions. The modular architecture allows for easy integration of new AI models and processing capabilities as the field evolves.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Conclusion</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">This project showcases advanced skills in cloud-native architecture, microservices development, API design, and AI/ML integration. The successful delivery of a production-grade system with 30+ APIs and 6 microservices demonstrates expertise in large-scale software engineering and infrastructure leadership.</p>
             
             <!-- Project Tags -->
-            {% if page.tags.size > 0 %}
             <div class="project-tags">
-                {% for tag in page.tags %}
-                <span class="project-tag">#{{ tag }}</span>
-                {% endfor %}
-            </div>
-            {% endif %}
+            <span class="project-tag">#API Gateway</span>
+            <span class="project-tag">#LLMs</span>
+            <span class="project-tag">#Kubernetes</span>
+            <span class="project-tag">#Elasticsearch</span>
+            <span class="project-tag">#Kafka</span>
+            <span class="project-tag">#AI/ML</span>
+        </div>
         </article>
 
         <!-- Navigation -->
@@ -621,17 +703,13 @@
                     ← All Projects
                 </a>
                 
-                {% if page.github_url %}
-                <a href="{{ page.github_url }}" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                <a href="#" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
                     View on GitHub
                 </a>
-                {% endif %}
                 
-                {% if page.live_url %}
-                <a href="{{ page.live_url }}" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                <a href="#" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
                     Live Demo →
                 </a>
-                {% endif %}
             </div>
         </nav>
     </div>

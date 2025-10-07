@@ -160,11 +160,60 @@
             overflow-x: auto;
             max-width: 100%;
             white-space: pre;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
         }
         
         .project-content code {
             word-break: break-all;
             overflow-wrap: break-word;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-size: 0.875em;
+        }
+        
+        /* Ensure proper spacing for headings and content */
+        .project-content h1,
+        .project-content h2,
+        .project-content h3,
+        .project-content h4,
+        .project-content h5,
+        .project-content h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+        
+        .project-content h1:first-child,
+        .project-content h2:first-child,
+        .project-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .project-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .project-content ul,
+        .project-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .project-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark .project-content pre {
+            background-color: #1f2937;
+        }
+        
+        .dark .project-content code {
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
         .sidebar {
@@ -498,11 +547,7 @@
                 </h1>
                 
                 <!-- Excerpt -->
-                {% if page.excerpt %}
-                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
-                    A domain-specific ontology and validation system for federated resource catalogs, improving search performance by 100% and ensuring data integrity across distributed systems.
-                </p>
-                {% endif %}
+                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">A domain-specific ontology and validation system for federated resource catalogs, improving search performance by 100% and ensuring data integrity across distributed systems.</p>
                 
                 <!-- Project Meta Information -->
                 <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
@@ -555,143 +600,117 @@
 
         <!-- Project Content -->
         <article class="prose prose-lg max-w-4xl mx-auto project-content">
-            <h2>Project Overview</h2>
+            <h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Project Overview</h2>
 
-<p>Splice Catalog is a comprehensive federated resource catalog system that addresses the critical need for reliable data validation and improved search capabilities in distributed computing environments. The project focuses on creating a domain-specific ontology and implementing a multi-layered validation system to ensure data integrity and compliance across federated systems.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Splice Catalog is a comprehensive federated resource catalog system that addresses the critical need for reliable data validation and improved search capabilities in distributed computing environments. The project focuses on creating a domain-specific ontology and implementing a multi-layered validation system to ensure data integrity and compliance across federated systems.</p>
 
-<h2>Problem Statement</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Problem Statement</h2>
 
-<p>Federated resource catalogs often suffer from:
-<li><strong>Poor search performance</strong> due to lack of structured metadata</li>
-<li><strong>Data integrity issues</strong> from inconsistent validation</li>
-<li><strong>Compliance challenges</strong> in distributed environments</li>
-<li><strong>Limited real-time feedback</strong> for validation processes</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Federated resource catalogs often suffer from: <ul class="list-disc list-inside mb-6 space-y-2"><li class="mb-2"><strong>Poor search performance</strong> due to lack of structured metadata</li> <li class="mb-2"><strong>Data integrity issues</strong> from inconsistent validation</li> <li class="mb-2"><strong>Compliance challenges</strong> in distributed environments</li> <li class="mb-2"><strong>Limited real-time feedback</strong> for validation processes</li></p>
 
-<h2>Solution Architecture</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Solution Architecture</h2>
 
-<h3>Domain-Specific Ontology Design</h3>
-Developed a comprehensive ontology that captures the semantic relationships between resources, enabling more intelligent search and discovery mechanisms.
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Domain-Specific Ontology Design</h3>
 
-<h3>Multi-Layered Validation System</h3>
-Implemented a robust validation framework with five distinct layers:
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Developed a comprehensive ontology that captures the semantic relationships between resources, enabling more intelligent search and discovery mechanisms.</p>
 
-<p>1. <strong>Syntax Validation</strong>: Ensures proper data format compliance
-2. <strong>Structural Validation</strong>: Verifies data schema adherence
-3. <strong>URL Formatting</strong>: Validates resource accessibility
-4. <strong>Content Verification</strong>: Confirms resource availability
-5. <strong>Compliance Checking</strong>: Ensures regulatory adherence</p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Multi-Layered Validation System</h3>
 
-<h3>Real-Time Communication Framework</h3>
-Architected a full-duplex asynchronous communication system using WebSockets to provide immediate validation feedback and status updates.
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Implemented a robust validation framework with five distinct layers:</p>
 
-<h2>Technical Implementation</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Syntax Validation</strong>: Ensures proper data format compliance</li> <li class="mb-2"><strong>Structural Validation</strong>: Verifies data schema adherence</li> <li class="mb-2"><strong>URL Formatting</strong>: Validates resource accessibility</li> <li class="mb-2"><strong>Content Verification</strong>: Confirms resource availability</li> <li class="mb-2"><strong>Compliance Checking</strong>: Ensures regulatory adherence</li></p>
 
-<h3>Core Technologies</h3>
-<li><strong>Backend</strong>: Python with Flask/FastAPI</li>
-<li><strong>Database</strong>: PostgreSQL with spatial extensions</li>
-<li><strong>Real-time</strong>: WebSocket implementation</li>
-<li><strong>Frontend</strong>: React with TypeScript</li>
-<li><strong>Deployment</strong>: Docker containers with Kubernetes orchestration</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Real-Time Communication Framework</h3>
 
-<h3>Key Features</h3>
-<li><strong>Ontology-driven search</strong> with semantic understanding</li>
-<li><strong>Real-time validation</strong> with instant feedback</li>
-<li><strong>Scalable architecture</strong> supporting thousands of resources</li>
-<li><strong>RESTful API</strong> for integration with external systems</li>
-<li><strong>Comprehensive logging</strong> and monitoring</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Architected a full-duplex asynchronous communication system using WebSockets to provide immediate validation feedback and status updates.</p>
 
-<h2>Impact & Results</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Implementation</h2>
 
-<h3>Performance Improvements</h3>
-<li><strong>100% improvement</strong> in search retrieval performance</li>
-<li><strong>50% reduction</strong> in validation time through automation</li>
-<li><strong>99.9% uptime</strong> achieved through robust architecture</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Core Technologies</h3>
 
-<h3>User Experience Enhancements</h3>
-<li><strong>Real-time feedback</strong> eliminates waiting periods</li>
-<li><strong>Intuitive interface</strong> reduces learning curve</li>
-<li><strong>Comprehensive error reporting</strong> improves debugging efficiency</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Backend</strong>: Python with Flask/FastAPI</li> <li class="mb-2"><strong>Database</strong>: PostgreSQL with spatial extensions</li> <li class="mb-2"><strong>Real-time</strong>: WebSocket implementation</li> <li class="mb-2"><strong>Frontend</strong>: React with TypeScript</li> <li class="mb-2"><strong>Deployment</strong>: Docker containers with Kubernetes orchestration</li></p>
 
-<h3>System Reliability</h3>
-<li><strong>Multi-layer validation</strong> prevents data corruption</li>
-<li><strong>Automated compliance checking</strong> reduces manual oversight</li>
-<li><strong>Scalable design</strong> supports growing resource catalogs</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Key Features</h3>
 
-<h2>Technical Challenges & Solutions</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Ontology-driven search</strong> with semantic understanding</li> <li class="mb-2"><strong>Real-time validation</strong> with instant feedback</li> <li class="mb-2"><strong>Scalable architecture</strong> supporting thousands of resources</li> <li class="mb-2"><strong>RESTful API</strong> for integration with external systems</li> <li class="mb-2"><strong>Comprehensive logging</strong> and monitoring</li></p>
 
-<h3>Challenge 1: Ontology Complexity</h3>
-<strong>Problem</strong>: Creating a comprehensive ontology that captures all resource relationships while maintaining performance.
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Impact & Results</h2>
 
-<p><strong>Solution</strong>: Implemented a hybrid approach combining lightweight semantic annotations with efficient indexing strategies.</p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Performance Improvements</h3>
 
-<h3>Challenge 2: Real-Time Validation</h3>
-<strong>Problem</strong>: Providing immediate feedback for validation processes without blocking user interactions.
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>100% improvement</strong> in search retrieval performance</li> <li class="mb-2"><strong>50% reduction</strong> in validation time through automation</li> <li class="mb-2"><strong>99.9% uptime</strong> achieved through robust architecture</li></p>
 
-<p><strong>Solution</strong>: Developed an asynchronous WebSocket-based communication system with queuing mechanisms.</p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">User Experience Enhancements</h3>
 
-<h3>Challenge 3: Scalability</h3>
-<strong>Problem</strong>: Supporting thousands of concurrent validation requests while maintaining system performance.
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Real-time feedback</strong> eliminates waiting periods</li> <li class="mb-2"><strong>Intuitive interface</strong> reduces learning curve</li> <li class="mb-2"><strong>Comprehensive error reporting</strong> improves debugging efficiency</li></p>
 
-<p><strong>Solution</strong>: Implemented microservices architecture with horizontal scaling capabilities and intelligent load balancing.</p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">System Reliability</h3>
 
-<h2>Architecture Diagram</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Multi-layer validation</strong> prevents data corruption</li> <li class="mb-2"><strong>Automated compliance checking</strong> reduces manual oversight</li> <li class="mb-2"><strong>Scalable design</strong> supports growing resource catalogs</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Challenges & Solutions</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 1: Ontology Complexity</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Creating a comprehensive ontology that captures all resource relationships while maintaining performance.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Implemented a hybrid approach combining lightweight semantic annotations with efficient indexing strategies.</p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 2: Real-Time Validation</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Providing immediate feedback for validation processes without blocking user interactions.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Developed an asynchronous WebSocket-based communication system with queuing mechanisms.</p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 3: Scalability</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Supporting thousands of concurrent validation requests while maintaining system performance.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Implemented microservices architecture with horizontal scaling capabilities and intelligent load balancing.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Architecture Diagram</h2>
 
 <pre><code class="language-mermaid">graph TB
-    A[Client Interface] --> B[API Gateway]
-    B --> C[Validation Service]
-    B --> D[Search Service]
-    B --> E[Ontology Service]
-    
-    C --> F[Syntax Validator]
-    C --> G[Structure Validator]
-    C --> H[URL Validator]
-    C --> I[Content Validator]
-    C --> J[Compliance Checker]
-    
-    D --> K[Semantic Index]
-    E --> L[Ontology Database]
-    
-    F --> M[PostgreSQL]
-    G --> M
-    H --> M
-    I --> M
-    J --> M
-    K --> M
-    L --> M
-    
-    C --> N[WebSocket Server]
-    N --> A</code></pre>
 
-<h2>Future Enhancements</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">A[Client Interface] --> B[API Gateway] B --> C[Validation Service] B --> D[Search Service] B --> E[Ontology Service]</p>
 
-<h3>Planned Features</h3>
-<li><strong>Machine Learning Integration</strong>: AI-powered resource classification</li>
-<li><strong>Advanced Analytics</strong>: Comprehensive usage and performance metrics</li>
-<li><strong>API Versioning</strong>: Backward compatibility management</li>
-<li><strong>Multi-language Support</strong>: Internationalization capabilities</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">C --> F[Syntax Validator] C --> G[Structure Validator] C --> H[URL Validator] C --> I[Content Validator] C --> J[Compliance Checker]</p>
 
-<h3>Research Opportunities</h3>
-<li><strong>Semantic Search Optimization</strong>: Advanced NLP techniques</li>
-<li><strong>Distributed Validation</strong>: Blockchain-based verification</li>
-<li><strong>Performance Tuning</strong>: Advanced caching strategies</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">D --> K[Semantic Index] E --> L[Ontology Database]</p>
 
-<h2>Lessons Learned</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">F --> M[PostgreSQL] G --> M H --> M I --> M J --> M K --> M L --> M</p>
 
-<h3>Technical Insights</h3>
-<li><strong>Ontology design</strong> requires careful balance between completeness and performance</li>
-<li><strong>Real-time systems</strong> benefit significantly from asynchronous architectures</li>
-<li><strong>Validation layers</strong> should be designed for independent scaling</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">C --> N[WebSocket Server]</p>
 
-<h3>Project Management</h3>
-<li><strong>Stakeholder communication</strong> is crucial for complex technical projects</li>
-<li><strong>Iterative development</strong> allows for continuous improvement</li>
-<li><strong>Documentation</strong> becomes critical as system complexity grows</li>
+N --> A</code></pre>
 
-<h2>Conclusion</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Future Enhancements</h2>
 
-<p>The Splice Catalog project successfully demonstrates how domain-specific ontologies and multi-layered validation systems can significantly improve federated resource management. The 100% improvement in search performance, combined with robust real-time validation capabilities, provides a solid foundation for scalable distributed systems.</p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Planned Features</h3>
 
-<p>The project's success lies in its comprehensive approach to both technical implementation and user experience, ensuring that complex validation processes remain transparent and efficient for end users.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Machine Learning Integration</strong>: AI-powered resource classification</li> <li class="mb-2"><strong>Advanced Analytics</strong>: Comprehensive usage and performance metrics</li> <li class="mb-2"><strong>API Versioning</strong>: Backward compatibility management</li> <li class="mb-2"><strong>Multi-language Support</strong>: Internationalization capabilities</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Research Opportunities</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Semantic Search Optimization</strong>: Advanced NLP techniques</li> <li class="mb-2"><strong>Distributed Validation</strong>: Blockchain-based verification</li> <li class="mb-2"><strong>Performance Tuning</strong>: Advanced caching strategies</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Lessons Learned</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Technical Insights</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Ontology design</strong> requires careful balance between completeness and performance</li> <li class="mb-2"><strong>Real-time systems</strong> benefit significantly from asynchronous architectures</li> <li class="mb-2"><strong>Validation layers</strong> should be designed for independent scaling</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Project Management</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Stakeholder communication</strong> is crucial for complex technical projects</li> <li class="mb-2"><strong>Iterative development</strong> allows for continuous improvement</li></p>
+
+<li class="mb-2"><strong>Documentation</strong> becomes critical as system complexity grows</li></ul>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Conclusion</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The Splice Catalog project successfully demonstrates how domain-specific ontologies and multi-layered validation systems can significantly improve federated resource management. The 100% improvement in search performance, combined with robust real-time validation capabilities, provides a solid foundation for scalable distributed systems.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The project's success lies in its comprehensive approach to both technical implementation and user experience, ensuring that complex validation processes remain transparent and efficient for end users.</p>
             
             <!-- Project Tags -->
             <div class="project-tags">

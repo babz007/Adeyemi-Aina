@@ -72,6 +72,13 @@ function processMarkdownFile(markdownFilePath) {
     // Replace content
     renderedHtml = renderedHtml.replace(/\{\{\s*content\s*\}\}/g, projectHtmlContent);
 
+    // Handle excerpt conditional tags
+    if (page.excerpt) {
+        renderedHtml = renderedHtml.replace(/\{\%\s*if\s*page\.excerpt\s*\%\}(.*?)\{\%\s*endif\s*\%\}/s, `<p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">${page.excerpt}</p>`);
+    } else {
+        renderedHtml = renderedHtml.replace(/\{\%\s*if\s*page\.excerpt\s*\%\}(.*?)\{\%\s*endif\s*\%\}/s, '');
+    }
+
     // Handle conditional tags
     if (page.tags.length > 0) {
         const tagsHtml = page.tags.map(tag => `<span class="project-tag">#${tag}</span>`).join('\n            ');
@@ -154,7 +161,7 @@ function processMarkdownFile(markdownFilePath) {
 function convertMarkdownToHtml(markdown) {
     let processed = markdown;
     
-    // Replace code blocks
+    // Replace code blocks first (before other processing)
     processed = processed.replace(/```([\w]*)?\n([\s\S]*?)```/g, (match, lang, code) => {
         const language = lang || 'text';
         return `<pre><code class="language-${language}">${code.trim()}</code></pre>`;
@@ -163,32 +170,111 @@ function convertMarkdownToHtml(markdown) {
     // Replace inline code
     processed = processed.replace(/`([^`\n]+)`/g, '<code>$1</code>');
     
-    // Convert headers
-    processed = processed.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
-    processed = processed.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
-    processed = processed.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
+    // Convert headers (with proper spacing)
+    processed = processed.replace(/^### (.*?)$/gm, '<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">$1</h3>');
+    processed = processed.replace(/^## (.*?)$/gm, '<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">$1</h2>');
+    processed = processed.replace(/^# (.*?)$/gm, '<h1 class="text-3xl font-bold mt-12 mb-8 text-gray-900 dark:text-white">$1</h1>');
     
     // Convert emphasis
     processed = processed.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     processed = processed.replace(/\*(.*?)\*/g, '<em>$1</em>');
     
     // Convert links
-    processed = processed.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+    processed = processed.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-blue-600 dark:text-blue-400 hover:underline">$1</a>');
     
-    // Convert lists
-    processed = processed.replace(/^- (.*?)$/gm, '<li>$1</li>');
+    // Convert lists (handle both unordered and ordered)
+    processed = processed.replace(/^- (.*?)$/gm, '<li class="mb-2">$1</li>');
+    processed = processed.replace(/^\d+\. (.*?)$/gm, '<li class="mb-2">$1</li>');
     
-    // Split into paragraphs, excluding code blocks
-    const paragraphs = processed.split('\n\n');
-    const htmlParagraphs = paragraphs.map(p => {
-        if (p.includes('<pre><code') || p.match(/^<h[1-6]>/)) {
-            return p;
+    // Wrap consecutive list items in ul/ol tags
+    processed = processed.replace(/(<li class="mb-2">.*<\/li>)/gs, (match) => {
+        // Check if it's already wrapped
+        if (match.includes('<ul>') || match.includes('<ol>')) {
+            return match;
         }
-        if (!p.trim()) return '';
-        return `<p>${p.trim()}</p>`;
-    }).filter(p => p !== '');
+        return `<ul class="list-disc list-inside mb-6 space-y-2">${match}</ul>`;
+    });
     
-    return htmlParagraphs.join('\n\n');
+    // Split into paragraphs more carefully
+    const lines = processed.split('\n');
+    const result = [];
+    let currentParagraph = [];
+    let inCodeBlock = false;
+    let inList = false;
+    
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmedLine = line.trim();
+        
+        // Check if we're in a code block
+        if (trimmedLine.includes('<pre><code')) {
+            inCodeBlock = true;
+        }
+        if (trimmedLine.includes('</code></pre>')) {
+            inCodeBlock = false;
+        }
+        
+        // Check if we're in a list
+        if (trimmedLine.includes('<ul>') || trimmedLine.includes('<ol>')) {
+            inList = true;
+        }
+        if (trimmedLine.includes('</ul>') || trimmedLine.includes('</ol>')) {
+            inList = false;
+        }
+        
+        // Handle headers (they should be standalone)
+        if (trimmedLine.match(/^<h[1-6]/)) {
+            // Flush current paragraph if exists
+            if (currentParagraph.length > 0) {
+                result.push(`<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">${currentParagraph.join(' ')}</p>`);
+                currentParagraph = [];
+            }
+            result.push(trimmedLine);
+            continue;
+        }
+        
+        // Handle code blocks (they should be standalone)
+        if (trimmedLine.includes('<pre><code') || trimmedLine.includes('</code></pre>')) {
+            // Flush current paragraph if exists
+            if (currentParagraph.length > 0) {
+                result.push(`<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">${currentParagraph.join(' ')}</p>`);
+                currentParagraph = [];
+            }
+            result.push(trimmedLine);
+            continue;
+        }
+        
+        // Handle lists (they should be standalone)
+        if (trimmedLine.includes('<ul>') || trimmedLine.includes('<ol>') || trimmedLine.includes('</ul>') || trimmedLine.includes('</ol>')) {
+            // Flush current paragraph if exists
+            if (currentParagraph.length > 0) {
+                result.push(`<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">${currentParagraph.join(' ')}</p>`);
+                currentParagraph = [];
+            }
+            result.push(trimmedLine);
+            continue;
+        }
+        
+        // Handle empty lines
+        if (!trimmedLine) {
+            // Flush current paragraph if exists
+            if (currentParagraph.length > 0) {
+                result.push(`<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">${currentParagraph.join(' ')}</p>`);
+                currentParagraph = [];
+            }
+            continue;
+        }
+        
+        // Add line to current paragraph
+        currentParagraph.push(trimmedLine);
+    }
+    
+    // Flush any remaining paragraph
+    if (currentParagraph.length > 0) {
+        result.push(`<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">${currentParagraph.join(' ')}</p>`);
+    }
+    
+    return result.join('\n\n');
 }
 
 // Process all markdown files in the _projects directory

@@ -160,11 +160,60 @@
             overflow-x: auto;
             max-width: 100%;
             white-space: pre;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
         }
         
         .project-content code {
             word-break: break-all;
             overflow-wrap: break-word;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-size: 0.875em;
+        }
+        
+        /* Ensure proper spacing for headings and content */
+        .project-content h1,
+        .project-content h2,
+        .project-content h3,
+        .project-content h4,
+        .project-content h5,
+        .project-content h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+        
+        .project-content h1:first-child,
+        .project-content h2:first-child,
+        .project-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .project-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .project-content ul,
+        .project-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .project-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark .project-content pre {
+            background-color: #1f2937;
+        }
+        
+        .dark .project-content code {
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
         .sidebar {
@@ -498,11 +547,7 @@
                 </h1>
                 
                 <!-- Excerpt -->
-                {% if page.excerpt %}
-                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
-                    Integrated LTI 1.3 with OAuth 2.0 and JWT authentication into an open-source educational platform serving 10,000+ users, enabling seamless integration with Virginia Tech's Learning Management System.
-                </p>
-                {% endif %}
+                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">Integrated LTI 1.3 with OAuth 2.0 and JWT authentication into an open-source educational platform serving 10,000+ users, enabling seamless integration with Virginia Tech's Learning Management System.</p>
                 
                 <!-- Project Meta Information -->
                 <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
@@ -555,184 +600,145 @@
 
         <!-- Project Content -->
         <article class="prose prose-lg max-w-4xl mx-auto project-content">
-            <h2>Project Overview</h2>
+            <h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Project Overview</h2>
 
-<p>OpenDSA LTI Integration is a comprehensive implementation of Learning Tools Interoperability (LTI) 1.3 with OAuth 2.0 and JWT authentication for the OpenDSA educational platform. This project enables seamless integration between OpenDSA and Virginia Tech's Learning Management System (LMS), providing secure single sign-on access and advanced interoperability features.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">OpenDSA LTI Integration is a comprehensive implementation of Learning Tools Interoperability (LTI) 1.3 with OAuth 2.0 and JWT authentication for the OpenDSA educational platform. This project enables seamless integration between OpenDSA and Virginia Tech's Learning Management System (LMS), providing secure single sign-on access and advanced interoperability features.</p>
 
-<h2>Problem Statement</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Problem Statement</h2>
 
-<p>Educational institutions face significant challenges when integrating third-party learning tools:</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Educational institutions face significant challenges when integrating third-party learning tools:</p>
 
-<p><li><strong>Authentication Complexity</strong>: Multiple login systems create user friction</li>
-<li><strong>Grade Synchronization</strong>: Manual grade transfer processes are error-prone</li>
-<li><strong>User Management</strong>: Maintaining separate user rosters across platforms</li>
-<li><strong>Security Concerns</strong>: Ensuring secure data transmission between systems</li>
-<li><strong>Compliance Requirements</strong>: Meeting educational data privacy standards</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><ul class="list-disc list-inside mb-6 space-y-2"><li class="mb-2"><strong>Authentication Complexity</strong>: Multiple login systems create user friction</li> <li class="mb-2"><strong>Grade Synchronization</strong>: Manual grade transfer processes are error-prone</li> <li class="mb-2"><strong>User Management</strong>: Maintaining separate user rosters across platforms</li> <li class="mb-2"><strong>Security Concerns</strong>: Ensuring secure data transmission between systems</li> <li class="mb-2"><strong>Compliance Requirements</strong>: Meeting educational data privacy standards</li></p>
 
-<h2>Solution Architecture</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Solution Architecture</h2>
 
-<h3>LTI 1.3 Advantage Implementation</h3>
-Implemented the complete LTI 1.3 Advantage specification, including:
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">LTI 1.3 Advantage Implementation</h3>
 
-<p><li><strong>Names and Role Provisioning Services (NRPS)</strong>: Automated user roster management</li>
-<li><strong>Assignment and Grade Services (AGS)</strong>: Seamless grade synchronization</li>
-<li><strong>Deep Linking Services</strong>: Dynamic content creation and assignment</li>
-<li><strong>Security Framework</strong>: OAuth 2.0 with JWT token validation</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Implemented the complete LTI 1.3 Advantage specification, including:</p>
 
-<h3>Authentication Flow</h3>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Names and Role Provisioning Services (NRPS)</strong>: Automated user roster management</li> <li class="mb-2"><strong>Assignment and Grade Services (AGS)</strong>: Seamless grade synchronization</li> <li class="mb-2"><strong>Deep Linking Services</strong>: Dynamic content creation and assignment</li> <li class="mb-2"><strong>Security Framework</strong>: OAuth 2.0 with JWT token validation</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Authentication Flow</h3>
+
 <pre><code class="language-mermaid">sequenceDiagram
-    participant U as User
-    participant LMS as Virginia Tech LMS
-    participant OD as OpenDSA
-    participant DB as Database
-    
-    U->>LMS: Access OpenDSA Content
-    LMS->>OD: LTI Launch Request
-    OD->>OD: Validate JWT Token
-    OD->>DB: Check User Authorization
-    OD->>U: Grant Access
-    U->>OD: Complete Activities
-    OD->>LMS: Send Grade Updates
-    LMS->>U: Updated Gradebook</code></pre>
 
-<h2>Technical Implementation</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">participant U as User participant LMS as Virginia Tech LMS participant OD as OpenDSA participant DB as Database</p>
 
-<h3>Core Technologies</h3>
-<li><strong>Backend</strong>: Python with Django framework</li>
-<li><strong>Authentication</strong>: OAuth 2.0 with JWT tokens</li>
-<li><strong>Database</strong>: PostgreSQL with optimized queries</li>
-<li><strong>API</strong>: RESTful services with comprehensive documentation</li>
-<li><strong>Security</strong>: HTTPS with certificate pinning</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">U->>LMS: Access OpenDSA Content LMS->>OD: LTI Launch Request OD->>OD: Validate JWT Token OD->>DB: Check User Authorization OD->>U: Grant Access U->>OD: Complete Activities OD->>LMS: Send Grade Updates</p>
 
-<h3>Key Features</h3>
+LMS->>U: Updated Gradebook</code></pre>
 
-<p>#### 1. Single Sign-On (SSO)
-<li><strong>Seamless Authentication</strong>: Users access OpenDSA without additional login</li>
-<li><strong>Session Management</strong>: Secure token-based session handling</li>
-<li><strong>Role-based Access</strong>: Automatic permission assignment based on LMS roles</li></p>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Implementation</h2>
 
-<p>#### 2. Grade Synchronization
-<li><strong>Real-time Updates</strong>: Automatic grade transmission to LMS</li>
-<li><strong>Batch Processing</strong>: Efficient handling of multiple grade updates</li>
-<li><strong>Error Handling</strong>: Robust retry mechanisms for failed transmissions</li></p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Core Technologies</h3>
 
-<p>#### 3. User Provisioning
-<li><strong>Automatic Enrollment</strong>: Users automatically added to appropriate courses</li>
-<li><strong>Role Mapping</strong>: LMS roles translated to OpenDSA permissions</li>
-<li><strong>Profile Synchronization</strong>: User information kept consistent across platforms</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Backend</strong>: Python with Django framework</li> <li class="mb-2"><strong>Authentication</strong>: OAuth 2.0 with JWT tokens</li> <li class="mb-2"><strong>Database</strong>: PostgreSQL with optimized queries</li> <li class="mb-2"><strong>API</strong>: RESTful services with comprehensive documentation</li> <li class="mb-2"><strong>Security</strong>: HTTPS with certificate pinning</li></p>
 
-<p>#### 4. Deep Linking
-<li><strong>Dynamic Content</strong>: Instructors can create assignments directly from LMS</li>
-<li><strong>Resource Selection</strong>: Flexible content targeting for specific learning objectives</li>
-<li><strong>Custom Parameters</strong>: Support for course-specific configurations</li></p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Key Features</h3>
 
-<h2>Security Implementation</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 1. Single Sign-On (SSO) <li class="mb-2"><strong>Seamless Authentication</strong>: Users access OpenDSA without additional login</li> <li class="mb-2"><strong>Session Management</strong>: Secure token-based session handling</li> <li class="mb-2"><strong>Role-based Access</strong>: Automatic permission assignment based on LMS roles</li></p>
 
-<h3>OAuth 2.0 Flow</h3>
-Implemented secure OAuth 2.0 authorization flow with:
-<li><strong>PKCE (Proof Key for Code Exchange)</strong>: Enhanced security for public clients</li>
-<li><strong>State Parameter</strong>: CSRF protection for authorization requests</li>
-<li><strong>Scope Management</strong>: Granular permission control</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 2. Grade Synchronization <li class="mb-2"><strong>Real-time Updates</strong>: Automatic grade transmission to LMS</li> <li class="mb-2"><strong>Batch Processing</strong>: Efficient handling of multiple grade updates</li> <li class="mb-2"><strong>Error Handling</strong>: Robust retry mechanisms for failed transmissions</li></p>
 
-<h3>JWT Token Validation</h3>
-<li><strong>Signature Verification</strong>: Cryptographic validation of token authenticity</li>
-<li><strong>Expiration Handling</strong>: Automatic token refresh mechanisms</li>
-<li><strong>Claims Validation</strong>: Comprehensive verification of token contents</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 3. User Provisioning <li class="mb-2"><strong>Automatic Enrollment</strong>: Users automatically added to appropriate courses</li> <li class="mb-2"><strong>Role Mapping</strong>: LMS roles translated to OpenDSA permissions</li> <li class="mb-2"><strong>Profile Synchronization</strong>: User information kept consistent across platforms</li></p>
 
-<h3>Data Protection</h3>
-<li><strong>Encryption</strong>: All sensitive data encrypted in transit and at rest</li>
-<li><strong>Audit Logging</strong>: Comprehensive tracking of all system interactions</li>
-<li><strong>Privacy Compliance</strong>: FERPA and COPPA compliance measures</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 4. Deep Linking <li class="mb-2"><strong>Dynamic Content</strong>: Instructors can create assignments directly from LMS</li> <li class="mb-2"><strong>Resource Selection</strong>: Flexible content targeting for specific learning objectives</li> <li class="mb-2"><strong>Custom Parameters</strong>: Support for course-specific configurations</li></p>
 
-<h2>Performance Optimization</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Security Implementation</h2>
 
-<h3>Database Optimization</h3>
-<li><strong>Query Optimization</strong>: Reduced average response time by 60%</li>
-<li><strong>Connection Pooling</strong>: Efficient database connection management</li>
-<li><strong>Caching Strategy</strong>: Redis-based caching for frequently accessed data</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">OAuth 2.0 Flow</h3>
 
-<h3>API Performance</h3>
-<li><strong>Response Time</strong>: Average API response time under 200ms</li>
-<li><strong>Throughput</strong>: Support for 1000+ concurrent users</li>
-<li><strong>Scalability</strong>: Horizontal scaling capabilities implemented</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Implemented secure OAuth 2.0 authorization flow with: <li class="mb-2"><strong>PKCE (Proof Key for Code Exchange)</strong>: Enhanced security for public clients</li> <li class="mb-2"><strong>State Parameter</strong>: CSRF protection for authorization requests</li> <li class="mb-2"><strong>Scope Management</strong>: Granular permission control</li></p>
 
-<h2>Impact & Results</h2>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">JWT Token Validation</h3>
 
-<h3>User Experience Improvements</h3>
-<li><strong>Reduced Login Friction</strong>: 95% reduction in authentication-related support tickets</li>
-<li><strong>Improved Accessibility</strong>: Seamless access from any LMS-integrated course</li>
-<li><strong>Enhanced Usability</strong>: Intuitive interface matching LMS design patterns</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Signature Verification</strong>: Cryptographic validation of token authenticity</li> <li class="mb-2"><strong>Expiration Handling</strong>: Automatic token refresh mechanisms</li> <li class="mb-2"><strong>Claims Validation</strong>: Comprehensive verification of token contents</li></p>
 
-<h3>System Reliability</h3>
-<li><strong>Uptime Achievement</strong>: 99.9% system availability</li>
-<li><strong>Error Reduction</strong>: 80% decrease in integration-related errors</li>
-<li><strong>Performance Gains</strong>: 50% improvement in page load times</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Data Protection</h3>
 
-<h3>Educational Impact</h3>
-<li><strong>Increased Adoption</strong>: 40% increase in OpenDSA usage across Virginia Tech</li>
-<li><strong>Better Learning Outcomes</strong>: Improved student engagement through seamless access</li>
-<li><strong>Instructor Satisfaction</strong>: Streamlined course management capabilities</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Encryption</strong>: All sensitive data encrypted in transit and at rest</li> <li class="mb-2"><strong>Audit Logging</strong>: Comprehensive tracking of all system interactions</li> <li class="mb-2"><strong>Privacy Compliance</strong>: FERPA and COPPA compliance measures</li></p>
 
-<h2>Technical Challenges & Solutions</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Performance Optimization</h2>
 
-<h3>Challenge 1: Token Management</h3>
-<strong>Problem</strong>: Handling JWT token expiration and refresh in a stateless system.
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Database Optimization</h3>
 
-<p><strong>Solution</strong>: Implemented intelligent token caching with automatic refresh mechanisms and graceful degradation for expired tokens.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Query Optimization</strong>: Reduced average response time by 60%</li> <li class="mb-2"><strong>Connection Pooling</strong>: Efficient database connection management</li> <li class="mb-2"><strong>Caching Strategy</strong>: Redis-based caching for frequently accessed data</li></p>
 
-<h3>Challenge 2: Grade Synchronization</h3>
-<strong>Problem</strong>: Ensuring reliable grade transmission without data loss or duplication.
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">API Performance</h3>
 
-<p><strong>Solution</strong>: Developed idempotent grade submission system with comprehensive error handling and retry logic.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Response Time</strong>: Average API response time under 200ms</li> <li class="mb-2"><strong>Throughput</strong>: Support for 1000+ concurrent users</li> <li class="mb-2"><strong>Scalability</strong>: Horizontal scaling capabilities implemented</li></p>
 
-<h3>Challenge 3: Performance at Scale</h3>
-<strong>Problem</strong>: Maintaining system performance with 10,000+ concurrent users.
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Impact & Results</h2>
 
-<p><strong>Solution</strong>: Implemented microservices architecture with load balancing and horizontal scaling capabilities.</p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">User Experience Improvements</h3>
 
-<h2>Integration Testing</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Reduced Login Friction</strong>: 95% reduction in authentication-related support tickets</li> <li class="mb-2"><strong>Improved Accessibility</strong>: Seamless access from any LMS-integrated course</li> <li class="mb-2"><strong>Enhanced Usability</strong>: Intuitive interface matching LMS design patterns</li></p>
 
-<h3>Test Coverage</h3>
-<li><strong>Unit Tests</strong>: 95% code coverage across all modules</li>
-<li><strong>Integration Tests</strong>: Comprehensive LMS integration validation</li>
-<li><strong>Performance Tests</strong>: Load testing with 10,000+ concurrent users</li>
-<li><strong>Security Tests</strong>: Penetration testing and vulnerability assessment</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">System Reliability</h3>
 
-<h3>Quality Assurance</h3>
-<li><strong>Automated Testing</strong>: CI/CD pipeline with automated test execution</li>
-<li><strong>Code Review</strong>: Peer review process for all code changes</li>
-<li><strong>Documentation</strong>: Comprehensive API and integration documentation</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Uptime Achievement</strong>: 99.9% system availability</li> <li class="mb-2"><strong>Error Reduction</strong>: 80% decrease in integration-related errors</li> <li class="mb-2"><strong>Performance Gains</strong>: 50% improvement in page load times</li></p>
 
-<h2>Future Enhancements</h2>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Educational Impact</h3>
 
-<h3>Planned Features</h3>
-<li><strong>Advanced Analytics</strong>: Detailed usage and performance metrics</li>
-<li><strong>Multi-LMS Support</strong>: Extension to other learning management systems</li>
-<li><strong>Mobile Optimization</strong>: Enhanced mobile device compatibility</li>
-<li><strong>AI Integration</strong>: Intelligent content recommendation system</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Increased Adoption</strong>: 40% increase in OpenDSA usage across Virginia Tech</li> <li class="mb-2"><strong>Better Learning Outcomes</strong>: Improved student engagement through seamless access</li> <li class="mb-2"><strong>Instructor Satisfaction</strong>: Streamlined course management capabilities</li></p>
 
-<h3>Research Opportunities</h3>
-<li><strong>Learning Analytics</strong>: Advanced student progress tracking</li>
-<li><strong>Adaptive Learning</strong>: Personalized content delivery based on performance</li>
-<li><strong>Accessibility</strong>: Enhanced support for students with disabilities</li>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Challenges & Solutions</h2>
 
-<h2>Lessons Learned</h2>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 1: Token Management</h3>
 
-<h3>Technical Insights</h3>
-<li><strong>LTI 1.3 complexity</strong> requires careful implementation planning</li>
-<li><strong>OAuth 2.0 security</strong> demands comprehensive validation mechanisms</li>
-<li><strong>Educational systems</strong> benefit from user-centric design approaches</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Handling JWT token expiration and refresh in a stateless system.</p>
 
-<h3>Project Management</h3>
-<li><strong>Stakeholder communication</strong> is essential for educational technology projects</li>
-<li><strong>User feedback</strong> drives continuous improvement</li>
-<li><strong>Documentation</strong> becomes critical for system maintenance</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Implemented intelligent token caching with automatic refresh mechanisms and graceful degradation for expired tokens.</p>
 
-<h2>Conclusion</h2>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 2: Grade Synchronization</h3>
 
-<p>The OpenDSA LTI Integration project successfully demonstrates how modern authentication and interoperability standards can enhance educational technology platforms. The seamless integration with Virginia Tech's LMS, combined with robust security measures and excellent performance, provides a model for educational technology integration.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Ensuring reliable grade transmission without data loss or duplication.</p>
 
-<p>The project's success in serving 10,000+ users with 99.9% uptime showcases the effectiveness of careful architecture design and comprehensive testing methodologies. The implementation serves as a foundation for future educational technology innovations and provides valuable insights for similar integration projects.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Developed idempotent grade submission system with comprehensive error handling and retry logic.</p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 3: Performance at Scale</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Maintaining system performance with 10,000+ concurrent users.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Implemented microservices architecture with load balancing and horizontal scaling capabilities.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Integration Testing</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Test Coverage</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Unit Tests</strong>: 95% code coverage across all modules</li> <li class="mb-2"><strong>Integration Tests</strong>: Comprehensive LMS integration validation</li> <li class="mb-2"><strong>Performance Tests</strong>: Load testing with 10,000+ concurrent users</li> <li class="mb-2"><strong>Security Tests</strong>: Penetration testing and vulnerability assessment</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Quality Assurance</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Automated Testing</strong>: CI/CD pipeline with automated test execution</li> <li class="mb-2"><strong>Code Review</strong>: Peer review process for all code changes</li> <li class="mb-2"><strong>Documentation</strong>: Comprehensive API and integration documentation</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Future Enhancements</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Planned Features</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Advanced Analytics</strong>: Detailed usage and performance metrics</li> <li class="mb-2"><strong>Multi-LMS Support</strong>: Extension to other learning management systems</li> <li class="mb-2"><strong>Mobile Optimization</strong>: Enhanced mobile device compatibility</li> <li class="mb-2"><strong>AI Integration</strong>: Intelligent content recommendation system</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Research Opportunities</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Learning Analytics</strong>: Advanced student progress tracking</li> <li class="mb-2"><strong>Adaptive Learning</strong>: Personalized content delivery based on performance</li> <li class="mb-2"><strong>Accessibility</strong>: Enhanced support for students with disabilities</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Lessons Learned</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Technical Insights</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>LTI 1.3 complexity</strong> requires careful implementation planning</li> <li class="mb-2"><strong>OAuth 2.0 security</strong> demands comprehensive validation mechanisms</li> <li class="mb-2"><strong>Educational systems</strong> benefit from user-centric design approaches</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Project Management</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Stakeholder communication</strong> is essential for educational technology projects</li> <li class="mb-2"><strong>User feedback</strong> drives continuous improvement</li></p>
+
+<li class="mb-2"><strong>Documentation</strong> becomes critical for system maintenance</li></ul>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Conclusion</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The OpenDSA LTI Integration project successfully demonstrates how modern authentication and interoperability standards can enhance educational technology platforms. The seamless integration with Virginia Tech's LMS, combined with robust security measures and excellent performance, provides a model for educational technology integration.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The project's success in serving 10,000+ users with 99.9% uptime showcases the effectiveness of careful architecture design and comprehensive testing methodologies. The implementation serves as a foundation for future educational technology innovations and provides valuable insights for similar integration projects.</p>
             
             <!-- Project Tags -->
             <div class="project-tags">

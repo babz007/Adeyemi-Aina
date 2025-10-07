@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ page.title }} - Adeyemi Aina</title>
+    <title>Your Project Title - Adeyemi Aina</title>
 
     <!-- Mobile Meta Tags -->
     <meta name="HandheldFriendly" content="True">
@@ -43,7 +43,7 @@
     </script>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="{{ page.excerpt }}">
+    <meta name="description" content="Brief description of your project and its impact.">
     <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
     <link rel="canonical" href="/projects/{{ page.slug }}/">
 
@@ -533,27 +533,21 @@
         <div class="project-hero">
             <div class="max-w-4xl mx-auto">
                 <!-- Project Category Badge -->
-                {% if page.category %}
                 <div class="inline-flex items-center mb-6">
                     <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 text-orange-800 dark:text-orange-200 rounded-full text-sm font-semibold shadow-sm">
-                        {{ page.category }}
+                        Project Category
                     </span>
                 </div>
-                {% endif %}
                 
                 <!-- Main Title -->
                 <h1 class="text-5xl lg:text-6xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
                     <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-orange-600 dark:from-white dark:via-gray-200 dark:to-orange-400 bg-clip-text text-transparent">
-                        {{ page.title }}
+                        Your Project Title
                     </span>
                 </h1>
                 
                 <!-- Excerpt -->
-                {% if page.excerpt %}
-                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
-                    {{ page.excerpt }}
-                </p>
-                {% endif %}
+                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">Brief description of your project and its impact.</p>
                 
                 <!-- Project Meta Information -->
                 <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
@@ -562,56 +556,82 @@
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                         </svg>
-                        <span class="font-medium">{{ page.date | date: "%B %d, %Y" }}</span>
+                        <span class="font-medium">December 31, 2023</span>
                     </div>
                     
                     <!-- Project Duration -->
-                    {% if page.duration %}
                     <div class="flex items-center space-x-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span class="font-medium">{{ page.duration }}</span>
+                        <span class="font-medium">X months</span>
                     </div>
-                    {% endif %}
                     
                     <!-- Project Status -->
-                    {% if page.status %}
                     <div class="flex items-center space-x-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <span class="font-medium">{{ page.status }}</span>
+                        <span class="font-medium">Status (Development/Production/Completed)</span>
                     </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
 
         <!-- Project Stats -->
-        {% if page.stats %}
         <div class="project-stats">
-            {% for stat in page.stats %}
             <div class="stat-card">
-                <div class="stat-number">{{ stat.number }}</div>
-                <div class="stat-label">{{ stat.label }}</div>
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Performance Improvement</div>
             </div>
-            {% endfor %}
+            <div class="stat-card">
+                <div class="stat-number">1000+</div>
+                <div class="stat-label">Users Served</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
         </div>
-        {% endif %}
 
         <!-- Project Content -->
         <article class="prose prose-lg max-w-4xl mx-auto project-content">
-            {{ content }}
+            <h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Project Overview</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Provide a comprehensive overview of your project, including: <ul class="list-disc list-inside mb-6 space-y-2"><li class="mb-2">What problem it solves</li> <li class="mb-2">Key features and functionality</li> <li class="mb-2">Target audience</li> <li class="mb-2">Technology stack</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Problem Statement</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Describe the specific problem your project addresses: <li class="mb-2">Current challenges in the domain</li> <li class="mb-2">Pain points for users</li> <li class="mb-2">Market gaps or opportunities</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Solution Architecture</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Explain your technical approach: <li class="mb-2">System architecture</li> <li class="mb-2">Key design decisions</li> <li class="mb-2">Technology choices and rationale</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Implementation</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Detail the technical aspects: <li class="mb-2">Core technologies used</li> <li class="mb-2">Implementation challenges</li> <li class="mb-2">Performance optimizations</li> <li class="mb-2">Security considerations</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Impact & Results</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Quantify your project's success: <li class="mb-2">Performance metrics</li> <li class="mb-2">User adoption</li> <li class="mb-2">Business impact</li> <li class="mb-2">Lessons learned</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Future Enhancements</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Outline planned improvements: <li class="mb-2">Upcoming features</li> <li class="mb-2">Scalability plans</li></p>
+
+<li class="mb-2">Research opportunities</li></ul>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Conclusion</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Summarize the project's achievements and significance.</p>
             
             <!-- Project Tags -->
-            {% if page.tags.size > 0 %}
             <div class="project-tags">
-                {% for tag in page.tags %}
-                <span class="project-tag">#{{ tag }}</span>
-                {% endfor %}
-            </div>
-            {% endif %}
+            <span class="project-tag">#Tag1</span>
+            <span class="project-tag">#Tag2</span>
+            <span class="project-tag">#Tag3</span>
+        </div>
         </article>
 
         <!-- Navigation -->
@@ -621,17 +641,13 @@
                     ← All Projects
                 </a>
                 
-                {% if page.github_url %}
-                <a href="{{ page.github_url }}" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/your-repo" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
                     View on GitHub
                 </a>
-                {% endif %}
                 
-                {% if page.live_url %}
-                <a href="{{ page.live_url }}" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
+                <a href="https://your-demo-url.com" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
                     Live Demo →
                 </a>
-                {% endif %}
             </div>
         </nav>
     </div>

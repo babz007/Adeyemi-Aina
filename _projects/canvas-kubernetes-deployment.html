@@ -160,11 +160,60 @@
             overflow-x: auto;
             max-width: 100%;
             white-space: pre;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 0.5rem;
         }
         
         .project-content code {
             word-break: break-all;
             overflow-wrap: break-word;
+            background-color: rgba(0, 0, 0, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 0.25rem;
+            font-size: 0.875em;
+        }
+        
+        /* Ensure proper spacing for headings and content */
+        .project-content h1,
+        .project-content h2,
+        .project-content h3,
+        .project-content h4,
+        .project-content h5,
+        .project-content h6 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.25;
+        }
+        
+        .project-content h1:first-child,
+        .project-content h2:first-child,
+        .project-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .project-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .project-content ul,
+        .project-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .project-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .dark .project-content pre {
+            background-color: #1f2937;
+        }
+        
+        .dark .project-content code {
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
         .sidebar {
@@ -498,11 +547,7 @@
                 </h1>
                 
                 <!-- Excerpt -->
-                {% if page.excerpt %}
-                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
-                    Designed and optimized Kubernetes manifests for deploying Instructure Canvas LMS on Virginia Tech's private cloud, implementing scalable multi-container architecture with PostgreSQL, Redis, and NGINX Ingress.
-                </p>
-                {% endif %}
+                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">Designed and optimized Kubernetes manifests for deploying Instructure Canvas LMS on Virginia Tech's private cloud, implementing scalable multi-container architecture with PostgreSQL, Redis, and NGINX Ingress.</p>
                 
                 <!-- Project Meta Information -->
                 <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
@@ -555,324 +600,197 @@
 
         <!-- Project Content -->
         <article class="prose prose-lg max-w-4xl mx-auto project-content">
-            <h2>Project Overview</h2>
+            <h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Project Overview</h2>
 
-<p>Canvas LMS Kubernetes Deployment is a comprehensive containerization and orchestration solution for Instructure Canvas Learning Management System on Virginia Tech's private cloud infrastructure. This project involved designing a scalable multi-container architecture, optimizing Kubernetes manifests, and implementing robust deployment strategies for enterprise-grade educational technology.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Canvas LMS Kubernetes Deployment is a comprehensive containerization and orchestration solution for Instructure Canvas Learning Management System on Virginia Tech's private cloud infrastructure. This project involved designing a scalable multi-container architecture, optimizing Kubernetes manifests, and implementing robust deployment strategies for enterprise-grade educational technology.</p>
 
-<h2>Problem Statement</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Problem Statement</h2>
 
-<p>Virginia Tech's Canvas LMS deployment faced several critical challenges:</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Virginia Tech's Canvas LMS deployment faced several critical challenges:</p>
 
-<p><li><strong>Scalability Issues</strong>: Traditional deployment couldn't handle peak usage periods</li>
-<li><strong>Resource Management</strong>: Inefficient resource allocation and utilization</li>
-<li><strong>Deployment Complexity</strong>: Manual deployment processes prone to errors</li>
-<li><strong>High Availability</strong>: Single points of failure affecting system reliability</li>
-<li><strong>Maintenance Overhead</strong>: Complex update and maintenance procedures</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><ul class="list-disc list-inside mb-6 space-y-2"><li class="mb-2"><strong>Scalability Issues</strong>: Traditional deployment couldn't handle peak usage periods</li> <li class="mb-2"><strong>Resource Management</strong>: Inefficient resource allocation and utilization</li> <li class="mb-2"><strong>Deployment Complexity</strong>: Manual deployment processes prone to errors</li> <li class="mb-2"><strong>High Availability</strong>: Single points of failure affecting system reliability</li> <li class="mb-2"><strong>Maintenance Overhead</strong>: Complex update and maintenance procedures</li></p>
 
-<h2>Solution Architecture</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Solution Architecture</h2>
 
-<h3>Multi-Container Architecture</h3>
-Designed a comprehensive containerized architecture with specialized services:
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Multi-Container Architecture</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Designed a comprehensive containerized architecture with specialized services:</p>
 
 <pre><code class="language-mermaid">graph TB
-    subgraph "Kubernetes Cluster"
-        subgraph "Ingress Layer"
-            NGINX[NGINX Ingress Controller]
-        end
-        
-        subgraph "Application Layer"
-            WEB[Canvas Web App]
-            API[Canvas API Service]
-            WORKER[Background Workers]
-        end
-        
-        subgraph "Data Layer"
-            POSTGRES[(PostgreSQL Database)]
-            REDIS_CACHE[(Redis Cache)]
-            REDIS_QUEUE[(Redis Queue)]
-        end
-        
-        subgraph "Storage Layer"
-            PV[Persistent Volumes]
-            PVC[Persistent Volume Claims]
-        end
-    end
-    
-    USERS[Users] --> NGINX
-    NGINX --> WEB
-    NGINX --> API
-    WEB --> POSTGRES
-    API --> POSTGRES
-    WEB --> REDIS_CACHE
-    WORKER --> REDIS_QUEUE
-    WORKER --> POSTGRES
-    POSTGRES --> PV
-    REDIS_CACHE --> PV
-    REDIS_QUEUE --> PV</code></pre>
 
-<h3>Service Components</h3>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">subgraph "Kubernetes Cluster" subgraph "Ingress Layer" NGINX[NGINX Ingress Controller] end</p>
 
-<p>#### 1. Canvas Web Application
-<li><strong>Container</strong>: Custom Canvas Docker image</li>
-<li><strong>Scaling</strong>: Horizontal Pod Autoscaler (HPA)</li>
-<li><strong>Resources</strong>: CPU and memory limits optimized for performance</li>
-<li><strong>Health Checks</strong>: Comprehensive liveness and readiness probes</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">subgraph "Application Layer" WEB[Canvas Web App] API[Canvas API Service] WORKER[Background Workers] end</p>
 
-<p>#### 2. PostgreSQL Database
-<li><strong>High Availability</strong>: Master-slave replication setup</li>
-<li><strong>Backup Strategy</strong>: Automated daily backups with point-in-time recovery</li>
-<li><strong>Performance</strong>: Optimized configuration for educational workloads</li>
-<li><strong>Security</strong>: Encrypted connections and access controls</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">subgraph "Data Layer" POSTGRES[(PostgreSQL Database)] REDIS_CACHE[(Redis Cache)] REDIS_QUEUE[(Redis Queue)] end</p>
 
-<p>#### 3. Redis Services
-<li><strong>Cache Layer</strong>: Redis for session and application caching</li>
-<li><strong>Queue Management</strong>: Redis for background job processing</li>
-<li><strong>Persistence</strong>: RDB and AOF persistence for data durability</li>
-<li><strong>Clustering</strong>: Redis Cluster for high availability</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">subgraph "Storage Layer" PV[Persistent Volumes] PVC[Persistent Volume Claims] end end</p>
 
-<p>#### 4. NGINX Ingress
-<li><strong>Load Balancing</strong>: Intelligent traffic distribution</li>
-<li><strong>SSL Termination</strong>: Automated SSL certificate management</li>
-<li><strong>Rate Limiting</strong>: Protection against abuse and DDoS attacks</li>
-<li><strong>Domain Routing</strong>: Multi-domain support for different environments</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">USERS[Users] --> NGINX NGINX --> WEB NGINX --> API WEB --> POSTGRES API --> POSTGRES WEB --> REDIS_CACHE WORKER --> REDIS_QUEUE WORKER --> POSTGRES POSTGRES --> PV REDIS_CACHE --> PV</p>
 
-<h2>Technical Implementation</h2>
+REDIS_QUEUE --> PV</code></pre>
 
-<h3>Kubernetes Manifests</h3>
-Created comprehensive Kubernetes manifests including:
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Service Components</h3>
 
-#### Deployment Configurations
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 1. Canvas Web Application <li class="mb-2"><strong>Container</strong>: Custom Canvas Docker image</li> <li class="mb-2"><strong>Scaling</strong>: Horizontal Pod Autoscaler (HPA)</li> <li class="mb-2"><strong>Resources</strong>: CPU and memory limits optimized for performance</li> <li class="mb-2"><strong>Health Checks</strong>: Comprehensive liveness and readiness probes</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 2. PostgreSQL Database <li class="mb-2"><strong>High Availability</strong>: Master-slave replication setup</li> <li class="mb-2"><strong>Backup Strategy</strong>: Automated daily backups with point-in-time recovery</li> <li class="mb-2"><strong>Performance</strong>: Optimized configuration for educational workloads</li> <li class="mb-2"><strong>Security</strong>: Encrypted connections and access controls</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 3. Redis Services <li class="mb-2"><strong>Cache Layer</strong>: Redis for session and application caching</li> <li class="mb-2"><strong>Queue Management</strong>: Redis for background job processing</li> <li class="mb-2"><strong>Persistence</strong>: RDB and AOF persistence for data durability</li> <li class="mb-2"><strong>Clustering</strong>: Redis Cluster for high availability</li></p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### 4. NGINX Ingress <li class="mb-2"><strong>Load Balancing</strong>: Intelligent traffic distribution</li> <li class="mb-2"><strong>SSL Termination</strong>: Automated SSL certificate management</li> <li class="mb-2"><strong>Rate Limiting</strong>: Protection against abuse and DDoS attacks</li> <li class="mb-2"><strong>Domain Routing</strong>: Multi-domain support for different environments</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Implementation</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Kubernetes Manifests</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Created comprehensive Kubernetes manifests including:</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Deployment Configurations</p>
+
 <pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: canvas-web
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: canvas-web
-  template:
-    metadata:
-      labels:
-        app: canvas-web
-    spec:
-      containers:
-      - name: canvas
-        image: canvas-lms:latest
-        ports:
-        - containerPort: 3000
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: canvas-secrets
-              key: database-url
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "250m"
-          limits:
-            memory: "1Gi"
-            cpu: "500m"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 3000
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 3000
-          initialDelaySeconds: 5
-          periodSeconds: 5</code></pre>
 
-<p>#### Service Definitions
-<li><strong>ClusterIP Services</strong>: Internal communication between pods</li>
-<li><strong>LoadBalancer Services</strong>: External access for web traffic</li>
-<li><strong>Headless Services</strong>: Database and cache service discovery</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">kind: Deployment metadata: name: canvas-web spec: replicas: 3 selector: matchLabels: app: canvas-web template: metadata: labels: app: canvas-web spec: containers: - name: canvas image: canvas-lms:latest ports: - containerPort: 3000 env: - name: DATABASE_URL valueFrom: secretKeyRef: name: canvas-secrets key: database-url resources: requests: memory: "512Mi" cpu: "250m" limits: memory: "1Gi" cpu: "500m" livenessProbe: httpGet: path: /health port: 3000 initialDelaySeconds: 30 periodSeconds: 10 readinessProbe: httpGet: path: /ready port: 3000 initialDelaySeconds: 5</p>
 
-<p>#### Ingress Configuration
-<li><strong>Path-based Routing</strong>: Intelligent request routing</li>
-<li><strong>SSL/TLS</strong>: Automated certificate management with Let's Encrypt</li>
-<li><strong>Rate Limiting</strong>: Protection against abuse</li>
-<li><strong>CORS Configuration</strong>: Cross-origin resource sharing setup</li></p>
+periodSeconds: 5</code></pre>
 
-<h3>Auto-scaling Implementation</h3>
-Implemented comprehensive auto-scaling strategies:
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Service Definitions <li class="mb-2"><strong>ClusterIP Services</strong>: Internal communication between pods</li> <li class="mb-2"><strong>LoadBalancer Services</strong>: External access for web traffic</li> <li class="mb-2"><strong>Headless Services</strong>: Database and cache service discovery</li></p>
 
-#### Horizontal Pod Autoscaler (HPA)
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Ingress Configuration <li class="mb-2"><strong>Path-based Routing</strong>: Intelligent request routing</li> <li class="mb-2"><strong>SSL/TLS</strong>: Automated certificate management with Let's Encrypt</li> <li class="mb-2"><strong>Rate Limiting</strong>: Protection against abuse</li> <li class="mb-2"><strong>CORS Configuration</strong>: Cross-origin resource sharing setup</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Auto-scaling Implementation</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Implemented comprehensive auto-scaling strategies:</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Horizontal Pod Autoscaler (HPA)</p>
+
 <pre><code class="language-yaml">apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: canvas-web-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: canvas-web
-  minReplicas: 3
-  maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80</code></pre>
 
-<p>#### Vertical Pod Autoscaler (VPA)
-<li><strong>Resource Optimization</strong>: Automatic CPU and memory adjustment</li>
-<li><strong>Cost Efficiency</strong>: Right-sizing based on actual usage patterns</li>
-<li><strong>Performance Tuning</strong>: Continuous optimization of resource allocation</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">kind: HorizontalPodAutoscaler metadata: name: canvas-web-hpa spec: scaleTargetRef: apiVersion: apps/v1 kind: Deployment name: canvas-web minReplicas: 3 maxReplicas: 10 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 70 - type: Resource resource: name: memory target: type: Utilization</p>
 
-<h3>Monitoring and Observability</h3>
+averageUtilization: 80</code></pre>
 
-<p>#### Prometheus Integration
-<li><strong>Metrics Collection</strong>: Comprehensive application and infrastructure metrics</li>
-<li><strong>Custom Dashboards</strong>: Grafana dashboards for Canvas-specific monitoring</li>
-<li><strong>Alerting</strong>: Proactive alerting for system issues</li></p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Vertical Pod Autoscaler (VPA) <li class="mb-2"><strong>Resource Optimization</strong>: Automatic CPU and memory adjustment</li> <li class="mb-2"><strong>Cost Efficiency</strong>: Right-sizing based on actual usage patterns</li> <li class="mb-2"><strong>Performance Tuning</strong>: Continuous optimization of resource allocation</li></p>
 
-<p>#### Logging Strategy
-<li><strong>Centralized Logging</strong>: ELK stack for log aggregation and analysis</li>
-<li><strong>Structured Logging</strong>: JSON-formatted logs for better parsing</li>
-<li><strong>Log Retention</strong>: Automated log rotation and archival</li></p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Monitoring and Observability</h3>
 
-<h2>Security Implementation</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Prometheus Integration <li class="mb-2"><strong>Metrics Collection</strong>: Comprehensive application and infrastructure metrics</li> <li class="mb-2"><strong>Custom Dashboards</strong>: Grafana dashboards for Canvas-specific monitoring</li> <li class="mb-2"><strong>Alerting</strong>: Proactive alerting for system issues</li></p>
 
-<h3>Network Security</h3>
-<li><strong>Network Policies</strong>: Micro-segmentation for pod-to-pod communication</li>
-<li><strong>Service Mesh</strong>: Istio integration for advanced traffic management</li>
-<li><strong>TLS Encryption</strong>: End-to-end encryption for all communications</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">#### Logging Strategy <li class="mb-2"><strong>Centralized Logging</strong>: ELK stack for log aggregation and analysis</li> <li class="mb-2"><strong>Structured Logging</strong>: JSON-formatted logs for better parsing</li> <li class="mb-2"><strong>Log Retention</strong>: Automated log rotation and archival</li></p>
 
-<h3>Access Control</h3>
-<li><strong>RBAC</strong>: Role-based access control for Kubernetes resources</li>
-<li><strong>Service Accounts</strong>: Dedicated service accounts for each component</li>
-<li><strong>Secret Management</strong>: Kubernetes secrets for sensitive configuration</li>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Security Implementation</h2>
 
-<h3>Compliance</h3>
-<li><strong>FERPA Compliance</strong>: Educational data privacy protection</li>
-<li><strong>Security Scanning</strong>: Automated vulnerability scanning</li>
-<li><strong>Audit Logging</strong>: Comprehensive audit trails for compliance</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Network Security</h3>
 
-<h2>Performance Optimization</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Network Policies</strong>: Micro-segmentation for pod-to-pod communication</li> <li class="mb-2"><strong>Service Mesh</strong>: Istio integration for advanced traffic management</li> <li class="mb-2"><strong>TLS Encryption</strong>: End-to-end encryption for all communications</li></p>
 
-<h3>Database Optimization</h3>
-<li><strong>Connection Pooling</strong>: Optimized database connection management</li>
-<li><strong>Query Optimization</strong>: Performance tuning for educational workloads</li>
-<li><strong>Indexing Strategy</strong>: Strategic database indexing for common queries</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Access Control</h3>
 
-<h3>Caching Strategy</h3>
-<li><strong>Multi-layer Caching</strong>: Application, database, and CDN caching</li>
-<li><strong>Cache Invalidation</strong>: Intelligent cache invalidation strategies</li>
-<li><strong>Session Management</strong>: Optimized session handling and storage</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>RBAC</strong>: Role-based access control for Kubernetes resources</li> <li class="mb-2"><strong>Service Accounts</strong>: Dedicated service accounts for each component</li> <li class="mb-2"><strong>Secret Management</strong>: Kubernetes secrets for sensitive configuration</li></p>
 
-<h3>Resource Management</h3>
-<li><strong>CPU Optimization</strong>: Right-sizing based on usage patterns</li>
-<li><strong>Memory Management</strong>: Efficient memory allocation and garbage collection</li>
-<li><strong>Storage Optimization</strong>: Optimized storage classes and volume management</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Compliance</h3>
 
-<h2>Deployment Strategy</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>FERPA Compliance</strong>: Educational data privacy protection</li> <li class="mb-2"><strong>Security Scanning</strong>: Automated vulnerability scanning</li> <li class="mb-2"><strong>Audit Logging</strong>: Comprehensive audit trails for compliance</li></p>
 
-<h3>Blue-Green Deployment</h3>
-Implemented zero-downtime deployment strategy:
-<li><strong>Parallel Environments</strong>: Blue and green environment switching</li>
-<li><strong>Traffic Routing</strong>: Seamless traffic migration between environments</li>
-<li><strong>Rollback Capability</strong>: Quick rollback in case of issues</li>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Performance Optimization</h2>
 
-<h3>Canary Deployment</h3>
-<li><strong>Gradual Rollout</strong>: Phased deployment to minimize risk</li>
-<li><strong>Traffic Splitting</strong>: Percentage-based traffic distribution</li>
-<li><strong>Monitoring</strong>: Real-time monitoring during deployment</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Database Optimization</h3>
 
-<h3>CI/CD Pipeline</h3>
-<li><strong>Automated Testing</strong>: Comprehensive test suite execution</li>
-<li><strong>Image Building</strong>: Automated Docker image creation</li>
-<li><strong>Deployment Automation</strong>: GitOps-based deployment process</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Connection Pooling</strong>: Optimized database connection management</li> <li class="mb-2"><strong>Query Optimization</strong>: Performance tuning for educational workloads</li> <li class="mb-2"><strong>Indexing Strategy</strong>: Strategic database indexing for common queries</li></p>
 
-<h2>Impact & Results</h2>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Caching Strategy</h3>
 
-<h3>Performance Improvements</h3>
-<li><strong>Response Time</strong>: 60% reduction in average response time</li>
-<li><strong>Throughput</strong>: 300% increase in concurrent user capacity</li>
-<li><strong>Resource Utilization</strong>: 40% improvement in resource efficiency</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Multi-layer Caching</strong>: Application, database, and CDN caching</li> <li class="mb-2"><strong>Cache Invalidation</strong>: Intelligent cache invalidation strategies</li> <li class="mb-2"><strong>Session Management</strong>: Optimized session handling and storage</li></p>
 
-<h3>Reliability Enhancements</h3>
-<li><strong>Uptime Achievement</strong>: 99.9% system availability</li>
-<li><strong>Fault Tolerance</strong>: Automatic failover and recovery</li>
-<li><strong>Disaster Recovery</strong>: Comprehensive backup and recovery procedures</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Resource Management</h3>
 
-<h3>Operational Benefits</h3>
-<li><strong>Deployment Speed</strong>: 80% reduction in deployment time</li>
-<li><strong>Maintenance Overhead</strong>: 50% reduction in manual maintenance</li>
-<li><strong>Cost Optimization</strong>: 30% reduction in infrastructure costs</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>CPU Optimization</strong>: Right-sizing based on usage patterns</li> <li class="mb-2"><strong>Memory Management</strong>: Efficient memory allocation and garbage collection</li> <li class="mb-2"><strong>Storage Optimization</strong>: Optimized storage classes and volume management</li></p>
 
-<h2>Technical Challenges & Solutions</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Deployment Strategy</h2>
 
-<h3>Challenge 1: Database Scaling</h3>
-<strong>Problem</strong>: PostgreSQL performance bottlenecks under high load.
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Blue-Green Deployment</h3>
 
-<p><strong>Solution</strong>: Implemented read replicas, connection pooling, and query optimization strategies.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">Implemented zero-downtime deployment strategy: <li class="mb-2"><strong>Parallel Environments</strong>: Blue and green environment switching</li> <li class="mb-2"><strong>Traffic Routing</strong>: Seamless traffic migration between environments</li> <li class="mb-2"><strong>Rollback Capability</strong>: Quick rollback in case of issues</li></p>
 
-<h3>Challenge 2: Session Management</h3>
-<strong>Problem</strong>: Maintaining user sessions across multiple pod instances.
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Canary Deployment</h3>
 
-<p><strong>Solution</strong>: Centralized session storage using Redis with sticky session handling.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Gradual Rollout</strong>: Phased deployment to minimize risk</li> <li class="mb-2"><strong>Traffic Splitting</strong>: Percentage-based traffic distribution</li> <li class="mb-2"><strong>Monitoring</strong>: Real-time monitoring during deployment</li></p>
 
-<h3>Challenge 3: Resource Optimization</h3>
-<strong>Problem</strong>: Balancing performance with resource costs.
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">CI/CD Pipeline</h3>
 
-<p><strong>Solution</strong>: Implemented VPA and HPA with intelligent scaling policies.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Automated Testing</strong>: Comprehensive test suite execution</li> <li class="mb-2"><strong>Image Building</strong>: Automated Docker image creation</li> <li class="mb-2"><strong>Deployment Automation</strong>: GitOps-based deployment process</li></p>
 
-<h2>Monitoring and Alerting</h2>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Impact & Results</h2>
 
-<h3>Key Metrics</h3>
-<li><strong>Application Performance</strong>: Response times, error rates, throughput</li>
-<li><strong>Infrastructure Health</strong>: CPU, memory, disk, network utilization</li>
-<li><strong>Database Performance</strong>: Query performance, connection counts, replication lag</li>
-<li><strong>User Experience</strong>: Page load times, user satisfaction scores</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Performance Improvements</h3>
 
-<h3>Alerting Rules</h3>
-<li><strong>Critical Alerts</strong>: System downtime, database failures, security breaches</li>
-<li><strong>Warning Alerts</strong>: High resource utilization, performance degradation</li>
-<li><strong>Info Alerts</strong>: Deployment completions, scaling events</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Response Time</strong>: 60% reduction in average response time</li> <li class="mb-2"><strong>Throughput</strong>: 300% increase in concurrent user capacity</li> <li class="mb-2"><strong>Resource Utilization</strong>: 40% improvement in resource efficiency</li></p>
 
-<h2>Future Enhancements</h2>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Reliability Enhancements</h3>
 
-<h3>Planned Improvements</h3>
-<li><strong>Service Mesh</strong>: Advanced traffic management with Istio</li>
-<li><strong>Multi-cluster</strong>: Cross-cluster deployment for disaster recovery</li>
-<li><strong>AI Integration</strong>: Intelligent resource optimization</li>
-<li><strong>Edge Computing</strong>: CDN integration for global performance</li>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Uptime Achievement</strong>: 99.9% system availability</li> <li class="mb-2"><strong>Fault Tolerance</strong>: Automatic failover and recovery</li> <li class="mb-2"><strong>Disaster Recovery</strong>: Comprehensive backup and recovery procedures</li></p>
 
-<h3>Research Opportunities</h3>
-<li><strong>Performance Modeling</strong>: Predictive scaling based on usage patterns</li>
-<li><strong>Cost Optimization</strong>: Advanced cost analysis and optimization</li>
-<li><strong>Security Enhancement</strong>: Zero-trust security model implementation</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Operational Benefits</h3>
 
-<h2>Lessons Learned</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Deployment Speed</strong>: 80% reduction in deployment time</li> <li class="mb-2"><strong>Maintenance Overhead</strong>: 50% reduction in manual maintenance</li> <li class="mb-2"><strong>Cost Optimization</strong>: 30% reduction in infrastructure costs</li></p>
 
-<h3>Technical Insights</h3>
-<li><strong>Container orchestration</strong> requires careful resource planning</li>
-<li><strong>Database optimization</strong> is critical for educational workloads</li>
-<li><strong>Monitoring</strong> becomes essential for complex distributed systems</li>
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Technical Challenges & Solutions</h2>
 
-<h3>Project Management</h3>
-<li><strong>Stakeholder communication</strong> is crucial for infrastructure projects</li>
-<li><strong>Documentation</strong> is essential for system maintenance</li>
-<li><strong>Testing</strong> must be comprehensive for production deployments</li>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 1: Database Scaling</h3>
 
-<h2>Conclusion</h2>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: PostgreSQL performance bottlenecks under high load.</p>
 
-<p>The Canvas LMS Kubernetes Deployment project successfully demonstrates how modern containerization and orchestration technologies can transform educational technology infrastructure. The implementation of scalable multi-container architecture, comprehensive monitoring, and robust deployment strategies provides a solid foundation for enterprise-grade educational platforms.</p>
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Implemented read replicas, connection pooling, and query optimization strategies.</p>
 
-<p>The project's success in achieving 99.9% uptime with significant performance improvements showcases the effectiveness of cloud-native approaches in educational technology. The implementation serves as a model for similar projects and provides valuable insights for future infrastructure modernization efforts.</p>
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 2: Session Management</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Maintaining user sessions across multiple pod instances.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Centralized session storage using Redis with sticky session handling.</p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Challenge 3: Resource Optimization</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Problem</strong>: Balancing performance with resource costs.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><strong>Solution</strong>: Implemented VPA and HPA with intelligent scaling policies.</p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Monitoring and Alerting</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Key Metrics</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Application Performance</strong>: Response times, error rates, throughput</li> <li class="mb-2"><strong>Infrastructure Health</strong>: CPU, memory, disk, network utilization</li> <li class="mb-2"><strong>Database Performance</strong>: Query performance, connection counts, replication lag</li> <li class="mb-2"><strong>User Experience</strong>: Page load times, user satisfaction scores</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Alerting Rules</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Critical Alerts</strong>: System downtime, database failures, security breaches</li> <li class="mb-2"><strong>Warning Alerts</strong>: High resource utilization, performance degradation</li> <li class="mb-2"><strong>Info Alerts</strong>: Deployment completions, scaling events</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Future Enhancements</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Planned Improvements</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Service Mesh</strong>: Advanced traffic management with Istio</li> <li class="mb-2"><strong>Multi-cluster</strong>: Cross-cluster deployment for disaster recovery</li> <li class="mb-2"><strong>AI Integration</strong>: Intelligent resource optimization</li> <li class="mb-2"><strong>Edge Computing</strong>: CDN integration for global performance</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Research Opportunities</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Performance Modeling</strong>: Predictive scaling based on usage patterns</li> <li class="mb-2"><strong>Cost Optimization</strong>: Advanced cost analysis and optimization</li> <li class="mb-2"><strong>Security Enhancement</strong>: Zero-trust security model implementation</li></p>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Lessons Learned</h2>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Technical Insights</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Container orchestration</strong> requires careful resource planning</li> <li class="mb-2"><strong>Database optimization</strong> is critical for educational workloads</li> <li class="mb-2"><strong>Monitoring</strong> becomes essential for complex distributed systems</li></p>
+
+<h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900 dark:text-white">Project Management</h3>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed"><li class="mb-2"><strong>Stakeholder communication</strong> is crucial for infrastructure projects</li> <li class="mb-2"><strong>Documentation</strong> is essential for system maintenance</li></p>
+
+<li class="mb-2"><strong>Testing</strong> must be comprehensive for production deployments</li></ul>
+
+<h2 class="text-2xl font-bold mt-10 mb-6 text-gray-900 dark:text-white">Conclusion</h2>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The Canvas LMS Kubernetes Deployment project successfully demonstrates how modern containerization and orchestration technologies can transform educational technology infrastructure. The implementation of scalable multi-container architecture, comprehensive monitoring, and robust deployment strategies provides a solid foundation for enterprise-grade educational platforms.</p>
+
+<p class="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">The project's success in achieving 99.9% uptime with significant performance improvements showcases the effectiveness of cloud-native approaches in educational technology. The implementation serves as a model for similar projects and provides valuable insights for future infrastructure modernization efforts.</p>
             
             <!-- Project Tags -->
             <div class="project-tags">

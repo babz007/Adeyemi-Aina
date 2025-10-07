@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ page.title }} - Adeyemi Aina</title>
+    <title>Patterns over Panic: Dynamic Programming Demystified - Adeyemi Aina</title>
 
     <!-- Mobile Meta Tags -->
     <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,6 @@
     <link href="../css/prism-okaidia.min.css" rel="stylesheet">
     <link href="../css/prism-toolbar.min.css" rel="stylesheet">
     <link href="../css/main.min.css" rel="stylesheet">
-    <link href="../css/project.css" rel="stylesheet">
     <link href="../css/page-transitions.css" rel="stylesheet">
 
     <!-- Theme Detection Script -->
@@ -43,13 +42,13 @@
     </script>
 
     <!-- SEO Meta Tags -->
-    <meta name="description" content="{{ page.excerpt }}">
+    <meta name="description" content="A pattern-first guide to dynamic programming—how to move from brute force to optimal solutions by spotting subproblems, choosing memoization vs. tabulation, and avoiding common pitfalls.">
     <link rel="icon" href="../images/DARK-GREY_FINAL--transparent--.png" type="image/png">
-    <link rel="canonical" href="/projects/{{ page.slug }}/">
+    <link rel="canonical" href="/articles/top-5-ai-tips-for-iphone-users/">
 
-    <!-- Project-specific CSS -->
+    <!-- Article-specific CSS -->
     <style>
-        .project-meta {
+        .article-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -58,24 +57,24 @@
             border-bottom: 1px solid #e2e8f0;
         }
         
-        .project-date {
+        .article-date {
             color: #64748b;
             font-size: .875rem;
         }
         
-        .project-duration {
+        .article-reading-time {
             color: #64748b;
             font-size: .875rem;
         }
         
-        .project-content img {
+        .article-content img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
             margin: 1.5rem 0;
         }
         
-        .project-content .highlight {
+        .article-content .highlight {
             background: #1e293b;
             border-radius: 8px;
             padding: 1rem;
@@ -83,7 +82,7 @@
             overflow-x: auto;
         }
         
-        .project-tags {
+        .article-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
@@ -92,7 +91,7 @@
             border-top: 1px solid #e2e8f0;
         }
         
-        .project-tag {
+        .article-tag {
             background: #f1f5f9;
             color: #475569;
             padding: 0.25rem 0.75rem;
@@ -101,16 +100,16 @@
             text-decoration: none;
         }
         
-        .dark .project-tag {
+        .dark .article-tag {
             background: #334155;
             color: #cbd5e1;
         }
 
-        .dark .project-meta {
+        .dark .article-meta {
             border-bottom-color: #374151;
         }
         
-        .dark .project-tags {
+        .dark .article-tags {
             border-top-color: #374151;
         }
         
@@ -150,70 +149,21 @@
             overflow-x: hidden;
         }
         
-        .project-content {
+        .article-content {
             word-wrap: break-word;
             overflow-wrap: break-word;
             hyphens: auto;
         }
         
-        .project-content pre {
+        .article-content pre {
             overflow-x: auto;
             max-width: 100%;
             white-space: pre;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background-color: #f8f9fa;
-            border-radius: 0.5rem;
         }
         
-        .project-content code {
+        .article-content code {
             word-break: break-all;
             overflow-wrap: break-word;
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 0.2em 0.4em;
-            border-radius: 0.25rem;
-            font-size: 0.875em;
-        }
-        
-        /* Ensure proper spacing for headings and content */
-        .project-content h1,
-        .project-content h2,
-        .project-content h3,
-        .project-content h4,
-        .project-content h5,
-        .project-content h6 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            line-height: 1.25;
-        }
-        
-        .project-content h1:first-child,
-        .project-content h2:first-child,
-        .project-content h3:first-child {
-            margin-top: 0;
-        }
-        
-        .project-content p {
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-        
-        .project-content ul,
-        .project-content ol {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-        }
-        
-        .project-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .dark .project-content pre {
-            background-color: #1f2937;
-        }
-        
-        .dark .project-content code {
-            background-color: rgba(255, 255, 255, 0.1);
         }
         
         .sidebar {
@@ -244,7 +194,7 @@
                 padding-right: 1rem;
             }
             
-            .project-content {
+            .article-content {
                 font-size: 16px;
                 line-height: 1.6;
             }
@@ -265,7 +215,7 @@
                 line-height: 1.4 !important;
             }
             
-            .project-meta {
+            .article-meta {
                 padding: 1rem !important;
                 margin-bottom: 1rem !important;
             }
@@ -280,91 +230,6 @@
             h1 {
                 font-size: 1.75rem !important;
             }
-        }
-
-        /* Project-specific styles */
-        .project-hero {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(251, 146, 60, 0.05));
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .project-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -15%;
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, rgba(251, 146, 60, 0.1), transparent);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .project-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(59, 130, 246, 0.1);
-            border-radius: 16px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #3b82f6;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: #64748b;
-            font-size: 0.875rem;
-        }
-
-        .dark .stat-card {
-            background: rgba(15, 14, 23, 0.8);
-            border-color: rgba(59, 130, 246, 0.2);
-        }
-
-        .dark .stat-number {
-            color: #60a5fa;
-        }
-
-        .dark .stat-label {
-            color: #94a3b8;
         }
     </style>
 </head>
@@ -396,8 +261,7 @@
     <div class="backdrop"></div>
 
     <!-- Main Sidebar (this will be loaded into sidebar-container) -->
-    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">
-        <div class="relative flex">
+    <div class="sidebar h-screen lg:p-2 inline-flex fixed lg:sticky top-0 bg-white dark:bg-gray-13 -translate-x-full lg:translate-x-0 z-30 duration-300">        <div class="relative flex">
             <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
             <div class="absolute inset-0 bg-gray-14 opacity-0 dark:opacity-100 duration-300"></div>
             <div class="inner relative flex flex-col border-r lg:border border-orange-2 dark:border-gray-10 w-full w-80 lg:rounded pt-0 lg:pt-6 px-6 pb-6 overflow-auto hide-scrollbar duration-300">
@@ -503,17 +367,6 @@
                         </div>
                     </div>
 
-                    <div class="kg-card kg-product-card">
-                        <div class="kg-product-card-container">
-                            <img src="../images/bulb.png" width="32" height="32" class="kg-product-card-image" loading="lazy">
-                        <div class="kg-product-card-title-container">
-                                <h4 class="kg-product-card-title"><span style="white-space: pre-wrap;">Substack</span></h4>
-                            </div>
-                            <div class="kg-product-card-description"><p><span style="white-space: pre-wrap;">AI & Tech Insights</span></p></div>
-                            <a href="https://substack.com/@ainababs0" class="kg-product-card-button kg-product-card-btn-accent" target="_blank" rel="noopener noreferrer"></a>
-                        </div>
-                    </div>
-
                     
                 </nav>
                 
@@ -529,109 +382,384 @@
 
     <!-- Main Content Area -->
     <div class="flex-1 px-6 py-24 lg:py-20 min-h-screen">
-        <!-- Project Hero Section -->
-        <div class="project-hero">
-            <div class="max-w-4xl mx-auto">
-                <!-- Project Category Badge -->
-                {% if page.category %}
-                <div class="inline-flex items-center mb-6">
-                    <span class="px-4 py-2 bg-gradient-to-r from-orange-100 to-orange-200 dark:from-gray-700 dark:to-gray-600 text-orange-800 dark:text-orange-200 rounded-full text-sm font-semibold shadow-sm">
-                        {{ page.category }}
-                    </span>
-                </div>
-                {% endif %}
-                
-                <!-- Main Title -->
-                <h1 class="text-5xl lg:text-6xl font-bold mb-8 text-gray-900 dark:text-white leading-tight">
-                    <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-orange-600 dark:from-white dark:via-gray-200 dark:to-orange-400 bg-clip-text text-transparent">
-                        {{ page.title }}
-                    </span>
-                </h1>
-                
-                <!-- Excerpt -->
-                {% if page.excerpt %}
-                <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed mb-10 max-w-4xl">
-                    {{ page.excerpt }}
-                </p>
-                {% endif %}
-                
-                <!-- Project Meta Information -->
-                <div class="flex flex-wrap items-center gap-8 text-gray-500 dark:text-gray-400">
-                    <!-- Project Date -->
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
-                        <span class="font-medium">{{ page.date | date: "%B %d, %Y" }}</span>
-                    </div>
-                    
-                    <!-- Project Duration -->
-                    {% if page.duration %}
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span class="font-medium">{{ page.duration }}</span>
-                    </div>
-                    {% endif %}
-                    
-                    <!-- Project Status -->
-                    {% if page.status %}
-                    <div class="flex items-center space-x-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span class="font-medium">{{ page.status }}</span>
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <!-- Project Stats -->
-        {% if page.stats %}
-        <div class="project-stats">
-            {% for stat in page.stats %}
-            <div class="stat-card">
-                <div class="stat-number">{{ stat.number }}</div>
-                <div class="stat-label">{{ stat.label }}</div>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        <!-- Project Content -->
-        <article class="prose prose-lg max-w-4xl mx-auto project-content">
-            {{ content }}
+        <!-- Article Header -->
+        <header class="max-w-4xl mx-auto mb-8">
+            <h1 class="text-5xl lg:text-6xl font-bold mb-6 text-gray-1 dark:text-white leading-tight tracking-tight">
+                <span class="bg-gradient-to-r from-gray-900 transition-colors duration-500 hover:from-blue-600 hover:via-purple-600 to-orange-500 dark:from-white dark:via-blue-400 dark:to-orange-400 bg-clip-text text-transparent">
+                    Patterns over Panic: Dynamic Programming Demystified
+                </span>
+            </h1>
             
-            <!-- Project Tags -->
-            {% if page.tags.size > 0 %}
-            <div class="project-tags">
-                {% for tag in page.tags %}
-                <span class="project-tag">#{{ tag }}</span>
-                {% endfor %}
+            <div class="article-meta">
+                <div class="article-date">September 8, 2025</div>
+                <div class="article-reading-time">8 min read</div>
             </div>
-            {% endif %}
+        </header>
+
+        <!-- Article Content -->
+        <article class="prose prose-lg max-w-4xl mx-auto article-content">
+
+            <p><strong>Mastering Dynamic Programming: The Path from Brute Force to Optimal Solutions</strong>
+=================================================================================</p>
+
+<p>Dynamic Programming (DP) is an essential technique for solving complex optimization and counting problems by breaking them down into simpler, overlapping subproblems. Instead of solving the same subproblem repeatedly, DP <strong>stores</strong> intermediate results and <strong>reuses</strong> them to build the final solution efficiently.</p>
+
+<p><em> </em> <em> </em> *</p>
+
+<p><strong>💡 The Core Philosophy: Brute Force First</strong>
+---------------------------------------------</p>
+
+<p>A crucial, often overlooked, phase in mastering DP is <strong>starting with the brute-force recursive solution</strong>.</p>
+
+<p>The brute-force recursive function establishes the relationship between the current problem and its subproblems. This is the <strong>meta-logic</strong>---the pure math and logic of the solution---independent of how you optimize it.</p>
+
+<p><li>  <strong>Define the State:</strong> What information do you need to compute the answer for a smaller case?</li></p>
+
+<p><em>Example:</em> max_money(i) in House Robber.</p>
+
+<p><li>  <strong>Define the Base Cases:</strong> What is the answer for the smallest possible inputs?</li></p>
+
+<p><em>Example:</em> dp[0] = 0.</p>
+
+<p><li>  <strong>Define the Recurrence Relation:</strong> How does the current state depend on previous states?</li></p>
+
+<p><em>Example:</em> dp[i] = dp[i-1] + dp[i-2].</p>
+
+<p>Once the brute-force recursion is written, the transition to DP is a <strong>mechanical optimization</strong>:</p>
+
+<p><li>  <strong>Recursion + Memoization (Top-Down DP):</strong> Add a cache (e.g., a dictionary or array) to the recursive solution to store results.</li></p>
+
+<p><li>  <strong>Tabulation (Bottom-Up DP):</strong> Convert recursive calls into an iterative loop that fills the DP array from base cases up to the final solution.</li></p>
+
+<h3><strong>Example: House Robber</strong></h3>
+
+<p>|</p>
+
+<p><strong>Phase</strong></p>
+
+<p>|</p>
+
+<p><strong>Method</strong></p>
+
+<p>|</p>
+
+<p><strong>Code Snippet (Logic)</strong></p>
+
+<p>|
+| --- | --- | --- |
+|</p>
+
+<p>Brute Force</p>
+
+<p>|</p>
+
+<p>Pure Recursion</p>
+
+<p>|</p>
+
+<p>max(rob(i-1), nums[i] + rob(i-2))</p>
+
+<p>|
+|</p>
+
+<p>Optimization</p>
+
+<p>|</p>
+
+<p>Tabulation (DP)</p>
+
+<p>|</p>
+
+<p>dp[i] = max(dp[i-1], nums[i] + dp[i-2])</p>
+
+<p>|</p>
+
+<p><em> </em> <em> </em> *</p>
+
+<p><strong>🌍 Real-World Applications of Dynamic Programming</strong>
+-----------------------------------------------------</p>
+
+<p>DP isn't just an interview topic; it's fundamental to various real-world systems:</p>
+
+<p><li>  <strong>Financial Modeling (Optimization):</strong> Portfolio allocation to minimize risk and maximize returns (akin to <strong>Knapsack</strong>).</li></p>
+
+<p><li>  <strong>Bioinformatics (Sequence Alignment):</strong> <strong>Smith--Waterman</strong> and <strong>Needleman--Wunsch</strong> (variations of <strong>Edit Distance</strong>) for DNA/protein comparison.</li></p>
+
+<p><li>  <strong>Pathfinding (Shortest Path):</strong> <strong>Floyd--Warshall</strong> for all-pairs shortest paths uses DP principles.</li></p>
+
+<p><li>  <strong>Network Routing:</strong> Efficient routing of packets across a network.</li></p>
+
+<p><li>  <strong>Speech Recognition:</strong> Decoding with HMMs (Viterbi), choosing the most probable hidden state sequence.</li></p>
+
+<p><em> </em> <em> </em> *</p>
+
+<p><strong>🚀 The Three Phases to Mastering Dynamic Programming</strong>
+--------------------------------------------------------</p>
+
+<p>Our approach breaks the learning curve into manageable phases based on complexity and technique.</p>
+
+<h3><strong>Phase 1: Foundational 1D DP</strong></h3>
+
+<p>Problems with a single state variable, often representing linear paths or sequences.</p>
+
+<p>|</p>
+
+<p><strong>Problem</strong></p>
+
+<p>|</p>
+
+<p><strong>Recurrence (Sub-solution)</strong></p>
+
+<p>|</p>
+
+<p><strong>Structure</strong></p>
+
+<p>|
+| --- | --- | --- |
+|</p>
+
+<p>Climbing Stairs</p>
+
+<p>|</p>
+
+<p>dp[i] = dp[i-1] + dp[i-2]</p>
+
+<p>|</p>
+
+<p>Summation of two previous states</p>
+
+<p>|
+|</p>
+
+<p>House Robber</p>
+
+<p>|</p>
+
+<p>dp[i] = max(dp[i-1], nums[i] + dp[i-2])</p>
+
+<p>|</p>
+
+<p>Optimization between two choices</p>
+
+<p>|
+|</p>
+
+<p>Coin Change (Min Coins)</p>
+
+<p>|</p>
+
+<p>dp[i] = min(dp[i], 1 + dp[i - coin])</p>
+
+<p>|</p>
+
+<p>Min over all coin choices</p>
+
+<p>|</p>
+
+<h3><strong>Phase 2: Foundational 2D DP (Two Sequences)</strong></h3>
+
+<p>Comparing or transforming two input sequences via a 2D DP table.</p>
+
+<p>|</p>
+
+<p><strong>Problem</strong></p>
+
+<p>|</p>
+
+<p><strong>Recurrence (Sub-solution)</strong></p>
+
+<p>|</p>
+
+<p><strong>Structure</strong></p>
+
+<p>|
+| --- | --- | --- |
+|</p>
+
+<p>Edit Distance</p>
+
+<p>|</p>
+
+<p>dp[i][j] = min(replace, insert, delete)</p>
+
+<p>|</p>
+
+<p>Min of three adjacent operations</p>
+
+<p>|
+|</p>
+
+<p>Longest Common Subsequence</p>
+
+<p>|</p>
+
+<p>dp[i][j] = (match ? 1 + dp[i-1][j-1] : max(dp[i-1][j], dp[i][j-1]))</p>
+
+<p>|</p>
+
+<p>Conditional on character match</p>
+
+<p>|
+|</p>
+
+<p>Unique Paths</p>
+
+<p>|</p>
+
+<p>dp[i][j] = dp[i-1][j] + dp[i][j-1]</p>
+
+<p>|</p>
+
+<p>Sum from top and left</p>
+
+<p>|</p>
+
+<h3><strong>Phase 3: Advanced Techniques (Interval, State Compression, etc.)</strong></h3>
+
+<p>More complex state definitions; often intricate loops or optimizations.</p>
+
+<p>|</p>
+
+<p><strong>Problem</strong></p>
+
+<p>|</p>
+
+<p><strong>Core Pattern</strong></p>
+
+<p>|</p>
+
+<p><strong>Key Technique</strong></p>
+
+<p>|
+| --- | --- | --- |
+|</p>
+
+<p>Maximum Subarray</p>
+
+<p>|</p>
+
+<p>Max/Min</p>
+
+<p>|</p>
+
+<p><strong>Kadane's Algorithm</strong> (optimized 1D DP)</p>
+
+<p>|
+|</p>
+
+<p>Word Break</p>
+
+<p>|</p>
+
+<p>Existence</p>
+
+<p>|</p>
+
+<p>dp[i] depends on dp[j] for j < i + dict</p>
+
+<p>|
+|</p>
+
+<p>Longest Palindromic Substring</p>
+
+<p>|</p>
+
+<p>Structure/Interval</p>
+
+<p>|</p>
+
+<p>dp[i][j] depends on dp[i+1][j-1]</p>
+
+<p>|</p>
+
+<p><em> </em> <em> </em> *</p>
+
+<p><strong>📝 Example Breakdown: Maximum Subarray (Kadane's Algorithm)</strong>
+---------------------------------------------------------------</p>
+
+<p>The Maximum Subarray problem shows how a simple DP idea reduces an <strong>O(n²)</strong> brute force to <strong>O(n)</strong>.</p>
+
+<p><strong>Sub-routine structure</strong></p>
+
+<p><li>  <strong>State:</strong> current_sum(i) = largest contiguous sum <strong>ending</strong> at index i.</li></p>
+
+<p><li>  <strong>Recurrence:</strong> current_sum(i) = max(nums[i], nums[i] + current_sum(i-1))</li></p>
+
+<p><li>  <strong>Decision:</strong> At index i, either start a new subarray (nums[i]) or extend the previous (nums[i] + current_sum(i-1)).</li></p>
+
+<h3><strong>Brute-Force Solution (O(n²))</strong></h3>
+
+<pre><code class="language-text">def maxSubArray_brute_force(nums):
+    max_sum = float('-inf')
+    # Check all possible start points (i)
+    for i in range(len(nums)):
+        current_sum = 0
+        # Check all possible end points (j)
+        for j in range(i, len(nums)):
+            current_sum += nums[j]
+            max_sum = max(max_sum, current_sum)
+    return max_sum</code></pre>
+
+<h3><strong>Optimized Solution (Kadane's Algorithm --- O(n))</strong></h3>
+
+<pre><code class="language-text">def maxSubArray_kadane(nums):
+    # max_so_far: overall maximum found
+    # current_sum: max sum of a subarray ending at current position
+    current_sum = nums[0]
+    max_so_far = nums[0]
+
+<p>for i in range(1, len(nums)):
+        # DP step: start new or extend previous subarray
+        current_sum = max(nums[i], current_sum + nums[i])
+        # Track global best
+        max_so_far = max(max_so_far, current_sum)</p>
+
+<p>return max_so_far</code></pre></p>
+
+<p><em> </em> <em> </em> *</p>
+
+<p><strong>🔑 Key Takeaways for DP Interviews</strong>
+--------------------------------------</p>
+
+<p>The secret to success in DP isn't memorizing solutions; it's <strong>state management</strong>.</p>
+
+<p>1.  <strong>Spot the Two DP Signals:</strong></p>
+
+<p>Is it an <strong>optimization</strong> problem (max/min/fewest steps)?</p>
+
+<p>Does it have <strong>optimal substructure</strong> and <strong>overlapping subproblems</strong>?</p>
+
+<p>2.  <strong>Nail the State Definition:</strong></p>
+
+<p>If you can state dp[i] or dp[i][j] in a clear sentence (e.g., "the length of the LIS ending at index i"), the recurrence often follows.</p>
+
+<p>3.  <strong>Master Space Optimization:</strong></p>
+
+<p>Many 2D DPs (e.g., Edit Distance) reduce to <strong>O(n)</strong> space; many 1D DPs (e.g., House Robber) reduce to <strong>O(1)</strong> by tracking just a few previous states.</p>
+
+<p><em> </em> <em> </em> *</p>
+            <div class="article-tags">
+                <span class="article-tag">Algorithms</span>
+                <span class="article-tag">Dynamic Programming</span>
+                <span class="article-tag">Computer Science</span>
+                <span class="article-tag">Tutorial</span>
+            </div>
         </article>
 
         <!-- Navigation -->
         <nav class="max-w-4xl mx-auto mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
             <div class="flex justify-between items-center">
-                <a href="../project.html" class="btn btn-gray-border">
-                    ← All Projects
+                <a href="#" class="btn btn-gray-border">
+                    ← ChatGPT-5 Prompting Best Practices
                 </a>
                 
-                {% if page.github_url %}
-                <a href="{{ page.github_url }}" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
-                    View on GitHub
+                <a href="../articles.html" class="btn btn-gray-border">
+                    All Articles
                 </a>
-                {% endif %}
                 
-                {% if page.live_url %}
-                <a href="{{ page.live_url }}" class="btn btn-gray-border" target="_blank" rel="noopener noreferrer">
-                    Live Demo →
+                <a href="#" class="btn btn-gray-border">
+                    3 AI Habits That Save Me 20+ Hours a Week →
                 </a>
-                {% endif %}
             </div>
         </nav>
     </div>
