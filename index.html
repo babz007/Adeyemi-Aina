@@ -127,6 +127,240 @@
         text-decoration: none;
         font-weight: normal;
     }
+
+    /* Enhanced Index Page Styles - Mastra.ai Inspired */
+    .hero-image-container {
+        position: relative;
+        display: inline-block;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-bottom: 2rem;
+    }
+
+    .hero-image-container:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-image-container::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6, #f59e0b, #ef4444);
+        border-radius: 22px;
+        z-index: -1;
+        animation: gradient-rotate 3s linear infinite;
+    }
+
+    @keyframes gradient-rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .hero-image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 20px;
+        transition: transform 0.4s ease;
+    }
+
+    .hero-image-container:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Gradient Text Styles */
+    .gradient-text {
+        background: linear-gradient(135deg, #1e293b, #3b82f6, #8b5cf6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 300% 300%;
+        animation: gradient-shift 4s ease infinite;
+    }
+
+    .dark .gradient-text {
+        background: linear-gradient(135deg, #f1f5f9, #60a5fa, #a78bfa);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    .accent-gradient {
+        background: linear-gradient(135deg, #f59e0b, #ef4444);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+    }
+
+    .blue-gradient {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+    }
+
+    .purple-gradient {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+    }
+
+    /* Enhanced Button Styles */
+    .btn-enhanced {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 12px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-enhanced::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .btn-enhanced:hover::before {
+        left: 100%;
+    }
+
+    .btn-enhanced:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Card Enhancements */
+    .kg-product-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    .kg-product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Typography Enhancements */
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        color: #64748b;
+    }
+
+    .dark p {
+        color: #94a3b8;
+    }
+
+    /* Animation Classes */
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .fade-in-up-delay-1 {
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .fade-in-up-delay-2 {
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .fade-in-up-delay-3 {
+        animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        h2 {
+            font-size: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            font-size: 1rem;
+        }
+        
+        .hero-image-container {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    /* Content Section Enhancements */
+    .prose {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .prose h2 {
+        animation: fadeInUp 0.8s ease-out 0.1s both;
+    }
+
+    .prose p {
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .prose .btn {
+        animation: fadeInUp 0.8s ease-out 0.3s both;
+    }
+
+    .prose h3 {
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .prose .kg-card {
+        animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
     </style>
 
     <!-- Google Tag Manager -->
@@ -182,16 +416,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- Main Content Area -->
     <div class="px-6 my-24 lg:my-20 flex-1 flex flex-col">
         <!-- Hero Image -->
-        <div class="max-w-max-w-2 mx-auto mb-14 lg:mb-20">
-            <img src="images/myphoto2.jpeg" class="rounded">
+        <div class="max-w-max-w-2 mx-auto mb-14 lg:mb-20 fade-in-up">
+            <div class="hero-image-container">
+                <img src="images/myphoto2.jpeg" class="rounded">
+            </div>
         </div>
 
         <!-- Content Section -->
         <div class="prose relative">
-            <h2 id="hello">Hey there 👋, I'm <span class="text-orange">Adeyemi</span></h2>
-            <p>I'm a <span class="text-orange">Software Engineer, Prev. Technology Consultant @KPMG, part-time digital craftsman, and full-time code whisperer</span> based in Virginia, USA. Welcome to my digital workshop; creativity and code brew magic together. I'm currently on a mission building ethical AI models, because let's face it, it's easier to teach AI good manners now than negotiate with AGI and ASI overlords later! 😉</p>
+            <h2 id="hello" class="gradient-text">Hey there 👋, I'm <span class="accent-gradient">Adeyemi</span></h2>
+            <p>I'm a Software Engineer</span>, prev. Technology Consultant @KPMG, part-time digital craftsman</span>, and <span class="gradient-text">full-time code whisperer</span> based in Virginia, USA. Welcome to my digital workshop; creativity and code brew magic together. I'm currently on a mission building ethical AI models, because let's face it, it's easier to teach AI good manners now than negotiate with AGI and ASI overlords later! </p>
             
-            <a href="about.html" class="btn btn-gray-border">More about me</a>
+            <a href="about.html" class="btn btn-gray-border btn-enhanced">More about me</a>
             
     
             <!-- <p>And if there's 1 thing you absolutely need to know about me, it's that...</p> -->
@@ -200,11 +436,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <!--kg-card-end: html-->
 
             <!--kg-card-begin: html-->
-            <a href="https://www.linkedin.com/in/adeyemi-aina/" target="_blank" class="btn btn-gray-border">LinkedIn</a>
-            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" target="_blank" class="btn btn-gray-border">Resume</a>
+            <a href="https://www.linkedin.com/in/adeyemi-aina/" target="_blank" class="btn btn-gray-border btn-enhanced">LinkedIn</a>
+            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" target="_blank" class="btn btn-gray-border btn-enhanced">Resume</a>
             <!--kg-card-end: html-->
-            <p>See some of my interesting <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en">research papers</a> covering topics from Memory Compression, Cloud computing, Ethical A.I, Software Engineering, Cybersecurity and DevOps practices.</p>
-            <h3 id="Publications">Publications</h3>
+            <p>See some of my interesting <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en">papers</a> covering topics from Memory Compression<, Cloud computing, Ethical A.I</span>, <span class="gradient-text">Software Engineering</span>, Cybersecurity and DevOps practices.</p>
+            <h3 id="Publications" class="gradient-text">Publications</h3>
             <!-- <p>Every week, I send you an <a href="https://www.jeffsu.org/productivity-ping/">insanely actionable Google Workspace tip</a>.</p>
             <h3 id="read-it-first">Read it first</h3> -->
             <div class="kg-card kg-product-card">
@@ -262,14 +498,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
             <!--kg-card-begin: html-->
-            <a href="#/portal/" class="btn btn-orange has-access">My Account</a>
+            <a href="#/portal/" class="btn btn-orange has-access btn-enhanced">My Account</a>
             <div class="flex gap-2 items-center no-access">
-                <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en" class="btn btn-orange">See more</a>
+                <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en" class="btn btn-orange btn-enhanced">See more</a>
                 <!-- <span>or</span> -->
                 <!-- <a href="#/portal/signup/" class="btn btn-orange total-members no-access">Sign up to the newsletter</a> -->
             </div>
             <!--kg-card-end: html-->
-            <h2 id="contact">Contact</h2>
+            <h2 id="contact" class="gradient-text">Contact</h2>
       
             <div class="kg-card kg-product-card">
                 <div class="kg-product-card-container">
