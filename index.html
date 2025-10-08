@@ -361,6 +361,57 @@
     .prose .kg-card {
         animation: fadeInUp 0.8s ease-out 0.5s both;
     }
+
+    /* Sidebar Responsive Fixes */
+    .backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 20;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .backdrop:not(.opacity-0) {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Ensure sidebar is properly responsive */
+    @media (max-width: 1023px) {
+        .sidebar {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 30;
+            /* Force collapsed state on mobile by default */
+            transform: translateX(-100%) !important;
+        }
+        
+        .sidebar.-translate-x-full {
+            transform: translateX(-100%) !important;
+        }
+        
+        .sidebar:not(.-translate-x-full) {
+            transform: translateX(0) !important;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .sidebar {
+            position: sticky !important;
+            transform: translateX(0) !important;
+        }
+        
+        .backdrop {
+            display: none !important;
+        }
+    }
     </style>
 
     <!-- Google Tag Manager -->
