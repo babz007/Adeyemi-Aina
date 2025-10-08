@@ -178,6 +178,9 @@
         overflow: hidden;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .profile-image-container:hover {
@@ -573,6 +576,312 @@
         transform: scale(1.1);
     }
 
+    /* Skills Showcase - FAANG Level Design */
+    .skills-showcase {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0.03), rgba(251, 146, 60, 0.03));
+        border-radius: 24px;
+        padding: 2.5rem;
+        margin: 2rem 0;
+        border: 1px solid rgba(59, 130, 246, 0.1);
+        backdrop-filter: blur(20px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .skills-showcase::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
+        border-radius: 50%;
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .skills-showcase::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -15%;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.1), transparent);
+        border-radius: 50%;
+        animation: float 10s ease-in-out infinite reverse;
+    }
+
+    .skills-title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #1e293b, #3b82f6, #8b5cf6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .dark .skills-title {
+        background: linear-gradient(135deg, #f1f5f9, #60a5fa, #a78bfa);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .skills-icon {
+        width: 2rem;
+        height: 2rem;
+        color: #3b82f6;
+        animation: rotate 3s linear infinite;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .skill-category {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+        border: 1px solid rgba(226, 232, 240, 0.8);
+        border-radius: 20px;
+        padding: 1.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .skill-category:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border-color: rgba(59, 130, 246, 0.3);
+    }
+
+    .dark .skill-category {
+        background: linear-gradient(135deg, rgba(15, 14, 23, 0.9), rgba(30, 41, 59, 0.8));
+        border-color: rgba(71, 85, 105, 0.3);
+    }
+
+    .skill-category::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        border-radius: 0 0 0 20px;
+    }
+
+    .category-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .category-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .skill-category:hover .category-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+    }
+
+    .category-icon svg {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .category-title {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 0;
+    }
+
+    .dark .category-title {
+        color: #f1f5f9;
+    }
+
+    .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .skill-tag {
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border: 1px solid transparent;
+    }
+
+    .skill-tag::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .skill-tag:hover::before {
+        left: 100%;
+    }
+
+    .skill-tag:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Primary Skills - Blue Theme */
+    .skill-tag.primary {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        color: white;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .skill-tag.primary:hover {
+        background: linear-gradient(135deg, #1d4ed8, #1e40af);
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Secondary Skills - Green Theme */
+    .skill-tag.secondary {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .skill-tag.secondary:hover {
+        background: linear-gradient(135deg, #059669, #047857);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+
+    /* Accent Skills - Purple Theme */
+    .skill-tag.accent {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        color: white;
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+
+    .skill-tag.accent:hover {
+        background: linear-gradient(135deg, #7c3aed, #6d28d9);
+        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+    }
+
+    /* Tertiary Skills - Orange Theme */
+    .skill-tag.tertiary {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: white;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+
+    .skill-tag.tertiary:hover {
+        background: linear-gradient(135deg, #d97706, #b45309);
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .skills-showcase {
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .skills-title {
+            font-size: 1.5rem;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .skills-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            padding: 1.25rem;
+        }
+
+        .skills-list {
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .skills-showcase {
+            padding: 1rem;
+        }
+
+        .category-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .category-icon {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .category-icon svg {
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+
+    /* Animation for skills showcase */
+    .skills-showcase {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .skill-category {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .skill-category:nth-child(1) { animation-delay: 0.1s; }
+    .skill-category:nth-child(2) { animation-delay: 0.2s; }
+    .skill-category:nth-child(3) { animation-delay: 0.3s; }
+    .skill-category:nth-child(4) { animation-delay: 0.4s; }
+
     /* Animation for page load */
     .hero-section,
     .speaking-engagements,
@@ -659,19 +968,111 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="profile-image-container">
                         <img src="images/aboutme.jpeg" alt="Adeyemi Aina" class="profile-image">
                     </div>
-                    <h1 class="hero-title">Adeyemi Aina</h1>
-                    <p class="hero-subtitle">Software Engineer & Technology Consultant</p>
+                    <h3 class="hero-title">Adeyemi Aina</h3>
+                    <!-- <p class="hero-subtitle">Software Engineer & Technology Consultant</p> -->
                     
                     <div class="text-content" style="text-align: justify; max-width: 800px; margin: 0 auto;">
                         <p>
                           Hello there! I'm a Software Engineer and former Senior Technology Consultant, I earned a Master's in Computer Science under a National Science Foundation award scholarship. I have endless appetite for turning complex puzzles into elegant solutions. I specialize in <strong>robust microservices</strong>, <strong>scalable APIs</strong>, and <strong>ontology-powered data systems</strong>. My passion for uncovering hidden patterns naturally drew me into the world of machine learning.
                         </p>
                       
-                        <p><u><strong>Toolbox at a glance:</strong></u></p>
-                        <ul>
-                          <li><strong>- Languages & Frameworks:</strong> Java&nbsp;(Spring), Python&nbsp;(Flask &amp; Django, PyTorch), C++, Ruby on Rails, TypeScript</li>
-                          <li><strong>- Cloud &amp; DevOps:</strong> Docker, Kubernetes, AWS, GCP</li>
-                        </ul>
+                        <div class="skills-showcase">
+                            <h3 class="skills-title">
+                                <svg class="skills-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                                Technical Arsenal
+                            </h3>
+                            
+                            <div class="skills-grid">
+                                <!-- Languages & Frameworks -->
+                                <div class="skill-category">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                            </svg>
+                                        </div>
+                                        <h4 class="category-title">Languages & Frameworks</h4>
+                                    </div>
+                                    <div class="skills-list">
+                                        <span class="skill-tag primary">Java (Spring)</span>
+                                        <span class="skill-tag primary">Python (Flask & Django)</span>
+                                        <span class="skill-tag primary">PyTorch</span>
+                                        <span class="skill-tag primary">C++</span>
+                                        <span class="skill-tag primary">Ruby on Rails</span>
+                                        <span class="skill-tag primary">TypeScript</span>
+                                    </div>
+                                </div>
+
+                                <!-- Cloud & DevOps -->
+                                <div class="skill-category">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4m9-8a4 4 0 11-8 0m0 0a4 4 0 00-4-4m4 4V3a4 4 0 00-4-4m0 0a4 4 0 00-4 4m0 0a4 4 0 004 4m0 0a4 4 0 00-4 4m0 0a4 4 0 004 4"/>
+                                            </svg>
+                                        </div>
+                                        <h4 class="category-title">Cloud & DevOps</h4>
+                                    </div>
+                                    <div class="skills-list">
+                                        <span class="skill-tag secondary">AWS (EKS, S3, DynamoDB)</span>
+                                        <span class="skill-tag secondary">Lambda</span>
+                                        <span class="skill-tag secondary">GCP</span>
+                                        <span class="skill-tag secondary">Docker</span>
+                                        <span class="skill-tag secondary">Kubernetes</span>
+                                        <span class="skill-tag secondary">CI/CD (Jenkins)</span>
+                                        <span class="skill-tag secondary">Git</span>
+                                    </div>
+                                </div>
+
+                                <!-- Machine Learning & AI -->
+                                <div class="skill-category">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                            </svg>
+                                        </div>
+                                        <h4 class="category-title">Machine Learning & AI</h4>
+                                    </div>
+                                    <div class="skills-list">
+                                        <span class="skill-tag accent">TensorFlow</span>
+                                        <span class="skill-tag accent">PyTorch</span>
+                                        <span class="skill-tag accent">Scikit-Learn</span>
+                                        <span class="skill-tag accent">Pandas</span>
+                                        <span class="skill-tag accent">NumPy</span>
+                                        <span class="skill-tag accent">Matplotlib</span>
+                                        <span class="skill-tag accent">OpenAI APIs</span>
+                                        <span class="skill-tag accent">Ethical AI</span>
+                                    </div>
+                                </div>
+
+                                <!-- Databases -->
+                                <div class="skill-category">
+                                    <div class="category-header">
+                                        <div class="category-icon">
+                                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"/>
+                                            </svg>
+                                        </div>
+                                        <h4 class="category-title">Databases</h4>
+                                    </div>
+                                    <div class="skills-list">
+                                        <span class="skill-tag tertiary">SQL</span>
+                                        <span class="skill-tag tertiary">MySQL</span>
+                                        <span class="skill-tag tertiary">PostgreSQL</span>
+                                        <span class="skill-tag tertiary">SQLAlchemy</span>
+                                        <span class="skill-tag tertiary">NoSQL</span>
+                                        <span class="skill-tag tertiary">MongoDB</span>
+                                        <span class="skill-tag tertiary">Neo4j</span>
+                                        <span class="skill-tag tertiary">Elasticsearch</span>
+                                        <span class="skill-tag tertiary">ETL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                       
                         <br />   <!-- Extra space before the next paragraph -->
                       
@@ -715,7 +1116,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <div class="timeline-dot">
                             <img src="images/VirginiaTech.png" alt="VirtusLab">
                         </div>
-                        <div class="timeline-date">Jan 2023 - Dec 2024</div>
+                        <div class="timeline-date">Jan 2023 - May 2025</div>
                         <div class="mb-3"> <!-- Reduced margin -->
                             <h3 class="text-lg font-bold mb-1">Software Engineer</h3>
                             <span>Virginia Tech</span>
@@ -799,8 +1200,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <!-- Speaking Engagements Section -->
         <div class="max-w-max-w-2 mx-auto mb-14">
-            <h2 class="section-header">Speaking Engagements</h2>
-            <p class="section-subtitle">Sharing knowledge and insights at leading technology conferences</p>
+            <h3 class="section-header">Conference & Speaking Engagements</h3>
+            <p class="section-subtitle">Speaker at leading technology conferences</p>
             
             <div class="speaking-engagements">
                 <div class="speaking-card">
@@ -840,7 +1241,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <!-- Awards Section -->
         <div class="max-w-max-w-2 mx-auto mb-14">
-            <h2 class="section-header">Awards & Recognition</h2>
+            <h3 class="section-header">Awards & Recognition</h3>
             <p class="section-subtitle">Recognized for excellence in technology and leadership</p>
             
             <div class="awards-section">
@@ -921,7 +1322,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <!-- Education Section -->
         <div class="max-w-max-w-2 mx-auto mb-14">
             <h2 class="section-header">Education</h2>
-            <p class="section-subtitle">Academic foundation in computer science and technology</p>
+            <p class="section-subtitle"> Foundation in computer science and technology</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-4"> <!-- Updated spacing -->
                 <!-- Virginia Tech Card -->
