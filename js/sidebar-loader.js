@@ -69,11 +69,22 @@ class SidebarLoader {
         const sidebar = document.querySelector('.sidebar');
         const backdrop = document.querySelector('.backdrop');
         
+        // Ensure sidebar starts collapsed on mobile
+        if (sidebar) {
+            // Force sidebar to be collapsed on mobile on page load
+            if (window.innerWidth < 1024) {
+                sidebar.classList.add('-translate-x-full');
+                if (backdrop) {
+                    backdrop.classList.add('opacity-0', 'pointer-events-none');
+                }
+            }
+        }
+        
         if (triggerSidebar && sidebar) {
             triggerSidebar.addEventListener('click', (e) => {
                 e.preventDefault();
-                // Toggle sidebar visibility without slide animation
-                sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+                // Toggle sidebar visibility using translate classes (responsive)
+                sidebar.classList.toggle('-translate-x-full');
                 if (backdrop) {
                     backdrop.classList.toggle('opacity-0');
                     backdrop.classList.toggle('pointer-events-none');
@@ -83,10 +94,27 @@ class SidebarLoader {
         
         if (backdrop) {
             backdrop.addEventListener('click', () => {
-                sidebar.style.display = 'none';
+                sidebar.classList.add('-translate-x-full');
                 backdrop.classList.add('opacity-0', 'pointer-events-none');
             });
         }
+        
+        // Handle window resize to maintain proper sidebar state
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 1024) {
+                // Mobile view - ensure sidebar is collapsed
+                sidebar.classList.add('-translate-x-full');
+                if (backdrop) {
+                    backdrop.classList.add('opacity-0', 'pointer-events-none');
+                }
+            } else {
+                // Desktop view - ensure sidebar is visible
+                sidebar.classList.remove('-translate-x-full');
+                if (backdrop) {
+                    backdrop.classList.add('opacity-0', 'pointer-events-none');
+                }
+            }
+        });
     }
 
     initializeColorMode() {
