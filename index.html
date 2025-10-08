@@ -127,472 +127,6 @@
         text-decoration: none;
         font-weight: normal;
     }
-
-    /* Apple-Level Hero Section Design */
-    .hero-image-container {
-        position: relative;
-        margin: 0 auto 3rem;
-        max-width: 600px;
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .hero-image-container::before {
-        content: '';
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        right: -2px;
-        bottom: -2px;
-        background: linear-gradient(45deg, #3b82f6, #8b5cf6, #f59e0b, #ef4444, #10b981);
-        border-radius: 26px;
-        z-index: -1;
-        animation: gradient-rotate 8s linear infinite;
-        opacity: 0.8;
-    }
-
-    .hero-image-container:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 35px 70px -12px rgba(0, 0, 0, 0.35);
-    }
-
-    .hero-image-container:hover::before {
-        opacity: 1;
-        animation-duration: 4s;
-    }
-
-    @keyframes gradient-rotate {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
-
-    .hero-image {
-        width: 100%;
-        height: auto;
-        border-radius: 24px;
-        transition: all 0.4s ease;
-        position: relative;
-        z-index: 2;
-    }
-
-    .hero-image-container:hover .hero-image {
-        transform: scale(1.05);
-    }
-
-    /* Enhanced Typography */
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: 800;
-        background: linear-gradient(135deg, #1e293b, #3b82f6, #f59e0b);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-align: center;
-        margin-bottom: 2rem;
-        animation: gradient-shift 6s ease infinite;
-        position: relative;
-    }
-
-    .dark .hero-title {
-        background: linear-gradient(135deg, #f1f5f9, #60a5fa, #fbbf24);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    @keyframes gradient-shift {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-    }
-
-    .hero-title::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100px;
-        height: 4px;
-        background: linear-gradient(90deg, #3b82f6, #f59e0b);
-        border-radius: 2px;
-        animation: pulse-width 3s ease-in-out infinite;
-    }
-
-    @keyframes pulse-width {
-        0%, 100% { width: 100px; }
-        50% { width: 200px; }
-    }
-
-    .hero-subtitle {
-        font-size: 1.5rem;
-        color: #64748b;
-        text-align: center;
-        margin-bottom: 3rem;
-        font-weight: 500;
-        line-height: 1.6;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-    }
-
-    .dark .hero-subtitle {
-        color: #94a3b8;
-    }
-
-    .hero-subtitle::before {
-        content: '';
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 2px;
-        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-        border-radius: 1px;
-    }
-
-    /* Enhanced Button Styles */
-    .btn-enhanced {
-        padding: 1rem 2rem;
-        border-radius: 16px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin: 0.5rem;
-        border: 2px solid transparent;
-    }
-
-    .btn-enhanced::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: left 0.6s;
-    }
-
-    .btn-enhanced:hover::before {
-        left: 100%;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-        color: white;
-        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-        border-color: rgba(59, 130, 246, 0.3);
-    }
-
-    .btn-secondary {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-        color: #3b82f6;
-        border: 2px solid rgba(59, 130, 246, 0.3);
-        backdrop-filter: blur(10px);
-    }
-
-    .btn-secondary:hover {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
-        transform: translateY(-3px) scale(1.05);
-        border-color: rgba(59, 130, 246, 0.5);
-    }
-
-    .dark .btn-secondary {
-        color: #60a5fa;
-        border-color: rgba(96, 165, 250, 0.3);
-    }
-
-    /* Enhanced Card Styles */
-    .kg-card {
-        position: relative;
-        border-radius: 20px;
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(226, 232, 240, 0.3);
-    }
-
-    .kg-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        z-index: 1;
-    }
-
-    .kg-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        border-color: rgba(59, 130, 246, 0.3);
-    }
-
-    .kg-card:hover::before {
-        opacity: 1;
-    }
-
-    .kg-card-container {
-        position: relative;
-        z-index: 2;
-    }
-
-    .kg-product-card-title {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 0.5rem;
-        transition: color 0.3s ease;
-    }
-
-    .dark .kg-product-card-title {
-        color: #f1f5f9;
-    }
-
-    .kg-card:hover .kg-product-card-title {
-        color: #3b82f6;
-    }
-
-    .dark .kg-card:hover .kg-product-card-title {
-        color: #60a5fa;
-    }
-
-    .kg-product-card-description {
-        color: #64748b;
-        font-size: 0.875rem;
-        line-height: 1.5;
-    }
-
-    .dark .kg-product-card-description {
-        color: #94a3b8;
-    }
-
-    .kg-product-card-button {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-        color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .kg-product-card-button:hover {
-        background: linear-gradient(135deg, #d97706, #b45309);
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
-    }
-
-    /* Enhanced Section Headers */
-    .section-header {
-        font-size: 2.5rem;
-        font-weight: 800;
-        text-align: center;
-        margin: 3rem 0 2rem;
-        background: linear-gradient(135deg, #1e293b, #3b82f6);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        position: relative;
-    }
-
-    .dark .section-header {
-        background: linear-gradient(135deg, #f1f5f9, #60a5fa);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .section-header::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: linear-gradient(90deg, #3b82f6, #f59e0b);
-        border-radius: 2px;
-    }
-
-    /* Enhanced Text Content */
-    .prose p {
-        font-size: 1.125rem;
-        line-height: 1.7;
-        color: #475569;
-        margin-bottom: 1.5rem;
-    }
-
-    .dark .prose p {
-        color: #94a3b8;
-    }
-
-    .prose h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1e293b;
-        margin: 2.5rem 0 1.5rem;
-        position: relative;
-    }
-
-    .dark .prose h2 {
-        color: #f1f5f9;
-    }
-
-    .prose h2::before {
-        content: '';
-        position: absolute;
-        left: -20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 4px;
-        height: 30px;
-        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-        border-radius: 2px;
-    }
-
-    .prose h3 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #374151;
-        margin: 2rem 0 1rem;
-    }
-
-    .dark .prose h3 {
-        color: #d1d5db;
-    }
-
-    /* Enhanced Links */
-    .prose a {
-        color: #3b82f6;
-        text-decoration: none;
-        font-weight: 600;
-        position: relative;
-        transition: all 0.3s ease;
-    }
-
-    .prose a::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-        transition: width 0.3s ease;
-    }
-
-    .prose a:hover::after {
-        width: 100%;
-    }
-
-    .dark .prose a {
-        color: #60a5fa;
-    }
-
-    /* Enhanced Footer */
-    .footer-enhanced {
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(139, 92, 246, 0.03));
-        border-radius: 20px;
-        padding: 2rem;
-        margin-top: 3rem;
-        border: 1px solid rgba(59, 130, 246, 0.1);
-        backdrop-filter: blur(10px);
-    }
-
-    .social-icons a {
-        transition: all 0.3s ease;
-        border-radius: 8px;
-    }
-
-    .social-icons a:hover {
-        transform: translateY(-3px) scale(1.1);
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .hero-title {
-            font-size: 2.5rem;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-        }
-        
-        .hero-image-container {
-            margin-bottom: 2rem;
-        }
-        
-        .btn-enhanced {
-            padding: 0.875rem 1.5rem;
-            font-size: 0.875rem;
-        }
-        
-        .section-header {
-            font-size: 2rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .hero-title {
-            font-size: 2rem;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.125rem;
-        }
-        
-        .btn-enhanced {
-            width: 100%;
-            justify-content: center;
-            margin: 0.25rem 0;
-        }
-    }
-
-    /* Animation for page load */
-    .hero-image-container,
-    .hero-title,
-    .hero-subtitle,
-    .btn-enhanced,
-    .kg-card {
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .hero-title { animation-delay: 0.1s; }
-    .hero-subtitle { animation-delay: 0.2s; }
-    .btn-enhanced { animation-delay: 0.3s; }
-    .kg-card { animation-delay: 0.4s; }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
     </style>
 
     <!-- Google Tag Manager -->
@@ -649,18 +183,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="px-6 my-24 lg:my-20 flex-1 flex flex-col">
         <!-- Hero Image -->
         <div class="max-w-max-w-2 mx-auto mb-14 lg:mb-20">
-            <div class="hero-image-container">
-                <img src="images/myphoto2.jpeg" alt="Adeyemi Aina" class="hero-image">
-            </div>
+            <img src="images/myphoto2.jpeg" class="rounded">
         </div>
 
         <!-- Content Section -->
         <div class="prose relative">
-            <h2 id="hello" class="hero-title">Hey there 👋, I'm <span class="text-orange">Adeyemi</span></h2>
-            <p class="hero-subtitle">I'm a <span class="text-orange">Software Engineer, ex-Technology Consultant @KPMG, part-time digital craftsman, and full-time code whisperer</span> based in Virginia, USA. Welcome to my digital workshop; creativity and code brew magic together. I'm currently on a mission building ethical AI models, because let's face it, it's easier to teach AI good manners now than negotiate with AGI and ASI overlords later! 😉</p>
+            <h2 id="hello">Hey there 👋, I'm <span class="text-orange">Adeyemi</span></h2>
+            <p>I'm a <span class="text-orange">Software Engineer, Prev. Technology Consultant @KPMG, part-time digital craftsman, and full-time code whisperer</span> based in Virginia, USA. Welcome to my digital workshop; creativity and code brew magic together. I'm currently on a mission building ethical AI models, because let's face it, it's easier to teach AI good manners now than negotiate with AGI and ASI overlords later! 😉</p>
             
-            <div class="text-center">
-                <a href="about.html" class="btn-enhanced btn-primary">More about me</a>
+            <a href="about.html" class="btn btn-gray-border">More about me</a>
             
     
             <!-- <p>And if there's 1 thing you absolutely need to know about me, it's that...</p> -->
@@ -669,12 +200,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <!--kg-card-end: html-->
 
             <!--kg-card-begin: html-->
-            <a href="https://www.linkedin.com/in/adeyemi-aina/" target="_blank" class="btn-enhanced btn-secondary">LinkedIn</a>
-            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" target="_blank" class="btn-enhanced btn-secondary">Resume</a>
+            <a href="https://www.linkedin.com/in/adeyemi-aina/" target="_blank" class="btn btn-gray-border">LinkedIn</a>
+            <a href="https://drive.google.com/file/d/1Uqh-SWPcEeL5R5ePzW8FellUtYUV42ag/view?usp=sharing" target="_blank" class="btn btn-gray-border">Resume</a>
             <!--kg-card-end: html-->
-            </div>
             <p>See some of my interesting <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en">research papers</a> covering topics from Memory Compression, Cloud computing, Ethical A.I, Software Engineering, Cybersecurity and DevOps practices.</p>
-            <h2 id="Publications" class="section-header">Publications</h2>
+            <h3 id="Publications">Publications</h3>
             <!-- <p>Every week, I send you an <a href="https://www.jeffsu.org/productivity-ping/">insanely actionable Google Workspace tip</a>.</p>
             <h3 id="read-it-first">Read it first</h3> -->
             <div class="kg-card kg-product-card">
@@ -739,7 +269,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <!-- <a href="#/portal/signup/" class="btn btn-orange total-members no-access">Sign up to the newsletter</a> -->
             </div>
             <!--kg-card-end: html-->
-            <h2 id="contact" class="section-header">Contact</h2>
+            <h2 id="contact">Contact</h2>
       
             <div class="kg-card kg-product-card">
                 <div class="kg-product-card-container">
@@ -767,10 +297,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
 
-            <footer class="footer-enhanced mt-12">
+            <footer class="mt-12">
                 <div class="h-px w-full bg-gray-9 dark:bg-gray-1"></div>
                 <div class="flex items-center justify-between text-xs pt-2">
-                    <div>© Adeyemi Aina 2025</div>
+                    <div> Adeyemi Aina 2025</div>
                     <div class="social-icons grid grid-cols-4 gap-1">
                         <div>
                             <a href="https://scholar.google.com/citations?user=4QlYRBMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" class="block text-xs w-7 h-7 flex items-center justify-center rounded flex-1 relative text-gray-1 dark:text-gray-15 z-10 duration-300 hover:bg-gray-20 dark:hover:bg-gray-10">
