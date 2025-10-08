@@ -72,7 +72,8 @@ class SidebarLoader {
         if (triggerSidebar && sidebar) {
             triggerSidebar.addEventListener('click', (e) => {
                 e.preventDefault();
-                sidebar.classList.toggle('-translate-x-full');
+                // Toggle sidebar visibility without slide animation
+                sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
                 if (backdrop) {
                     backdrop.classList.toggle('opacity-0');
                     backdrop.classList.toggle('pointer-events-none');
@@ -82,7 +83,7 @@ class SidebarLoader {
         
         if (backdrop) {
             backdrop.addEventListener('click', () => {
-                sidebar.classList.add('-translate-x-full');
+                sidebar.style.display = 'none';
                 backdrop.classList.add('opacity-0', 'pointer-events-none');
             });
         }
