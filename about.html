@@ -141,21 +141,35 @@
     </script>
 
     <!-- External Scripts and Resources -->
-    <!-- <meta name="generator" content="Ghost 5.113">
-    <link rel="alternate" type="application/rss+xml" title="Jeff Su" href="https://www.jeffsu.org/rss/">
-    <script defer="" src="js/portal.min.js" data-i18n="true" data-ghost="https://www.jeffsu.org/" data-key="9d587e4360307c91e1f9088e17" data-api="https://jeffsu.ghost.io/ghost/api/content/" data-locale="en" crossorigin="anonymous"></script>
-    <script defer="" src="js/sodo-search.min.js" data-key="9d587e4360307c91e1f9088e17" data-styles="https://cdn.jsdelivr.net/ghost/sodo-search@~1.5/umd/main.css" data-sodo-search="https://jeffsu.ghost.io/" data-locale="en" crossorigin="anonymous"></script> -->
-    
-    <!-- <link href="https://www.jeffsu.org/webmentions/receive/" rel="webmention">
-    <script defer="" src="js/cards.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/cards.min.css">
-    <link rel="stylesheet" type="text/css" href="css/timeline.css">
-    <script defer="" src="js/comment-counts.min.js" data-ghost-comments-counts-api="https://www.jeffsu.org/members/api/comments/counts/"></script>
-    <script defer="" src="js/member-attribution.min.js"></script>
-    <style>:root {--ghost-accent-color: #ff8906;}</style> -->
 
     <!-- Custom Styles -->
     <style>
+    /* Skip Links for Accessibility */
+    .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: #000;
+        color: #fff;
+        padding: 8px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 1000;
+        font-weight: bold;
+    }
+    
+    .skip-link:focus {
+        top: 6px;
+    }
+    
+    /* Focus Indicators for Accessibility */
+    .btn-enhanced:focus,
+    a:focus,
+    button:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+    
     .menu-item.js-theme {
         display: none;
     }
@@ -904,12 +918,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Body with Dynamic Classes -->
 <body class="home-template tag-hash-hide-videos font-1 bg-white dark:bg-gray-13 text-gray-1 dark:text-gray-17 font-medium flex duration-300 no-access post-access-public" data-url="/home/" data-current="hash-hide-videos">
 
+    <!-- Skip Links for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#navigation" class="skip-link">Skip to navigation</a>
+
     <!-- Mobile Header -->
     <header class="fixed top-0 left-0 w-full bg-white dark:bg-gray-6 z-30 lg:hidden duration-300">
         <div class="absolute inset-0 bg-1 dark:opacity-0 duration-300"></div>
         <div class="absolute inset-0 bg-2 opacity-0 dark:opacity-100 duration-300"></div>
         <div class="border-b border-orange-2 dark:border-gray-10 h-16 px-6 flex items-center justify-between relative z-20 duration-300">
-            <a href="https://www.jeffsu.org" class="text-gray-1 dark:text-white">
+            <a href="https://babz007.github.io/Adeyemi-Aina/" class="text-gray-1 dark:text-white">
                 <!-- <svg width="136" height="30" viewBox="0 0 136 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_4_6)">
                         <path class="fill-current" d="M27.5471 0.676811C21.6697 1.92659 15.9073 5.10903 11.8571 9.33506C10.7582 10.4818 10.4004 10.9585 9.97883 11.8347C9.17388 13.4709 9.08446 14.5919 9.67215 15.4938C9.92774 15.8932 10.7838 16.3957 11.3843 16.4988C12.1765 16.6405 15.4091 16.0607 16.1629 15.6356C16.3928 15.5067 16.3801 15.4809 15.9585 15.4165C15.7029 15.365 15.1024 15.3778 14.6169 15.4294C13.3136 15.584 11.8059 15.5711 11.461 15.4036C10.6944 15.0557 10.6815 14.025 11.4226 12.5047C12.662 9.97929 17.5428 6.08824 21.7464 4.25866C25.784 2.50639 30.1665 1.57871 31.4825 2.21005C32.0319 2.48062 32.2108 2.82849 32.2108 3.64021C32.2108 6.0367 29.2849 10.7137 25.1451 14.914L23.5736 16.5117L21.8487 17.0657C18.1688 18.2382 11.6526 20.9568 7.73008 22.9539C3.14314 25.2859 0 27.5407 0 28.5199C0 29.1641 0.357756 29.3316 1.7249 29.3316C4.35696 29.3316 9.36555 27.6953 13.7225 25.4277C16.7123 23.8687 20.2515 21.4851 22.7303 19.3591C23.318 18.8566 23.9952 18.2769 24.2379 18.0707C24.5318 17.8259 25.0429 17.6068 25.8478 17.4007C27.7261 16.9111 29.9492 16.4601 32.0063 16.1252C33.6035 15.8804 34.0379 15.8546 34.5873 15.9705C35.0728 16.0736 35.5711 16.0736 36.3633 15.9705C37.4238 15.8417 37.4876 15.8417 37.9093 16.138C38.7781 16.7307 39.5448 16.8982 41.3975 16.8982C42.6751 16.8982 43.5056 16.8209 44.5917 16.6019C46.8276 16.1509 49.5108 15.4681 51.2229 14.914L52.7562 14.4244L52.3217 14.9269C51.4145 16.0092 50.4691 18.3155 50.4691 19.4751C50.4691 20.1966 50.8907 20.5702 51.6829 20.5702C52.6795 20.5702 53.625 19.6039 55.6821 16.4988L56.717 14.9269L57.3303 14.8496C58.5825 14.695 61.9939 14.3858 64.8432 14.1925C67.3986 14.0121 69.9029 13.69 70.8995 13.4066C71.1934 13.3164 71.1934 13.3164 70.9761 13.6642C70.7717 13.9605 70.6823 13.9992 69.9667 13.9992C68.0246 13.9992 66.5937 14.4759 65.8015 15.3778C65.252 16.0092 63.9871 18.1351 63.3739 19.4364C62.5817 21.1371 63.1311 22.1163 64.8688 22.1163C65.7759 22.1163 66.8492 21.6397 67.7563 20.828C68.3697 20.2739 69.954 18.2253 71.1423 16.4343L71.7939 15.4551L73.0333 15.365C73.7232 15.3135 75.7803 15.3005 77.6074 15.3521C80.9038 15.4294 82.3477 15.3521 82.3477 15.0944C82.3477 14.8882 80.7122 14.3986 79.3579 14.1925C78.6807 14.0895 76.943 13.9605 75.4992 13.9219L72.8543 13.8317L73.4805 12.8783C73.9404 12.1568 74.3237 11.7573 74.9626 11.2935C77.0069 9.85046 78.7957 7.80186 79.7411 5.83055C80.3417 4.59365 80.38 4.06539 79.9072 3.62733C79.0384 2.81561 77.4157 3.57579 75.972 5.48267C75.6653 5.88209 74.8859 7.14476 74.2598 8.29146C72.7393 11.0101 72.8543 10.8555 72.19 11.2162C70.6695 12.0537 68.6252 12.4531 64.6515 12.7108C63.4888 12.7881 61.5467 12.9298 60.3202 13.0458C59.1064 13.1488 58.0842 13.2133 58.0458 13.1875C58.0203 13.1488 58.3398 12.6335 58.7741 12.0408C59.464 11.0487 59.6813 10.8555 60.9207 10.0566C63.7188 8.25281 66.1209 5.98516 66.4658 4.82557C66.7598 3.84636 66.0442 3.08619 64.9454 3.21503C63.361 3.39541 61.2785 5.25075 59.3746 8.16262L58.2758 9.86331L56.8959 10.6493C54.8005 11.8475 53.0884 12.6464 51.274 13.2777C48.3737 14.2698 43.8761 15.3263 41.8191 15.4938C40.8736 15.5583 39.5831 15.4036 39.992 15.2619C40.0942 15.2233 40.848 14.9785 41.6657 14.7207C44.2595 13.8833 45.371 12.8139 44.8344 11.6414C44.4383 10.7653 43.0584 10.6365 41.2569 11.2935C39.4298 11.9506 37.6921 13.1746 37.1171 14.1796C37.0021 14.3858 36.8999 14.3986 36.2483 14.2698C35.2006 14.0765 31.7252 14.5146 28.1732 15.3005C27.5471 15.4294 26.9722 15.5453 26.9084 15.5453C26.8317 15.5453 27.0616 15.2361 27.4194 14.8625C28.2372 14.0121 29.1187 12.9298 30.1153 11.6157C32.5813 8.31723 33.8718 5.50845 33.8846 3.43407C33.8973 2.02967 33.4501 1.20507 32.3897 0.625273C31.7125 0.264511 29.3743 0.277395 27.5471 0.676811ZM63.3227 6.2042C62.6838 6.80976 62.1089 7.29937 62.0451 7.29937C61.9684 7.29937 62.4027 6.79688 63.0161 6.2042C63.6294 5.59863 64.2043 5.10903 64.2937 5.10903C64.3832 5.12191 63.9488 5.61152 63.3227 6.2042ZM77.5946 6.2815C77.3391 6.70669 76.5853 7.60859 76.7386 7.29937C76.8791 7.01591 77.6968 5.88209 77.7607 5.88209C77.799 5.88209 77.7224 6.06247 77.5946 6.2815ZM42.4835 12.7365C41.9468 13.02 40.2475 13.6384 40.2475 13.5483C40.2475 13.4452 41.5636 12.801 42.1002 12.6335C42.8795 12.3887 43.0584 12.4274 42.4835 12.7365ZM55.8226 13.2777C55.7204 13.3808 55.4393 13.4967 55.1965 13.5354L54.7494 13.6256L55.3244 13.3035C55.9121 12.9813 56.1548 12.9685 55.8226 13.2777ZM53.6122 16.6276C53.1523 17.2977 52.7051 17.8903 52.6412 17.9289C52.4878 18.0191 52.9479 16.9239 53.2928 16.357C53.5739 15.9061 54.2894 15.2361 54.3916 15.3392C54.4299 15.3778 54.0722 15.9577 53.6122 16.6276ZM69.1107 16.473C67.5647 18.7793 66.3764 20.1451 65.5204 20.5832C64.4983 21.1114 64.4599 20.8923 65.3287 19.2819C66.8492 16.4601 67.3347 15.8804 68.2802 15.6742C69.1746 15.4938 69.5579 15.4681 69.609 15.5711C69.6345 15.6226 69.4045 16.0221 69.1107 16.473ZM20.1877 19.4235C19.9449 19.6297 19.0377 20.3126 18.1817 20.931C13.8375 24.0362 9.60831 26.2007 5.43022 27.4505C3.97364 27.8886 2.14653 28.3137 2.08264 28.2493C1.98043 28.1463 2.95148 27.4119 4.47194 26.4327C7.41065 24.5386 12.2403 22.2581 18.5394 19.7972C19.6255 19.372 20.5326 19.0371 20.5709 19.0371C20.6093 19.0371 20.4304 19.2045 20.1877 19.4235Z" fill="#43403C"></path>
@@ -934,12 +952,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </header>
 
     <!-- Sidebar Navigation -->
-    <div class="sidebar-container"></div>
+    <div class="sidebar-container" id="navigation" role="navigation" aria-label="Main navigation"></div>
     <!-- Backdrop Overlay -->
     <div class="backdrop"></div>
     
     <!-- Main Content Area -->
-    <div class="px-6 my-24 lg:my-20 flex-1 flex flex-col">
+    <main id="main-content" class="px-6 my-24 lg:my-20 flex-1 flex flex-col" role="main" aria-label="Main content">
         <!-- Hero Section -->
         <div class="max-w-max-w-2 mx-auto mb-14 lg:mb-20">
             <div class="hero-section">
@@ -952,7 +970,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     
                     <div class="text-content" style="text-align: justify; max-width: 800px; margin: 0 auto; font-size: 0.95rem; line-height: 1.6;">
                         <p>
-                          Hello there! I'm a Software Engineer and former Senior Technology Consultant, I earned a Master's in Computer Science under a National Science Foundation award scholarship. I have endless appetite for turning complex puzzles into elegant solutions. I specialize in <strong>robust microservices</strong>, <strong>scalable APIs</strong>, and <strong>ontology-powered data systems</strong>. My passion for uncovering hidden patterns naturally drew me into the world of machine learning.
+                          Hello there! I'm a Software Engineer and former Senior Technology Consultant. I earned a Master's in Computer Science under a National Science Foundation award scholarship. I have an endless appetite for turning complex puzzles into elegant solutions. I specialize in <strong>robust microservices</strong>, <strong>scalable APIs</strong>, and <strong>ontology-powered data systems</strong>. My passion for uncovering hidden patterns naturally drew me into the world of machine learning.
                         </p>
                       
                         <div class="skills-showcase">
@@ -1064,17 +1082,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
 
                     <div class="cta-buttons">
-                        <a href="https://www.linkedin.com/in/adeyemi-aina/" target="_blank" class="btn-enhanced btn-primary">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <a href="https://www.linkedin.com/in/adeyemi-aina/" target="_blank" class="btn-enhanced btn-primary" aria-label="Connect with Adeyemi Aina on LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                             </svg>
                             LinkedIn
                         </a>
-                        <a href="mailto:ainababs0@gmail.com" target="_blank" class="btn-enhanced btn-secondary">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <a href="mailto:ainababs0@gmail.com" target="_blank" class="btn-enhanced btn-secondary" aria-label="Send email to Adeyemi Aina">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                             Email
+                        </a>
+                        <a href="https://calendly.com/ainababs0/30min" target="_blank" class="btn-enhanced btn-secondary" aria-label="Schedule a meeting with Adeyemi Aina">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            Schedule Meeting
                         </a>
                     </div>
                 </div>
@@ -1082,8 +1106,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
         <!-- Experience Section -->
-        <div class="max-w-max-w-2 mx-auto mb-14">
-            <h2 class="section-header">Professional Experience</h2>
+        <section aria-labelledby="experience-heading" class="max-w-max-w-2 mx-auto mb-14 lg:mb-20">
+            <h2 id="experience-heading" class="section-header">Professional Experience</h2>
             <p class="section-subtitle">Building impactful solutions across diverse technology domains</p>
             
             <div class="timeline-container">
@@ -1114,7 +1138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-dot">
-                            <img src="images/VirginiaTech.png" alt="VirtusLab">
+                            <img src="images/VirginiaTech.png" alt="Virginia Tech">
                         </div>
                         <div class="timeline-date">Jan 2023 - May 2025</div>
                         <div class="mb-3"> <!-- Reduced margin -->
@@ -1147,7 +1171,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-dot">
-                            <img src="images/kpmg.png" alt="Semiflat Studio">
+                            <img src="images/kpmg.png" alt="KPMG">
                         </div>
                         <div class="timeline-date">Apr 2021 - Jan 2023</div>
                         <div class="mb-4">
@@ -1174,7 +1198,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <div class="timeline-dot">
-                            <img src="images/andela.png" alt="Autentika">
+                            <img src="images/andela.png" alt="Andela">
                         </div>
                         <div class="timeline-date">Feb 2020 - Oct 2020</div>
                         <div class="mb-4">
@@ -1196,11 +1220,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Speaking Engagements Section -->
-        <div class="max-w-max-w-2 mx-auto mb-14">
-            <h3 class="section-header">Conference & Speaking Engagements</h3>
+        <section aria-labelledby="speaking-heading" class="max-w-max-w-2 mx-auto mb-14 lg:mb-20">
+            <h3 id="speaking-heading" class="section-header">Conference & Speaking Engagements</h3>
             <p class="section-subtitle">Speaker at leading technology conferences</p>
             
             <div class="speaking-engagements">
@@ -1209,7 +1233,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         <svg class="speaking-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
                         </svg>
-                        Virtue Ethics by Design: (Can We Embed Moralilty in AI?(AGI & ASI))
+                        Virtue Ethics by Design: (Can We Embed Morality in AI?(AGI & ASI))
                     </div>
                     <div class="speaking-conference">IntelliSys Conference 2025 (Amsterdam, Netherlands)</div>
                     <div class="speaking-year">September 2025</div>
@@ -1223,7 +1247,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         Demystifying Oauth2.0, Single Sign-On JWT Authentication & LTI 1.3 for Large scale systems
                     </div>
                     <div class="speaking-conference">1EdTech Learning Impact 2025 (Indianapolis, USA)</div>
-                    <div class="speaking-year">July2025</div>
+                    <div class="speaking-year">July 2025</div>
                 </div>
 
                 <div class="speaking-card">
@@ -1237,11 +1261,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="speaking-year">April 2020</div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Awards Section -->
-        <div class="max-w-max-w-2 mx-auto mb-14">
-            <h3 class="section-header">Awards & Recognition</h3>
+        <section aria-labelledby="awards-heading" class="max-w-max-w-2 mx-auto mb-14 lg:mb-20">
+            <h3 id="awards-heading" class="section-header">Awards & Recognition</h3>
             <p class="section-subtitle">Recognized for excellence in technology and leadership</p>
             
             <div class="awards-section">
@@ -1317,11 +1341,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="award-description">Class President 2011-2015, recognized for exceptional leadership and student representation.</div>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Education Section -->
-        <div class="max-w-max-w-2 mx-auto mb-14">
-            <h2 class="section-header">Education</h2>
+        <section aria-labelledby="education-heading" class="max-w-max-w-2 mx-auto mb-14 lg:mb-20">
+            <h2 id="education-heading" class="section-header">Education</h2>
             <p class="section-subtitle"> Foundation in computer science and technology</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-4"> <!-- Updated spacing -->
@@ -1378,7 +1402,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
-    </div>
+    </main>
 
     <!-- JavaScript Libraries -->
     <script src="js/prism.min.js"></script>
